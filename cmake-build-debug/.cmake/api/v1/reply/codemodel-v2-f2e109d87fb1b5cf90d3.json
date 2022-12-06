@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/cmake-build-debug",
-		"source" : "/Users/andrejegeniq/Developer/GitHub/advent-of-code-2022"
+		"build" : "/Users/andrejpistek/Developer/GitHub/advent-of-code-2022/cmake-build-debug",
+		"source" : "/Users/andrejpistek/Developer/GitHub/advent-of-code-2022"
 	},
 	"version" : 
 	{

@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <numeric>
 
 using namespace std;
 string const FILE_NAME = "calories.txt";
@@ -9,6 +10,8 @@ string const FILE_NAME = "calories.txt";
 struct Elf {
     int calories = 0;
 };
+
+int sum_top_calories(vector<Elf> const& elfs, int nr);
 
 int main() {
     vector<Elf> elfs;
@@ -41,13 +44,26 @@ int main() {
         dataFile.close();
     }else cout << "unable to open "<< FILE_NAME << endl;
 
-    auto maxCaloriesElfIter = max_element(elfs.begin(), elfs.end(), [](Elf const& lhs, Elf const& rhs){
-        return lhs.calories < rhs.calories;
+    sort(elfs.begin(), elfs.end(), [](Elf const& lhs, Elf const& rhs){
+        return lhs.calories > rhs.calories;
     });
+
+
+    int topNr = 3;
 
     cout << "Result:" << endl;
     cout << "Number of elfs: " << elfs.size() << endl;
-    cout << "max calories for single elf: " << maxCaloriesElfIter->calories << endl;
-
+    cout << "max calories for single elf: " << elfs.begin()->calories << endl;
+    cout << "calories for top " << topNr<< " elfs: " << sum_top_calories(elfs, topNr)<< endl;
     return 0;
+}
+
+int sum_top_calories(vector<Elf> const& elfs, int nr){
+    auto endIter  = elfs.end();
+    if (elfs.size() > nr){
+        endIter = elfs.begin() + nr;
+    }
+    return accumulate(elfs.begin(), endIter, 0, [](int const& accumulator, Elf elf){
+        return accumulator + elf.calories;
+    });
 }
