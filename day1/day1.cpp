@@ -5,7 +5,8 @@ string const FILE_NAME = "day1.txt";
 
 int sum_top_calories(const std::vector<Elf>& elfs, int nr);
 
-int runDay1() {
+int run_day_1() {
+    std::cout << "Day 1 START" << std::endl;
     vector<Elf> elfs;
 
     ifstream dataFile(FILE_NAME);
@@ -43,10 +44,10 @@ int runDay1() {
 
     int topNr = 3;
 
-    cout << "Result:" << endl;
-    cout << "Number of elfs: " << elfs.size() << endl;
     cout << "max calories for single elf: " << elfs.begin()->calories << endl;
     cout << "calories for top " << topNr<< " elfs: " << sum_top_calories(elfs, topNr)<< endl;
+    std::cout << "Day 1 END" << std::endl;
+
     return 0;
 }
 

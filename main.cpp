@@ -2,6 +2,7 @@
 #include "day2/day2.h"
 
 int main(){
-//    runDay1();
-    runDay2();
+    run_day_1();
+    std::cout << std::endl;
+    run_day_2();
 }

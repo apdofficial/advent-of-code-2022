@@ -8,6 +8,6 @@
 #include <algorithm>
 #include <numeric>
 
-int runDay2();
+int run_day_2();
 
 #endif //ADVENT_OF_CODE_2022_DAY2_H
