@@ -2,6 +2,6 @@
 #include "day2/day2.h"
 
 int main(){
-    runDay1();
+//    runDay1();
     runDay2();
 }

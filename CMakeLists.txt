@@ -4,3 +4,6 @@ project(advent_of_code_2022)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(advent_of_code_2022 day1/day1.cpp day2/day2.cpp main.cpp day1/day1.h day2/day2.h)
+
+find_package(Boost 1.80.0 COMPONENTS system filesystem REQUIRED)
+include_directories(${Boost_INCLUDE_DIRS})
