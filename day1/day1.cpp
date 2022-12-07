@@ -1,62 +1,100 @@
 #include "day1.h"
 
-using namespace std;
-string const FILE_NAME = "day1.txt";
+std::string const FILE_NAME = "day1.txt";
 
-int sum_top_calories(const std::vector<Elf>& elfs, int nr);
-
-int run_day_1() {
-    std::cout << "Day 1 START" << std::endl;
-    vector<Elf> elfs;
-
-    ifstream dataFile(FILE_NAME);
-
-    if(dataFile.is_open()){
-        cout << "opened "<< FILE_NAME << endl;
-
-        string line;
-        bool shouldCreateElf = true;
-
-        while (getline(dataFile, line)) {
-            if (!line.empty()) {
-                try{
-                    int caloriesItem = stoi(line);
-                    if (shouldCreateElf){
-                        elfs.push_back(Elf{.calories = caloriesItem});
-                    }else{
-                        elfs.back().calories += caloriesItem;
-                    }
-                }catch (std::invalid_argument& e){
-                    cout << "exception:" << e.what() << "for input: " << line << endl;
-                }
-                shouldCreateElf = false;
-            }else{
-                shouldCreateElf = true;
-            }
-        }
-        dataFile.close();
-    }else cout << "unable to open "<< FILE_NAME << endl;
-
-    sort(elfs.begin(), elfs.end(), [](const Elf& lhs, const Elf& rhs){
-        return lhs.calories > rhs.calories;
-    });
-
-
-    int topNr = 3;
-
-    cout << "max calories for single elf: " << elfs.begin()->calories << endl;
-    cout << "calories for top " << topNr<< " elfs: " << sum_top_calories(elfs, topNr)<< endl;
-    std::cout << "Day 1 END" << std::endl;
-
-    return 0;
+int stringToInt(const std::string& line){
+    try {
+        return stoi(line);
+    }catch (std::invalid_argument& e){
+        std::cout << "exception:" << e.what() << "for input: " << line << std::endl;
+        return 0;
+    }
 }
 
-int sum_top_calories(const vector<Elf>& elfs, int nr){
-    auto endIter  = elfs.end();
-    if (elfs.size() > nr){
-        endIter = elfs.begin() + nr;
-    }
-    return accumulate(elfs.begin(), endIter, 0, [](const int& accumulator, Elf elf){
-        return accumulator + elf.calories;
+std::vector<int> sumCaloriesOrdered(const std::vector<std::string> &lines) {
+    std::vector<int> caloriesSum;
+    std::accumulate(lines.begin(), lines.end(),0,[&caloriesSum](auto accumulator, auto& line){
+        if (line.empty()) {
+            caloriesSum.push_back(accumulator);
+            return 0;
+        }
+        else return accumulator + stringToInt(line);
     });
+    std::sort(caloriesSum.begin(), caloriesSum.end(), [](auto& lhs, auto& rhs){
+        return lhs > rhs;
+    });
+    return caloriesSum;
+}
+
+int top_1_elf_calories(const std::vector<std::string>& lines) {
+    int max = 0;
+    std::accumulate(lines.begin(), lines.end(),0,[&max](auto accumulator, auto& line){
+        if (line.empty()){
+            if (accumulator > max) max = accumulator;
+            return 0;
+        }else return accumulator + stringToInt(line);
+    });
+    return max;
+}
+
+int top_3_elf_calories(const std::vector<std::string>& lines) {
+    int max1 = 0;
+    int max2 = 0;
+    int max3 = 0;
+    std::vector<int> caloriesSum;
+    std::accumulate(lines.begin(), lines.end(),0,[&max1, &max2, &max3](auto accumulator, auto& line){
+        if (line.empty()){
+            if (accumulator > max1) {
+                if (max1 > max2) {
+                    if (max2 > max3) {
+                        max3 = max2;
+                    }
+                    max2 = max1;
+                }
+                max1 = accumulator;
+            }else if (accumulator > max2) {
+                if (max2 > max3) {
+                    max3 = max2;
+                }
+                max2 = accumulator;
+            }else if (accumulator > max3) {
+                max3 = accumulator;
+            }
+            return 0;
+        }else{
+            return accumulator + stringToInt(line);
+        }
+    });
+    return max1 + max2 + max3;
+}
+
+int top_n_elf_calories(const std::vector<std::string>& lines, int n) {
+    std::vector<int> caloriesSum = sumCaloriesOrdered(lines);
+    auto end = caloriesSum.end();
+    if (caloriesSum.size() > n) end = caloriesSum.begin() + n;
+    return std::accumulate(caloriesSum.begin(), end, 0, [](auto accumulator, auto& sum){
+        return accumulator + sum;
+    });
+}
+
+int run_day_1() {
+    std::cout << "--Day 1 START--" << std::endl;
+    std::ifstream file(FILE_NAME);
+    if (!file.is_open()) {
+        std::cerr << "Failed to open " << std::quoted(FILE_NAME) << "\n";
+        return 1;
+    }
+
+    std::vector<std::string> lines;
+    std::string line;
+    while (getline(file, line)) {
+        lines.push_back(line);
+    }
+
+    std::cout << "top_1_elf_calories:       " << top_1_elf_calories(lines) << std::endl;
+    std::cout << "top_n_elf_calories(1):    " << top_n_elf_calories(lines, 1) << std::endl;
+    std::cout << "top_3_elf_calories:       " << top_3_elf_calories(lines) << std::endl;
+    std::cout << "top_n_elf_calories(3):    " << top_n_elf_calories(lines, 3) << std::endl;
+    std::cout << "--Day 1 END--\n" << std::endl;
+    return 0;
 }

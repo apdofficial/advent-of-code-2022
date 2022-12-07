@@ -1,31 +1,25 @@
 #include "day2.h"
 
-
 std::string const FILE_NAME = "day2.txt";
 
-int calculate_strategy_score(const std::vector<std::pair<char,char>>& record) {
-    return std::accumulate(record.begin(), record.end(), 0, [](int accumulator, auto& pair) -> int {
-        // Transform both inputs numbers:
-        // 0 == rock, 1 == paper, 2 == scissors
-        int oponent = pair.first-'A';
-        int me = pair.second-'X';
+int calculate_strategy_score(const std::vector<std::pair<char,char>>& rounds) {
+    return std::accumulate(rounds.begin(), rounds.end(), 0, [](int accumulator, auto& pair) -> int {
+        // 1 == rock, 2 == paper, 3 == scissors
+        int opponent = pair.first - 'A' + 1;
+        int me = pair.second - 'X' + 1;
 
-        // Score for the choice:
-        // Rock == 1, Paper == 2, Scissors == 3
-        int score = me + 1;
-
-        // Score for the result:
-        if (oponent == me) return accumulator + score + 3; // draw
-        // Winining choice has a rank one higher than the oposing choice
-        // the only wrinkle is Rock beating Scissors which is why we need modulo.
-        if ((me - oponent + 3) % 3 == 1) return accumulator + score + 6;
-        return accumulator + score; // lose
+        if (opponent == me) {
+            return accumulator + me + 3; // draw
+        }else if ((me - opponent + 3) % 3 == 1) {
+            return accumulator + me + 6; // win
+        }else{
+            return accumulator + me; // lose
+        }
     });
 }
 
 int run_day_2(){
-    std::cout << "Day 2 START" << std::endl;
-
+    std::cout << "--Day 2 START--" << std::endl;
     std::vector<std::pair<char,char>> rounds;
     std::fstream file(FILE_NAME);
     if (!file.is_open()) {
@@ -38,5 +32,5 @@ int run_day_2(){
         rounds.push_back(currentRound);
     }
     std::cout << "The total score while following the strategy guide is " << calculate_strategy_score(rounds) << "\n";
-    std::cout << "Day 2 END" << std::endl;
+    std::cout << "--Day 2 END--\n" << std::endl;
 }
