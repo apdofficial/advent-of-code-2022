@@ -5,13 +5,13 @@
 #include <numeric>
 
 using namespace std;
-string const FILE_NAME = "calories.txt";
+string const FILE_NAME = "day1.txt";
 
 struct Elf {
     int calories = 0;
 };
 
-int sum_top_calories(vector<Elf> const& elfs, int nr);
+int sum_top_calories(const vector<Elf>& elfs, int nr);
 
 int main() {
     vector<Elf> elfs;
@@ -44,7 +44,7 @@ int main() {
         dataFile.close();
     }else cout << "unable to open "<< FILE_NAME << endl;
 
-    sort(elfs.begin(), elfs.end(), [](Elf const& lhs, Elf const& rhs){
+    sort(elfs.begin(), elfs.end(), [](const Elf& lhs, const Elf& rhs){
         return lhs.calories > rhs.calories;
     });
 
@@ -58,12 +58,12 @@ int main() {
     return 0;
 }
 
-int sum_top_calories(vector<Elf> const& elfs, int nr){
+int sum_top_calories(const vector<Elf>& elfs, int nr){
     auto endIter  = elfs.end();
     if (elfs.size() > nr){
         endIter = elfs.begin() + nr;
     }
-    return accumulate(elfs.begin(), endIter, 0, [](int const& accumulator, Elf elf){
+    return accumulate(elfs.begin(), endIter, 0, [](const int& accumulator, Elf elf){
         return accumulator + elf.calories;
     });
 }
