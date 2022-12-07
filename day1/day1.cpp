@@ -1,19 +1,11 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-#include <numeric>
+#include "day1.h"
 
 using namespace std;
 string const FILE_NAME = "day1.txt";
 
-struct Elf {
-    int calories = 0;
-};
+int sum_top_calories(const std::vector<Elf>& elfs, int nr);
 
-int sum_top_calories(const vector<Elf>& elfs, int nr);
-
-int main() {
+int runDay1() {
     vector<Elf> elfs;
 
     ifstream dataFile(FILE_NAME);

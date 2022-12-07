@@ -5,7 +5,7 @@
 using namespace std;
 string const FILE_NAME = "day2.txt";
 
-int main() {
+int runDay2() {
 
     ifstream dataFile(FILE_NAME);
 
