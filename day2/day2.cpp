@@ -1,6 +1,6 @@
 #include "day2.h"
 
-std::string const FILE_NAME = "day2.txt";
+std::string const DAY_NR = "2";
 
 // complexity is linear O(n)
 // no redundant computation
@@ -48,11 +48,12 @@ int calculate_new_strategy_score(const std::vector<std::pair<char,char>>& rounds
 }
 
 int run_day_2(){
-    std::cout << "--Day 2 START--" << std::endl;
+    std::string const fileName = "day" + DAY_NR + ".txt";
+    std::cout << "--Day " << DAY_NR << " START--" << std::endl;
     std::vector<std::pair<char,char>> rounds;
-    std::fstream file(FILE_NAME);
+    std::fstream file(fileName);
     if (!file.is_open()) {
-        std::cerr << "Failed to open " << std::quoted(FILE_NAME) << "\n";
+        std::cerr << "Failed to open " << std::quoted(fileName) << "\n";
         return 1;
     }
 
@@ -60,7 +61,7 @@ int run_day_2(){
     while (file >> currentRound.first >> currentRound.second) {
         rounds.push_back(currentRound);
     }
-    std::cout << "calculate_strategy_score " << calculate_strategy_score(rounds) << "\n";
-    std::cout << "calculate_new_strategy_score " << calculate_new_strategy_score(rounds) << "\n";
-    std::cout << "--Day 2 END--\n" << std::endl;
+    std::cout << "calculate_strategy_score:     " << calculate_strategy_score(rounds) << "\n";
+    std::cout << "calculate_new_strategy_score: " << calculate_new_strategy_score(rounds) << "\n";
+    std::cout << "--Day " << DAY_NR << " END--\n" << std::endl;
 }

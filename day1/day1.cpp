@@ -1,6 +1,6 @@
 #include "day1.h"
 
-std::string const FILE_NAME = "day1.txt";
+std::string const DAY_NR = "1";
 
 int stringToInt(const std::string& line){
     try {
@@ -49,10 +49,11 @@ int top_3_elf_calories(const std::vector<std::string>& lines) {
 }
 
 int run_day_1() {
-    std::cout << "--Day 1 START--" << std::endl;
-    std::ifstream file(FILE_NAME);
+    std::string const fileName = "day" + DAY_NR + ".txt";
+    std::cout << "--Day " << DAY_NR << " START--" << std::endl;
+    std::ifstream file(fileName);
     if (!file.is_open()) {
-        std::cerr << "Failed to open " << std::quoted(FILE_NAME) << "\n";
+        std::cerr << "Failed to open " << std::quoted(fileName) << "\n";
         return 1;
     }
 
@@ -64,6 +65,6 @@ int run_day_1() {
 
     std::cout << "top_1_elf_calories:       " << top_1_elf_calories(lines) << std::endl;
     std::cout << "top_3_elf_calories:       " << top_3_elf_calories(lines) << std::endl;
-    std::cout << "--Day 1 END--\n" << std::endl;
+    std::cout << "--Day " << DAY_NR << " END--\n" << std::endl;
     return 0;
 }
