@@ -13,6 +13,10 @@ int calculate_strategy_score(const std::vector<std::pair<char,char>>& rounds) {
         if (opponent == me) {
             return accumulator + me + 3; // draw
         }else if ((me - opponent + 3) % 3 == 1) {
+            // win means one of the following
+            // ((1 - 3 == -2| +3) == 1 | %3) == 1
+            // ((2 - 1 ==  1| +3) == 4 | %3) == 1
+            // ((3 - 2 ==  1| +3) == 4 | %3) == 1
             return accumulator + me + 6; // win
         }else{
             return accumulator + me; // lose
