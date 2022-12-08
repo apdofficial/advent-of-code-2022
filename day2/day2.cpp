@@ -2,6 +2,8 @@
 
 std::string const FILE_NAME = "day2.txt";
 
+// complexity is linear O(n)
+// no redundant computation
 int calculate_strategy_score(const std::vector<std::pair<char,char>>& rounds) {
     return std::accumulate(rounds.begin(), rounds.end(), 0, [](int accumulator, auto& pair) -> int {
         // 1 == rock, 2 == paper, 3 == scissors
@@ -18,6 +20,8 @@ int calculate_strategy_score(const std::vector<std::pair<char,char>>& rounds) {
     });
 }
 
+// complexity is linear O(n)
+// no redundant computation
 int calculate_new_strategy_score(const std::vector<std::pair<char,char>>& rounds) {
     return std::accumulate(rounds.begin(), rounds.end(), 0, [](int accumulator, auto& pair) -> int {
         // 1 == rock, 2 == paper, 3 == scissors
