@@ -81,6 +81,13 @@ build CMakeFiles/advent_of_code_2022.dir/Google_tests/test.cpp.o: CXX_COMPILER__
   OBJECT_DIR = CMakeFiles/advent_of_code_2022.dir
   OBJECT_FILE_DIR = CMakeFiles/advent_of_code_2022.dir/Google_tests
 
+build CMakeFiles/advent_of_code_2022.dir/day4/day4.cpp.o: CXX_COMPILER__advent_of_code_2022_Debug /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/day4/day4.cpp || cmake_object_order_depends_target_advent_of_code_2022
+  DEP_FILE = CMakeFiles/advent_of_code_2022.dir/day4/day4.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -fcolor-diagnostics -std=gnu++20
+  INCLUDES = -I/opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/advent_of_code_2022.dir
+  OBJECT_FILE_DIR = CMakeFiles/advent_of_code_2022.dir/day4
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target advent_of_code_2022
@@ -89,7 +96,7 @@ build CMakeFiles/advent_of_code_2022.dir/Google_tests/test.cpp.o: CXX_COMPILER__
 #############################################
 # Link the executable advent_of_code_2022
 
-build advent_of_code_2022: CXX_EXECUTABLE_LINKER__advent_of_code_2022_Debug CMakeFiles/advent_of_code_2022.dir/day1/day1.cpp.o CMakeFiles/advent_of_code_2022.dir/day2/day2.cpp.o CMakeFiles/advent_of_code_2022.dir/main.cpp.o CMakeFiles/advent_of_code_2022.dir/day3/day3.cpp.o CMakeFiles/advent_of_code_2022.dir/Google_tests/test.cpp.o
+build advent_of_code_2022: CXX_EXECUTABLE_LINKER__advent_of_code_2022_Debug CMakeFiles/advent_of_code_2022.dir/day1/day1.cpp.o CMakeFiles/advent_of_code_2022.dir/day2/day2.cpp.o CMakeFiles/advent_of_code_2022.dir/main.cpp.o CMakeFiles/advent_of_code_2022.dir/day3/day3.cpp.o CMakeFiles/advent_of_code_2022.dir/Google_tests/test.cpp.o CMakeFiles/advent_of_code_2022.dir/day4/day4.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
   OBJECT_DIR = CMakeFiles/advent_of_code_2022.dir
   POST_BUILD = :
