@@ -2,6 +2,7 @@
 
 std::string const DAY_NR = "2";
 
+// Asymptotic analysis
 // complexity is linear O(n)
 // no redundant computation
 int calculate_strategy_score(const std::vector<std::pair<char,char>>& rounds) {
@@ -24,6 +25,7 @@ int calculate_strategy_score(const std::vector<std::pair<char,char>>& rounds) {
     });
 }
 
+// Asymptotic analysis
 // complexity is linear O(n)
 // no redundant computation
 int calculate_new_strategy_score(const std::vector<std::pair<char,char>>& rounds) {

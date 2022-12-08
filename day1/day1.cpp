@@ -11,6 +11,7 @@ int stringToInt(const std::string& line){
     }
 }
 
+// Asymptotic analysis
 // complexity is linear O(n)
 // no redundant computation
 int top_1_elf_calories(const std::vector<std::string>& lines) {
@@ -24,6 +25,7 @@ int top_1_elf_calories(const std::vector<std::string>& lines) {
     return max;
 }
 
+// Asymptotic analysis
 // complexity is linear O(n)
 // no redundant computation
 int top_3_elf_calories(const std::vector<std::string>& lines) {
