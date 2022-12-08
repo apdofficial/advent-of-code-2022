@@ -1,7 +1,3 @@
-//
-// Created by Andrej Egeniq on 08/12/2022.
-//
-
 #include "day3.h"
 
 std::string const DAY_NR = "3";
