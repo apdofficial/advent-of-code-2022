@@ -30,10 +30,7 @@ int calculate_new_strategy_score(const std::vector<std::pair<char,char>>& rounds
                 return accumulator + 3;
             }else if (opponent == 2) {
                 return accumulator + 1;
-            }else {
-                return accumulator + 2;
-            }
-            return accumulator + me + 3;
+            }else  return accumulator + 2;
         }else if (me == 2) { // draw
             return accumulator + opponent + 3;
         }else{ //win
@@ -41,9 +38,7 @@ int calculate_new_strategy_score(const std::vector<std::pair<char,char>>& rounds
                 return accumulator + 2 + 6;
             }else if (opponent == 2) {
                 return accumulator + 3 + 6;
-            }else {
-                return accumulator + 1 + 6;
-            }
+            }else  return accumulator + 1 + 6;
         }
     });
 }

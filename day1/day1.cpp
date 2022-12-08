@@ -11,6 +11,8 @@ int stringToInt(const std::string& line){
     }
 }
 
+// complexity is linear O(n)
+// no redundant computation
 int top_1_elf_calories(const std::vector<std::string>& lines) {
     int max = 0;
     std::accumulate(lines.begin(), lines.end(),0,[&max](auto accumulator, auto& line){
@@ -22,6 +24,8 @@ int top_1_elf_calories(const std::vector<std::string>& lines) {
     return max;
 }
 
+// complexity is linear O(n)
+// no redundant computation
 int top_3_elf_calories(const std::vector<std::string>& lines) {
     int max1 = 0, max2 = 0, max3 = 0;
     std::accumulate(lines.begin(), lines.end(),0,[&max1, &max2, &max3](auto accumulator, auto& line){
