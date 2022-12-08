@@ -4,9 +4,27 @@
 
 #include "day3.h"
 
-
 std::string const DAY_NR = "3";
 
+// n = number of elves
+// m = number of items for each elf
+// complexity T(n, m) = n * (m/2 * (m/2 + m/2)) => O(n * (m^2)/2)
+int sum_item_priorities_of_both_compartments(const std::vector<std::string>& lines){
+    return std::accumulate(lines.begin(), lines.end(), 0, [](auto accumulator, auto& line){ // n
+        int lineSum = 0;
+        std::vector<char> registered;
+        std::string firstHalf = line.substr(0, line.length()/2);
+        std::string secondHalf = line.substr(line.length()/2);
+        for (char const &c: firstHalf){ // m/2
+            if (secondHalf.find(c) != std::string::npos && // m/2
+            std::find(registered.begin(), registered.end(), c) == registered.end()){ // O(m/2)
+                lineSum += isupper(c) ? c - 'A' + 27 : c - 'a' + 1;
+                registered.push_back(c);
+            }
+        }
+        return accumulator + lineSum;
+    });
+}
 
 int run_day_3(){
     std::string const fileName = "day" + DAY_NR + ".txt";
@@ -23,6 +41,7 @@ int run_day_3(){
         lines.push_back(line);
     }
 
+    std::cout << "sum_item_priorities_of_both_compartments: " << sum_item_priorities_of_both_compartments(lines) << "\n";
 
     std::cout << "--Day " << DAY_NR << " END--\n" << std::endl;
     return 0;
