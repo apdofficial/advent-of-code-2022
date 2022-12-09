@@ -1,6 +1,32 @@
+#include <sstream>
 #include "day4.h"
 
 std::string const DAY_NR = "4";
+
+// Asymptotic analysis
+// complexity is linear O(n)
+// no redundant computation
+int num_of_fully_contained_ranges(const std::vector<std::pair<Range, Range>>& lines){
+    auto accumulateOp = [](auto accumulator, auto& line){ // n
+        if (line.first.is_sub_range_to(line.second) || line.second.is_sub_range_to(line.first))
+            return accumulator + 1;
+        return accumulator;
+    };
+    return std::accumulate(lines.begin(), lines.end(),0, accumulateOp);
+}
+
+// Asymptotic analysis
+// complexity is linear O(n)
+// no redundant computation
+int num_of_overlapping_ranges(const std::vector<std::pair<Range, Range>>& lines){
+    auto accumulateOp = [](auto accumulator, auto& line){ // n
+        if (line.first.is_overlapping(line.second) || line.second.is_overlapping(line.first))
+            return accumulator + 1;
+        return accumulator;
+    };
+    return std::accumulate(lines.begin(), lines.end(),0, accumulateOp);
+}
+
 
 int run_day_4(){
     std::string const fileName = "day" + DAY_NR + ".txt";
@@ -11,11 +37,15 @@ int run_day_4(){
         return 1;
     }
 
-    std::vector<std::string> lines;
-    std::string line;
-    while (getline(file, line)) {
-        lines.push_back(line);
+    std::vector<std::pair<Range,Range>> lines;
+    char delimiter;
+    uint32_t lMin, lMax, rMin, rMax;
+    while (file >> lMin >> delimiter >> lMax >> delimiter >> rMin >> delimiter >> rMax ) {
+        lines.emplace_back(Range {.min = lMin, .max = lMax},Range {.min = rMin, .max = rMax});
     }
+
+    std::cout << "num_of_fully_contained_ranges:  " << num_of_fully_contained_ranges(lines) << std::endl;
+    std::cout << "num_of_overlapping_ranges:      " << num_of_overlapping_ranges(lines) << std::endl;
 
     std::cout << "--Day " << DAY_NR << " END--\n" << std::endl;
     return 0;
