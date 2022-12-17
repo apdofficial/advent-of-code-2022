@@ -30,16 +30,23 @@ void parse_input(std::istream& s, std::vector<std::vector<char>>& stacks, std::v
             }
         }
     }
-
-
 }
 
-void execute_commands(std::vector<std::vector<char>> &stacks, std::vector<Command>& commands){
+void execute_crane_9000(std::vector<std::vector<char>> &stacks, std::vector<Command>& commands){
     for (const auto& command : commands){
-        for (size_t i = 0; i < command.crateNr+1; i++){
+        for (size_t i = 0; i < command.crateNum + 1; i++){
             stacks[command.to].push_back(stacks[command.from].back());
             stacks[command.from].pop_back();
         }
+    }
+}
+
+void execute_crane_9001(std::vector<std::vector<char>> &stacks, std::vector<Command>& commands){
+    for (const auto& command : commands){
+        auto iter = std::prev(stacks[command.from].end(), command.crateNum+1);
+        std::move(iter, stacks[command.from].end(), std::back_inserter(stacks[command.to]));
+        for (size_t i = 0; i < command.crateNum + 1; i++)
+            stacks[command.from].pop_back();
     }
 }
 
@@ -53,6 +60,7 @@ int run_day_5() {
         return 1;
     }
     std::vector<std::vector<char>> stacks;
+    std::vector<std::vector<char>> stacks_copy;
     std::vector<Command> commands;
 
     parse_input(file, stacks, commands);
@@ -60,13 +68,21 @@ int run_day_5() {
     for (auto& stack: stacks)
         std::reverse(stack.begin(), stack.end());
 
-    execute_commands(stacks, commands);
+    stacks_copy = stacks;
 
-    print_stacks(stacks);
+    execute_crane_9000(stacks, commands);
 
-    std::cout << "Top of each stack after executing the commands: ";
+    std::cout << "Top of each stack after using crane 9000: ";
     for (auto& stack: stacks)
         std::cout << stack.back();
+    std::cout << std::endl;
+
+    execute_crane_9001(stacks_copy, commands);
+
+    std::cout << "Top of each stack after using crane 9001: ";
+    for (auto& stack: stacks_copy)
+        std::cout << stack.back();
+
     std::cout << std::endl;
 
     std::cout << "--Day " << DAY_NR << " END--\n" << std::endl;

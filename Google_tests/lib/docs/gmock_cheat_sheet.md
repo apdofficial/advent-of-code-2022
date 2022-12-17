@@ -13,7 +13,7 @@ class Foo {
   virtual int GetSize() const = 0;
   virtual string Describe(const char* name) = 0;
   virtual string Describe(int type) = 0;
-  virtual bool Process(Bar elem, int crateNr) = 0;
+  virtual bool Process(Bar elem, int crateNum) = 0;
 };
 ```
 
@@ -27,7 +27,7 @@ class MockFoo : public Foo {
   MOCK_METHOD(int, GetSize, (), (const, override));
   MOCK_METHOD(string, Describe, (const char* name), (override));
   MOCK_METHOD(string, Describe, (int type), (override));
-  MOCK_METHOD(bool, Process, (Bar elem, int crateNr), (override));
+  MOCK_METHOD(bool, Process, (Bar elem, int crateNum), (override));
 };
 ```
 

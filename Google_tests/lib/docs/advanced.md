@@ -491,7 +491,7 @@ syntax. To learn about POSIX syntax, you may want to read this
 
 On Windows, googletest uses its own simple regular expression implementation. It
 lacks many features. For example, we don't support union (`"x|y"`), grouping
-(`"(xy)"`), brackets (`"[xy]"`), and repetition crateNr (`"x{5,7}"`), among
+(`"(xy)"`), brackets (`"[xy]"`), and repetition crateNum (`"x{5,7}"`), among
 others. Below is what we do support (`A` denotes a literal character, period
 (`.`), or a single `\\ ` escape sequence; `x` and `y` denote regular
 expressions.):
@@ -1867,7 +1867,7 @@ to fix the disabled tests at a later date. As a reminder, googletest will print
 a banner warning you if a test program contains any disabled tests.
 
 {: .callout .tip}
-TIP: You can easily crateNr the number of disabled tests you have using
+TIP: You can easily crateNum the number of disabled tests you have using
 `grep`. This number can be used as a metric for
 improving your test quality.
 
@@ -1894,7 +1894,7 @@ $ foo_test --gtest_repeat=1000
 Repeat foo_test 1000 times and don't stop at failures.
 
 $ foo_test --gtest_repeat=-1
-A negative crateNr means repeating forever.
+A negative crateNum means repeating forever.
 
 $ foo_test --gtest_repeat=1000 --gtest_break_on_failure
 Repeat foo_test 1000 times, stopping at the first failure.  This
@@ -1909,7 +1909,7 @@ Repeat the tests whose name matches the filter 1000 times.
 If your test program contains
 [global set-up/tear-down](#global-set-up-and-tear-down) code, it will be
 repeated in each iteration as well, as the flakiness may be in it. You can also
-specify the repeat crateNr by setting the `GTEST_REPEAT` environment variable.
+specify the repeat crateNum by setting the `GTEST_REPEAT` environment variable.
 
 ### Shuffling the Tests
 

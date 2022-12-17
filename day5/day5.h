@@ -10,14 +10,14 @@
 #include <sstream>
 
 struct Command {
-    uint32_t crateNr;
+    uint32_t crateNum;
     size_t from;
     size_t to;
 
     friend std::istream& operator>>(std::istream& s, Command& o) {
         std::string word;
-        s >> word >> o.crateNr >> word >> o.from >> word >> o.to;
-        --o.crateNr; // start form 0
+        s >> word >> o.crateNum >> word >> o.from >> word >> o.to;
+        --o.crateNum; // start form 0
         --o.from; // start form 0
         --o.to; // start form 0
         return s;
