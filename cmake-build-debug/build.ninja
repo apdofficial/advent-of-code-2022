@@ -48,45 +48,52 @@ build cmake_object_order_depends_target_advent_of_code_2022: phony || CMakeFiles
 
 build CMakeFiles/advent_of_code_2022.dir/day1/day1.cpp.o: CXX_COMPILER__advent_of_code_2022_Debug /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/day1/day1.cpp || cmake_object_order_depends_target_advent_of_code_2022
   DEP_FILE = CMakeFiles/advent_of_code_2022.dir/day1/day1.cpp.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -fcolor-diagnostics -std=gnu++20
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -std=gnu++20
   INCLUDES = -I/opt/homebrew/include
   OBJECT_DIR = CMakeFiles/advent_of_code_2022.dir
   OBJECT_FILE_DIR = CMakeFiles/advent_of_code_2022.dir/day1
 
 build CMakeFiles/advent_of_code_2022.dir/day2/day2.cpp.o: CXX_COMPILER__advent_of_code_2022_Debug /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/day2/day2.cpp || cmake_object_order_depends_target_advent_of_code_2022
   DEP_FILE = CMakeFiles/advent_of_code_2022.dir/day2/day2.cpp.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -fcolor-diagnostics -std=gnu++20
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -std=gnu++20
   INCLUDES = -I/opt/homebrew/include
   OBJECT_DIR = CMakeFiles/advent_of_code_2022.dir
   OBJECT_FILE_DIR = CMakeFiles/advent_of_code_2022.dir/day2
 
 build CMakeFiles/advent_of_code_2022.dir/main.cpp.o: CXX_COMPILER__advent_of_code_2022_Debug /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/main.cpp || cmake_object_order_depends_target_advent_of_code_2022
   DEP_FILE = CMakeFiles/advent_of_code_2022.dir/main.cpp.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -fcolor-diagnostics -std=gnu++20
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -std=gnu++20
   INCLUDES = -I/opt/homebrew/include
   OBJECT_DIR = CMakeFiles/advent_of_code_2022.dir
   OBJECT_FILE_DIR = CMakeFiles/advent_of_code_2022.dir
 
 build CMakeFiles/advent_of_code_2022.dir/day3/day3.cpp.o: CXX_COMPILER__advent_of_code_2022_Debug /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/day3/day3.cpp || cmake_object_order_depends_target_advent_of_code_2022
   DEP_FILE = CMakeFiles/advent_of_code_2022.dir/day3/day3.cpp.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -fcolor-diagnostics -std=gnu++20
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -std=gnu++20
   INCLUDES = -I/opt/homebrew/include
   OBJECT_DIR = CMakeFiles/advent_of_code_2022.dir
   OBJECT_FILE_DIR = CMakeFiles/advent_of_code_2022.dir/day3
 
 build CMakeFiles/advent_of_code_2022.dir/Google_tests/test.cpp.o: CXX_COMPILER__advent_of_code_2022_Debug /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/test.cpp || cmake_object_order_depends_target_advent_of_code_2022
   DEP_FILE = CMakeFiles/advent_of_code_2022.dir/Google_tests/test.cpp.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -fcolor-diagnostics -std=gnu++20
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -std=gnu++20
   INCLUDES = -I/opt/homebrew/include
   OBJECT_DIR = CMakeFiles/advent_of_code_2022.dir
   OBJECT_FILE_DIR = CMakeFiles/advent_of_code_2022.dir/Google_tests
 
 build CMakeFiles/advent_of_code_2022.dir/day4/day4.cpp.o: CXX_COMPILER__advent_of_code_2022_Debug /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/day4/day4.cpp || cmake_object_order_depends_target_advent_of_code_2022
   DEP_FILE = CMakeFiles/advent_of_code_2022.dir/day4/day4.cpp.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -fcolor-diagnostics -std=gnu++20
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -std=gnu++20
   INCLUDES = -I/opt/homebrew/include
   OBJECT_DIR = CMakeFiles/advent_of_code_2022.dir
   OBJECT_FILE_DIR = CMakeFiles/advent_of_code_2022.dir/day4
+
+build CMakeFiles/advent_of_code_2022.dir/day5/day5.cpp.o: CXX_COMPILER__advent_of_code_2022_Debug /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/day5/day5.cpp || cmake_object_order_depends_target_advent_of_code_2022
+  DEP_FILE = CMakeFiles/advent_of_code_2022.dir/day5/day5.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -std=gnu++20
+  INCLUDES = -I/opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/advent_of_code_2022.dir
+  OBJECT_FILE_DIR = CMakeFiles/advent_of_code_2022.dir/day5
 
 
 # =============================================================================
@@ -96,8 +103,8 @@ build CMakeFiles/advent_of_code_2022.dir/day4/day4.cpp.o: CXX_COMPILER__advent_o
 #############################################
 # Link the executable advent_of_code_2022
 
-build advent_of_code_2022: CXX_EXECUTABLE_LINKER__advent_of_code_2022_Debug CMakeFiles/advent_of_code_2022.dir/day1/day1.cpp.o CMakeFiles/advent_of_code_2022.dir/day2/day2.cpp.o CMakeFiles/advent_of_code_2022.dir/main.cpp.o CMakeFiles/advent_of_code_2022.dir/day3/day3.cpp.o CMakeFiles/advent_of_code_2022.dir/Google_tests/test.cpp.o CMakeFiles/advent_of_code_2022.dir/day4/day4.cpp.o
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
+build advent_of_code_2022: CXX_EXECUTABLE_LINKER__advent_of_code_2022_Debug CMakeFiles/advent_of_code_2022.dir/day1/day1.cpp.o CMakeFiles/advent_of_code_2022.dir/day2/day2.cpp.o CMakeFiles/advent_of_code_2022.dir/main.cpp.o CMakeFiles/advent_of_code_2022.dir/day3/day3.cpp.o CMakeFiles/advent_of_code_2022.dir/Google_tests/test.cpp.o CMakeFiles/advent_of_code_2022.dir/day4/day4.cpp.o CMakeFiles/advent_of_code_2022.dir/day5/day5.cpp.o
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0
   OBJECT_DIR = CMakeFiles/advent_of_code_2022.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -185,7 +192,7 @@ build cmake_object_order_depends_target_Google_Tests_run: phony || cmake_object_
 
 build Google_tests/CMakeFiles/Google_Tests_run.dir/test.cpp.o: CXX_COMPILER__Google_Tests_run_Debug /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/test.cpp || cmake_object_order_depends_target_Google_Tests_run
   DEP_FILE = Google_tests/CMakeFiles/Google_Tests_run.dir/test.cpp.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -fcolor-diagnostics -std=gnu++20
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -std=gnu++20
   INCLUDES = -I/opt/homebrew/include -isystem /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googletest/include -isystem /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests/CMakeFiles/Google_Tests_run.dir
   OBJECT_FILE_DIR = Google_tests/CMakeFiles/Google_Tests_run.dir
@@ -199,7 +206,7 @@ build Google_tests/CMakeFiles/Google_Tests_run.dir/test.cpp.o: CXX_COMPILER__Goo
 # Link the executable Google_tests/Google_Tests_run
 
 build Google_tests/Google_Tests_run: CXX_EXECUTABLE_LINKER__Google_Tests_run_Debug Google_tests/CMakeFiles/Google_Tests_run.dir/test.cpp.o | lib/libgtest.a lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0
   LINK_LIBRARIES = lib/libgtest.a  lib/libgtest_main.a  lib/libgtest.a
   OBJECT_DIR = Google_tests/CMakeFiles/Google_Tests_run.dir
   POST_BUILD = :
@@ -358,7 +365,7 @@ build cmake_object_order_depends_target_gmock: phony || cmake_object_order_depen
 
 build Google_tests/lib/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: CXX_COMPILER__gmock_Debug /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googlemock/src/gmock-all.cc || cmake_object_order_depends_target_gmock
   DEP_FILE = Google_tests/lib/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1   -std=c++20
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1   -std=c++20
   INCLUDES = -I/opt/homebrew/include -I/Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googlemock/include -I/Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googlemock -isystem /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googletest/include -isystem /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests/lib/googlemock/CMakeFiles/gmock.dir
   OBJECT_FILE_DIR = Google_tests/lib/googlemock/CMakeFiles/gmock.dir/src
@@ -372,7 +379,7 @@ build Google_tests/lib/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: CXX_C
 # Link the static library lib/libgmock.a
 
 build lib/libgmock.a: CXX_STATIC_LIBRARY_LINKER__gmock_Debug Google_tests/lib/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o || lib/libgtest.a
-  ARCH_FLAGS = -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
+  ARCH_FLAGS = -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Google_tests/lib/googlemock/CMakeFiles/gmock.dir
   POST_BUILD = :
@@ -391,7 +398,7 @@ build cmake_object_order_depends_target_gmock_main: phony || cmake_object_order_
 
 build Google_tests/lib/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o: CXX_COMPILER__gmock_main_Debug /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googlemock/src/gmock_main.cc || cmake_object_order_depends_target_gmock_main
   DEP_FILE = Google_tests/lib/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1   -std=c++20
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1   -std=c++20
   INCLUDES = -I/opt/homebrew/include -isystem /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googlemock/include -isystem /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googlemock -isystem /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googletest/include -isystem /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests/lib/googlemock/CMakeFiles/gmock_main.dir
   OBJECT_FILE_DIR = Google_tests/lib/googlemock/CMakeFiles/gmock_main.dir/src
@@ -405,7 +412,7 @@ build Google_tests/lib/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o:
 # Link the static library lib/libgmock_main.a
 
 build lib/libgmock_main.a: CXX_STATIC_LIBRARY_LINKER__gmock_main_Debug Google_tests/lib/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o || lib/libgmock.a lib/libgtest.a
-  ARCH_FLAGS = -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
+  ARCH_FLAGS = -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Google_tests/lib/googlemock/CMakeFiles/gmock_main.dir
   POST_BUILD = :
@@ -494,7 +501,7 @@ build cmake_object_order_depends_target_gtest: phony || Google_tests/lib/googlet
 
 build Google_tests/lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: CXX_COMPILER__gtest_Debug /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googletest/src/gtest-all.cc || cmake_object_order_depends_target_gtest
   DEP_FILE = Google_tests/lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1   -std=c++20
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1   -std=c++20
   INCLUDES = -I/opt/homebrew/include -I/Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googletest/include -I/Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests/lib/googletest/CMakeFiles/gtest.dir
   OBJECT_FILE_DIR = Google_tests/lib/googletest/CMakeFiles/gtest.dir/src
@@ -508,7 +515,7 @@ build Google_tests/lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: CXX_C
 # Link the static library lib/libgtest.a
 
 build lib/libgtest.a: CXX_STATIC_LIBRARY_LINKER__gtest_Debug Google_tests/lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
-  ARCH_FLAGS = -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
+  ARCH_FLAGS = -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Google_tests/lib/googletest/CMakeFiles/gtest.dir
   POST_BUILD = :
@@ -527,7 +534,7 @@ build cmake_object_order_depends_target_gtest_main: phony || cmake_object_order_
 
 build Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o: CXX_COMPILER__gtest_main_Debug /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googletest/src/gtest_main.cc || cmake_object_order_depends_target_gtest_main
   DEP_FILE = Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1   -std=c++20
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1   -std=c++20
   INCLUDES = -I/opt/homebrew/include -isystem /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googletest/include -isystem /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests/lib/googletest/CMakeFiles/gtest_main.dir
   OBJECT_FILE_DIR = Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/src
@@ -541,7 +548,7 @@ build Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o:
 # Link the static library lib/libgtest_main.a
 
 build lib/libgtest_main.a: CXX_STATIC_LIBRARY_LINKER__gtest_main_Debug Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o || lib/libgtest.a
-  ARCH_FLAGS = -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
+  ARCH_FLAGS = -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Google_tests/lib/googletest/CMakeFiles/gtest_main.dir
   POST_BUILD = :

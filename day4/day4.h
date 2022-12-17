@@ -7,7 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
-
+#include <sstream>
 
 // (ref)    --|---|---
 // (case 1) |--|------ left overlap

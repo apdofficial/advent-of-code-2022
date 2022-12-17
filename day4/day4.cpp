@@ -1,4 +1,3 @@
-#include <sstream>
 #include "day4.h"
 
 std::string const DAY_NR = "4";
