@@ -1,4 +1,0 @@
-"/Users/andrejegeniq/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.7571.171/CLion 2022.3 EAP.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/andrejegeniq/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.7571.171/CLion 2022.3 EAP.app/Contents/bin/ninja/mac/ninja" -G Ninja -S /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022 -B /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/cmake-build-debug
--- Configuring done
--- Generating done
--- Build files have been written to: /Users/andrejegeniq/Developer/GitHub/advent-of-code-2022/cmake-build-debug
