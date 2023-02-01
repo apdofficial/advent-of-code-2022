@@ -1,4 +1,4 @@
-#include "day1.hpp"
+#include <day1/day1.hpp>
 
 #include <iomanip>
 #include <string_view>

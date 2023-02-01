@@ -1,0 +1,6 @@
+[submodule "ext/fmtlib/fmt"]
+	path = ext/fmtlib/fmt
+	url = https://github.com/fmtlib/fmt
+[submodule "ext/catchorg/Catch2"]
+	path = ext/catchorg/Catch2
+	url = https://github.com/catchorg/Catch2
