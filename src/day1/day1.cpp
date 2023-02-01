@@ -33,19 +33,6 @@ auto stringToInt(std::string_view line) -> std::optional<int> {
     return converted_int;
 }
 
-
-//int top_1_elf_calories(const std::vector<std::string>& lines) {
-//    int max = 0;
-//    std::accumulate(lines.begin(), lines.end(),0,[&max](auto accumulator, auto& line){
-//        if (line.empty()){
-//            if (accumulator > max) max = accumulator;
-//            return 0;
-//        }else return accumulator + stringToInt(line);
-//    });
-//    return max;
-//}
-
-// top_1_elf_calories: 69693
 // Asymptotic analysis
 // complexity is linear O(n)
 // no redundant computation
