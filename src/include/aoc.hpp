@@ -26,7 +26,7 @@ namespace aoc
     {
     public:
         // class uses RAII
-        // class invariant is: file.is_open()
+        // class invariant: file.is_open()
         File(std::string_view file_path);
 
         ~File();
@@ -58,34 +58,21 @@ namespace aoc
         int i = left;
         int j = right;
         int pivot = arr[right]; // pick some pivot
-
-        for (int k = left; k<i; ++k) assert(arr[k] < pivot); // arr[left, i] < pivot
-        for (int k = j; k<right+1; ++k) assert(arr[k] >= pivot); // arr[j, right+1] >= pivot
-
+        // arr[left, i] < pivot && arr[j, right+1] >= pivot
         while (i < j) {
-            while (arr[i] < pivot && i<j) i++; // move left bound
-            assert(i == j || arr[i] >= pivot); // i == j || arr[i] >= pivot
-            for (int k = left; k<i; ++k) assert(i == j || arr[k] < pivot); // i == j || arr[left, i] < pivot
-
-            while (arr[j-1] >= pivot && i<j) j--; // move right bound
-            assert(i == j || arr[j-1]<pivot); // i == j || arr[j-1]<pivot
-            for (int k = j; k<right+1; ++k) assert(i == j || arr[k] >= pivot); // i == j || arr[j, right+1] >= pivot
-
+            while (arr[i] < pivot && i < j) i++; // move left bound
+            // i == j || (arr[left, i] < pivot && arr[i] >= pivot)
+            while (arr[j - 1] >= pivot && i < j) j--; // move right bound
+            // i == j || (arr[j-1]<pivot && arr[j, right+1] >= pivot)
             if (i < j) {
-                swap(arr, i, j-1);
+                swap(arr, i, j - 1);
                 i++;
                 j--;
             }
-            for (int k = left; k<i; ++k) assert(arr[k] < pivot); // arr[left, i] < pivot
-            for (int k = j; k<right+1; ++k) assert(arr[k] >= pivot); // arr[j, right+1] >= pivot
+            // arr[left, i] < pivot && arr[j, right+1] >= pivot
         }
-
-        // invariants
-        for (int k = left; k<i; ++k) assert(arr[k] < pivot); // arr[left, i] < pivot
-        for (int k = j; k<right+1; ++k) assert(arr[k] >= pivot); // arr[j, right+1] >= pivot
-
+        // arr[left, i] < pivot &&  arr[j, right+1] >= pivot
         if (pivot < arr[i]) swap(arr, i, right);
-
         return i;
     }
 
@@ -98,17 +85,16 @@ namespace aoc
         // Sort parts recursively and squeeze pivot inbetween sorted parts
         if (left < right) {
             auto i = quick_sort_partition(arr, left, right); // i is split point
-            quick_sort(arr, left, i-1); // sort left part
-            quick_sort(arr, i+1, right); // sort right part
+            quick_sort(arr, left, i - 1); // sort left part
+            quick_sort(arr, i + 1, right); // sort right part
         }
     }
 
     template<class T>
     void bubble_sort(std::vector<T> &arr)
     {
-        // n * n
-        for (int i = 0; i < arr.size(); ++i) { // n
-            for (int j = 0; j < arr.size() - i - 1; ++j) { // n
+        for (int i = 0; i < arr.size(); ++i) {
+            for (int j = 0; j < arr.size() - i - 1; ++j) {
                 if (arr[j] > arr[j + 1]) swap(arr, j, j + 1);
             }
         }
