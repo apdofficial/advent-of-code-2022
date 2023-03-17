@@ -1,5 +1,5 @@
-#ifndef ADVENT_OF_CODE_2022_DAY4_H
-#define ADVENT_OF_CODE_2022_DAY4_H
+#ifndef ADVENT_OF_CODE_2022_DAY4_HPP
+#define ADVENT_OF_CODE_2022_DAY4_HPP
 
 #include <string>
 #include <iostream>
@@ -30,6 +30,6 @@ struct Range {
     }
 };
 
-int run_day_4();
+void run_day_4();
 
-#endif //ADVENT_OF_CODE_2022_DAY4_H
+#endif //ADVENT_OF_CODE_2022_DAY4_HPP

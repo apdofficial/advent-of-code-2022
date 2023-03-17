@@ -4,5 +4,5 @@ target_sources(day1_test
 target_link_libraries(day1_test
         PRIVATE Catch2WithMain
         PRIVATE fmt::fmt
-        PRIVATE day1
-        )
+        PRIVATE aoc
+)

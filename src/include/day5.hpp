@@ -1,0 +1,8 @@
+#ifndef ADVENT_OF_CODE_2022_DAY5_HPP
+#define ADVENT_OF_CODE_2022_DAY5_HPP
+
+
+void run_day_5();
+
+
+#endif //ADVENT_OF_CODE_2022_DAY5_HPP

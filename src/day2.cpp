@@ -1,7 +1,7 @@
 #include <iomanip>
 #include <numeric>
 
-#include "day2.h"
+#include "day2.hpp"
 
 std::string const DAY_NR = "2";
 
@@ -56,14 +56,14 @@ int calculate_new_strategy_score(const std::vector<std::pair<char, char>> &round
     });
 }
 
-int run_day_2() {
+void run_day_2() {
     std::string const fileName = "day" + DAY_NR + ".txt";
     std::cout << "--Day " << DAY_NR << " START--" << std::endl;
     std::vector<std::pair<char, char>> rounds;
     std::fstream file(fileName);
     if (!file.is_open()) {
         std::cerr << "Failed to open " << std::quoted(fileName) << "\n";
-        return 1;
+        return;
     }
 
     std::pair<char, char> currentRound;

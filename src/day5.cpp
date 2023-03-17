@@ -1,4 +1,4 @@
-#include "day5.h"
+#include "day5.hpp"
 
 #include <iomanip>
 #include <vector>
@@ -130,7 +130,7 @@ struct BaseType : private Interface {
 //}
 
 
-int run_day_5() {
+void run_day_5() {
 //    std::string const fileName = "day" + DAY_NR + ".txt";
 //    std::cout << "--Day " << DAY_NR << " START--" << std::endl;
 //    std::ifstream file(fileName);
@@ -163,7 +163,7 @@ int run_day_5() {
 //    std::cout << std::endl;
 //
 //    std::cout << "--Day " << DAY_NR << " END--\n" << std::endl;
-    return 0;
+    return;
 }
 
 

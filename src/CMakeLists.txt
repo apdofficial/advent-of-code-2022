@@ -1,14 +1,13 @@
-add_subdirectory(day1)
+add_library(aoc STATIC)
 
-add_executable(advent_of_code_2022)
-target_sources(advent_of_code_2022
-        PRIVATE
+target_sources(aoc PRIVATE
+        day1.cpp
         day2.cpp
         day3.cpp
         day4.cpp
         day5.cpp
-        main.cpp
-        )
+        ../main.cpp
+        aoc.cpp
+)
 
-target_link_libraries(advent_of_code_2022
-        PRIVATE day1)
+target_include_directories(aoc PUBLIC include)

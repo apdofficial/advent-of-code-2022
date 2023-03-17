@@ -1,5 +1,5 @@
 #include <iomanip>
-#include "day3.h"
+#include "day3.hpp"
 
 std::string const DAY_NR = "3";
 
@@ -51,13 +51,13 @@ int sum_grouped_item_priorities_of_both_compartments(const std::vector<std::stri
     return std::accumulate(lines.begin(), lines.end(), 0, accumulateOp);
 }
 
-int run_day_3(){
+void run_day_3(){
     std::string const fileName = "day" + DAY_NR + ".txt";
     std::cout << "--Day " << DAY_NR << " START--" << std::endl;
     std::ifstream file(fileName);
     if (!file.is_open()) {
         std::cerr << "Failed to open " << std::quoted(fileName) << "\n";
-        return 1;
+        return;
     }
 
     std::vector<std::string> lines;
@@ -70,5 +70,4 @@ int run_day_3(){
     std::cout << "sum_grouped_item_priorities_of_both_compartments: " << sum_grouped_item_priorities_of_both_compartments(lines) << "\n";
 
     std::cout << "--Day " << DAY_NR << " END--\n" << std::endl;
-    return 0;
 }
