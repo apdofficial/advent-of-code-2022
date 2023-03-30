@@ -1,4 +1,4 @@
-#include "aoc.hpp"
+#include "util.h"
 
 auto aoc::stooi(std::string_view line) -> std::optional<int>
 {
@@ -24,29 +24,4 @@ auto aoc::map_to_int(std::span<const std::string> lines) -> std::vector<std::opt
     return result;
 }
 
-auto aoc::File::is_valid() -> bool
-{
-    return file.is_open();
-}
 
-auto aoc::File::read_lines() -> std::vector<std::string>
-{
-    std::vector<std::string> lines;
-    std::string line;
-    while (getline(file, line)) {
-        lines.push_back(line);
-    }
-    return lines;
-}
-
-aoc::File::~File()
-{
-    file.close();
-}
-
-aoc::File::File(std::string_view file_path)
-{
-    file = std::ifstream(file_path.data());
-    if (!is_valid())
-        throw std::runtime_error("Failed to open file at path: " + std::string(file_path));
-}
