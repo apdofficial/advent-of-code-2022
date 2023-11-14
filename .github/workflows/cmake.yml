@@ -38,4 +38,4 @@ jobs:
 
     - name: linked_list_test
       working-directory: ${{github.workspace}}/build/test
-      run: ./linked_list_test
+      run: ./day1_test
