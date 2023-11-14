@@ -3,7 +3,7 @@ project(advent_of_code_2022)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_compile_options(--std=c++23)
+add_compile_options(--std=c++20)
 
 add_subdirectory(ext)
 add_subdirectory(test)
