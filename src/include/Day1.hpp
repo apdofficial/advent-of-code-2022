@@ -7,12 +7,14 @@
 #include <string>
 #include <ranges>
 
-#include "IDayLineObserver.h"
-#include "DayPayload.h"
-#include "Day.h"
-
-#include "sort.h"
+namespace aoc::day1 {
+    auto top_1_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int>;
 
     auto top_3_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int>;
+
+    auto top_3_elf_calories_inplace(std::span<std::optional<int>> calories) -> std::optional<int>;
 }
+
+
+
 

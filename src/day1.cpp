@@ -1,5 +1,4 @@
 #include "day1.hpp"
-#include "aoc.hpp"
 
 #include <optional>
 #include <span>
@@ -8,6 +7,7 @@
 #include <ranges>
 #include <algorithm>
 #include <execution>
+#include <cassert>
 
 template<typename Iter>
 requires std::forward_iterator<Iter>
