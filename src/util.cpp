@@ -1,3 +1,5 @@
+#include <functional>
+#include <chrono>
 #include "util.h"
 
 auto aoc::stooi(std::string_view line) -> std::optional<int>
@@ -24,4 +26,13 @@ auto aoc::stooi(std::span<const std::string> lines) -> std::vector<std::optional
     return result;
 }
 
-
+auto aoc::measure_average_runtime(const std::function<void()>& fn, std::size_t n_runs) -> std::chrono::milliseconds {
+    using namespace std::chrono;
+    milliseconds total_time(0);
+    auto start_time = steady_clock::now();
+    for (std::size_t i=0; i < n_runs; ++i) {
+        fn();
+        total_time += duration_cast<milliseconds>(steady_clock::now() - start_time);
+    }
+    return milliseconds {total_time.count() / n_runs};
+}
