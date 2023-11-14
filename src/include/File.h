@@ -21,6 +21,6 @@ namespace aoc
         auto read_lines() -> std::vector<std::string>;
 
     private:
-        std::ifstream file;
+        std::ifstream file_;
     };
 }

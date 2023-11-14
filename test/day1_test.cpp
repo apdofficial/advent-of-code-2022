@@ -1,0 +1,85 @@
+#include <catch2/catch_all.hpp>
+#include <fmt/format.h>
+
+#include <chrono>
+
+#include "day1.hpp"
+#include "util.h"
+#include "File.h"
+
+
+using namespace aoc;
+
+
+std::vector<std::string> short_lines {
+                                "1000", "2000", "3000", "",
+                                "4000", "",
+                                "5000", "6000", "",
+                                "7000", "8000", "9000", "",
+                                "10000"};
+std::vector<std::optional<int>> short_calories { aoc::stooi(short_lines) };
+
+constexpr std::string_view DATA_PATH = "/Users/andrejpistek/Developer/GitHub/advent-of-code-2022/data/day1.txt";
+
+TEST_CASE("Day 1, part 1 test") {
+    auto result = day1::top_1_elf_calories(short_calories);
+    REQUIRE(result.has_value());
+    REQUIRE(result.value() == 24000);
+}
+
+TEST_CASE("Day 1, part 2 test (std::sort)") {
+    auto result = day1::top_3_elf_calories(short_calories);
+    REQUIRE(result.has_value());
+    REQUIRE(result.value() == 45000);
+}
+
+TEST_CASE("Day 1, part 2 test (Inplace)") {
+    auto result = day1::top_3_elf_calories_inplace(short_calories);
+    REQUIRE(result.has_value());
+    REQUIRE(result.value() == 45000);
+}
+
+TEST_CASE("Day 1 file (correctness)") {
+    File file(DATA_PATH);
+    REQUIRE(file.is_valid());
+
+    auto lines = file.read_lines();
+    REQUIRE_FALSE(lines.empty());
+
+    auto calories = stooi(lines);
+
+    auto result1 = day1::top_1_elf_calories(calories);
+    REQUIRE(result1.has_value());
+    REQUIRE(result1.value() == 69693);
+
+    auto result2 = day1::top_3_elf_calories(calories);
+    REQUIRE(result2.has_value());
+    REQUIRE(result2.value() == 200945);
+
+    auto result4 = day1::top_3_elf_calories_inplace(calories);
+    REQUIRE(result4.has_value());
+    REQUIRE(result4.value() == 200945);
+}
+
+TEST_CASE("Day 1 file (performance)") {
+    constexpr std::size_t n_runs{100000u};
+
+    File file(DATA_PATH);
+    auto lines = file.read_lines();
+    auto calories = stooi(lines);
+
+    auto top_1_elf_calories_runtime = measure_average_runtime([&calories]{
+            day1::top_1_elf_calories(calories);
+        }, n_runs).count();
+    fmt::print("Average runtime performance top_1_elf_calories: {} ms.\n", top_1_elf_calories_runtime);
+
+    auto top_3_elf_calories_runtime = measure_average_runtime([&calories]{
+            day1::top_3_elf_calories(calories);
+        }, n_runs).count();
+    fmt::print("Average runtime performance top_3_elf_calories: {} ms.\n", top_3_elf_calories_runtime);
+
+    auto top_3_elf_calories_inplace_runtime = measure_average_runtime([&calories]{
+            day1::top_3_elf_calories_inplace(calories);
+        }, n_runs).count();
+    fmt::print("Average runtime performance top_3_elf_calories_inplace: {} ms.\n", top_3_elf_calories_inplace_runtime);
+}

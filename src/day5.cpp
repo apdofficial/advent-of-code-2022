@@ -9,7 +9,7 @@
 std::string const DAY_NR = "5";
 
 struct Command {
-    std::uint32_t crateNum;
+    uint32_t crateNum;
     std::size_t from;
     std::size_t to;
 
