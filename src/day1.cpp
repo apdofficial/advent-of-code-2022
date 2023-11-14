@@ -9,14 +9,6 @@
 #include <execution>
 #include <cassert>
 
-template<typename Iter>
-requires std::forward_iterator<Iter>
-inline auto sum(Iter first, Iter last) {
-    return std::accumulate(first, last, 0, [](auto acc, auto& item) {
-        return acc + item.value_or(0);
-    });
-}
-
 // T(n) = O(n)
 auto aoc::day1::top_1_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int> {
     int max1 = 0;
@@ -39,8 +31,10 @@ auto aoc::day1::top_1_elf_calories(std::span<std::optional<int>> calories) -> st
 // T(n) = O(n*m + n * log(n))
 auto aoc::day1::top_3_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int> {
     std::vector<int> sums{};
-    for(const auto elf: calories | std::views::split(std::nullopt)){
-        sums.emplace_back(sum(elf.begin(), elf.end()));
+    for (const auto elf: calories | std::views::split(std::nullopt)) {
+        sums.emplace_back(std::accumulate(elf.begin(), elf.end(), 0, [](auto acc, auto &item) {
+            return acc + item.value_or(0);
+        }));
     }
     auto n = sums.size();
     std::sort(sums.begin(), sums.end(), std::less());
