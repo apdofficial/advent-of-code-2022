@@ -6,12 +6,22 @@
 #include "DayPayload.h"
 #include "File.h"
 
-#include "IDayProvider.h"
-#include "IDayLineObserver.h"
-#include "ISubject.h"
+    auto stooi(std::span<const std::string> lines) -> std::vector<std::optional<int>>;
 
-#include "DayLineSubject.h"
-#include "FileDayProvider.h"
-#include "NetworkDayProvider.h"
+    class File
+    {
+    public:
+        // class uses RAII
+        // class invariant is: file.is_open()
+        explicit File(std::string_view file_path);
 
 #include "Day1.hpp"
+
+        auto is_valid() -> bool;
+
+        auto read_lines() -> std::vector<std::string>;
+
+    private:
+        std::ifstream file;
+    };
+}
