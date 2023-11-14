@@ -43,7 +43,7 @@ auto aoc::day1::top_3_elf_calories(std::span<std::optional<int>> calories) -> st
         sums.emplace_back(sum(elf.begin(), elf.end()));
     }
     auto n = sums.size();
-    std::sort(std::execution::par_unseq, sums.begin(), sums.end(), std::less());
+    std::sort(sums.begin(), sums.end(), std::less());
     return sums[n - 1] + sums[n - 2] + sums[n - 3];
 }
 
