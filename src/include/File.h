@@ -22,6 +22,8 @@ namespace aoc
 
         auto read_pairs() -> std::vector<std::pair<char, char>>;
 
+        auto istream() -> std::istream&;
+
     private:
         std::ifstream file_;
     };
