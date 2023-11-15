@@ -1,5 +1,4 @@
-#ifndef ADVENT_OF_CODE_2022_DAY4_HPP
-#define ADVENT_OF_CODE_2022_DAY4_HPP
+#pragma once
 
 #include <string>
 #include <iostream>
@@ -8,28 +7,40 @@
 #include <algorithm>
 #include <numeric>
 #include <sstream>
+#include <iomanip>
+#include <span>
 
-// (ref)    --|---|---
-// (case 1) |--|------ left overlap
-// (case 2) -----|---| right overlap
-// (case 3) --|---|--- exactly the same
-// (case 4) --|--|---- sub range
-// (case 5) ---|--|--- sub range
-// (case 6) ---|-|---- sub range
+namespace aoc::day4 {
 
-struct Range {
-    uint32_t min;
-    uint32_t max;
+    // (ref)    --|---|---
+    // (case 1) |--|------ left overlap
+    // (case 2) -----|---| right overlap
+    // (case 3) --|---|--- exactly the same
+    // (case 4) --|--|---- sub range
+    // (case 5) ---|--|--- sub range
+    // (case 6) ---|-|---- sub range
+    struct Range {
+        uint32_t min;
+        uint32_t max;
 
-    [[nodiscard]] bool is_sub_range_to(const Range& other) const {
-        return (other.min <= min && min <= other.max) && (other.min <= max && max <= other.max);
-    }
+        [[nodiscard]] bool is_sub_range_to(const Range &other) const {
+            return (other.min <= min && min <= other.max) && (other.min <= max && max <= other.max);
+        }
 
-    [[nodiscard]] bool is_overlapping(const Range& other) const {
-        return (other.min <= min && min <= other.max) || (other.min <= max && max <= other.max) ;
-    }
-};
+        [[nodiscard]] bool is_overlapping(const Range &other) const {
+            return (other.min <= min && min <= other.max) || (other.min <= max && max <= other.max);
+        }
 
-void run_day_4();
+        friend std::istream& operator>>(std::istream & is, Range& other) {
+            char delimiter {};
+            is >> other.min >> delimiter >> other.max;
+            return is;
+        }
+    };
 
-#endif //ADVENT_OF_CODE_2022_DAY4_HPP
+    auto map_to_ranges(std::span<const  std::string> lines) -> std::vector<std::pair<Range, Range>>;
+
+    auto num_of_fully_contained_ranges(std::span<const std::pair<Range, Range>> lines) -> int;
+
+    auto num_of_overlapping_ranges(std::span<const std::pair<Range, Range>> lines) -> int;
+}
