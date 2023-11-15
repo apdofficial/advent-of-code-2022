@@ -36,6 +36,6 @@ jobs:
       # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
-    - name: day1_test
+    - name: Tests
       working-directory: ${{github.workspace}}/build/test
-      run: ./day1_test
+      run: ./tests

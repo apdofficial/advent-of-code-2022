@@ -20,6 +20,8 @@ namespace aoc
 
         auto read_lines() -> std::vector<std::string>;
 
+        auto read_pairs() -> std::vector<std::pair<char, char>>;
+
     private:
         std::ifstream file_;
     };

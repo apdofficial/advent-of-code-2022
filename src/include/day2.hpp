@@ -1,5 +1,4 @@
-#ifndef ADVENT_OF_CODE_2022_DAY2_HPP
-#define ADVENT_OF_CODE_2022_DAY2_HPP
+#pragma once
 
 #include <string>
 #include <iostream>
@@ -8,6 +7,9 @@
 #include <algorithm>
 #include <numeric>
 
-void run_day_2();
+namespace aoc::day2 {
 
-#endif //ADVENT_OF_CODE_2022_DAY2_HPP
+    auto calculate_strategy_score(const std::vector<std::pair<char, char>> &rounds) -> int;
+
+    auto calculate_new_strategy_score(const std::vector<std::pair<char, char>> &rounds) -> int;
+}

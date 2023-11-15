@@ -31,3 +31,12 @@ auto aoc::File::read_lines() -> std::vector<std::string>
     return lines;
 }
 
+auto aoc::File::read_pairs() -> std::vector<std::pair<char, char>>
+{
+    std::vector<std::pair<char, char>> rounds;
+    std::pair<char, char> currentRound;
+    while (file_ >> currentRound.first >> currentRound.second) {
+        rounds.push_back(currentRound);
+    }
+    return rounds;
+}
