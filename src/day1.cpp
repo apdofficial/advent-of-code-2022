@@ -4,7 +4,8 @@
 #include <span>
 #include <numeric>
 
-// T(n) = O(n)
+// n = number of elves
+// O(n)
 auto aoc::day1::top_1_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int> {
     int max1 = 0;
     auto op = [&max1](int accumulator, const std::optional<int> &line) {
@@ -23,7 +24,7 @@ auto aoc::day1::top_1_elf_calories(std::span<std::optional<int>> calories) -> st
 
 // n = number of elves
 // m = number of calories per elf
-// T(n) = O(n*m)
+// O(n*m)
 auto aoc::day1::top_3_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int> {
     int max1 = 0, max2 = 0, max3 = 0;
     auto update_op = [&max1, &max2, &max3](int accumulator, const std::optional<int> &line) {

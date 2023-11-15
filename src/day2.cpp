@@ -3,9 +3,7 @@
 
 #include "day2.hpp"
 
-// Asymptotic analysis
-// complexity is linear O(n)
-// no redundant computation
+// O(n)
 auto aoc::day2::calculate_strategy_score(const std::vector<std::pair<char, char>> &rounds) -> int {
     return std::accumulate(rounds.begin(), rounds.end(), 0, [](const int accumulator, const auto &pair) -> int {
         // 1 == rock, 2 == paper, 3 == scissors
@@ -26,9 +24,7 @@ auto aoc::day2::calculate_strategy_score(const std::vector<std::pair<char, char>
     });
 }
 
-// Asymptotic analysis
-// complexity is linear O(n)
-// no redundant computation
+// O(n)
 auto aoc::day2::calculate_new_strategy_score(const std::vector<std::pair<char, char>> &rounds) -> int{
     return std::accumulate(rounds.begin(), rounds.end(), 0, [](int accumulator, auto &pair) -> int {
         // 1 == rock, 2 == paper, 3 == scissors
