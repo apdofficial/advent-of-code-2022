@@ -1,7 +1,7 @@
-add_executable(day1_test)
-target_sources(day1_test
-        PRIVATE day1_test.cpp)
-target_link_libraries(day1_test
+add_executable(tests)
+target_sources(tests
+        PRIVATE day1_test.cpp day2_test.cpp)
+target_link_libraries(tests
         PRIVATE Catch2WithMain
         PRIVATE fmt::fmt
         PRIVATE aoc

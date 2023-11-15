@@ -2,12 +2,7 @@
 
 #include <optional>
 #include <span>
-#include <vector>
 #include <numeric>
-#include <ranges>
-#include <algorithm>
-#include <execution>
-#include <cassert>
 
 // T(n) = O(n)
 auto aoc::day1::top_1_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int> {

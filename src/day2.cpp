@@ -3,12 +3,10 @@
 
 #include "day2.hpp"
 
-std::string const DAY_NR = "2";
-
 // Asymptotic analysis
 // complexity is linear O(n)
 // no redundant computation
-int calculate_strategy_score(const std::vector<std::pair<char, char>> &rounds) {
+auto aoc::day2::calculate_strategy_score(const std::vector<std::pair<char, char>> &rounds) -> int {
     return std::accumulate(rounds.begin(), rounds.end(), 0, [](const int accumulator, const auto &pair) -> int {
         // 1 == rock, 2 == paper, 3 == scissors
         const int opponent = pair.first - 'A' + 1;
@@ -31,7 +29,7 @@ int calculate_strategy_score(const std::vector<std::pair<char, char>> &rounds) {
 // Asymptotic analysis
 // complexity is linear O(n)
 // no redundant computation
-int calculate_new_strategy_score(const std::vector<std::pair<char, char>> &rounds) {
+auto aoc::day2::calculate_new_strategy_score(const std::vector<std::pair<char, char>> &rounds) -> int{
     return std::accumulate(rounds.begin(), rounds.end(), 0, [](int accumulator, auto &pair) -> int {
         // 1 == rock, 2 == paper, 3 == scissors
         int opponent = pair.first - 'A' + 1;
@@ -54,23 +52,4 @@ int calculate_new_strategy_score(const std::vector<std::pair<char, char>> &round
             } else return accumulator + 1 + 6;
         }
     });
-}
-
-void run_day_2() {
-    std::string const fileName = "day" + DAY_NR + ".txt";
-    std::cout << "--Day " << DAY_NR << " START--" << std::endl;
-    std::vector<std::pair<char, char>> rounds;
-    std::fstream file(fileName);
-    if (!file.is_open()) {
-        std::cerr << "Failed to open " << std::quoted(fileName) << "\n";
-        return;
-    }
-
-    std::pair<char, char> currentRound;
-    while (file >> currentRound.first >> currentRound.second) {
-        rounds.push_back(currentRound);
-    }
-    std::cout << "calculate_strategy_score:     " << calculate_strategy_score(rounds) << "\n";
-    std::cout << "calculate_new_strategy_score: " << calculate_new_strategy_score(rounds) << "\n";
-    std::cout << "--Day " << DAY_NR << " END--\n" << std::endl;
 }
