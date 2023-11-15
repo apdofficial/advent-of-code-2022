@@ -40,3 +40,7 @@ auto aoc::File::read_pairs() -> std::vector<std::pair<char, char>>
     }
     return rounds;
 }
+
+auto aoc::File::istream() -> std::istream&{
+    return file_;
+}
