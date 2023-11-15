@@ -1,5 +1,4 @@
-#ifndef ADVENT_OF_CODE_2022_DAY3_HPP
-#define ADVENT_OF_CODE_2022_DAY3_HPP
+#pragma once
 
 #include <string>
 #include <iostream>
@@ -8,6 +7,9 @@
 #include <algorithm>
 #include <numeric>
 
-void run_day_3();
+namespace aoc::day3 {
 
-#endif //ADVENT_OF_CODE_2022_DAY3_HPP
+    auto sum_item_priorities_of_both_compartments(const std::vector<std::string>& lines) -> int;
+
+    auto sum_grouped_item_priorities_of_both_compartments(const std::vector<std::string>& lines) -> int;
+}

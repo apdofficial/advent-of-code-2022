@@ -1,13 +1,11 @@
 #include <iomanip>
 #include "day3.hpp"
 
-std::string const DAY_NR = "3";
-
 // Asymptotic analysis
 // n = number of elves
 // m = number of items for each elf
 // complexity T(n, m) = n * (m/2 * (m/2 + m/2)) => O(n * (m^2)/2)
-int sum_item_priorities_of_both_compartments(const std::vector<std::string>& lines){
+auto aoc::day3::sum_item_priorities_of_both_compartments(const std::vector<std::string>& lines) -> int{
     auto accumulateOp = [](auto accumulator, auto& line){ // n
         int lineSum = 0;
         std::vector<char> registered;
@@ -29,7 +27,7 @@ int sum_item_priorities_of_both_compartments(const std::vector<std::string>& lin
 // n = number of elves
 // m = number of items for each elf
 // complexity T(n, m) = n * (m * (m + m + m)) => O(n * m^2)
-int sum_grouped_item_priorities_of_both_compartments(const std::vector<std::string>& lines){
+auto aoc::day3::sum_grouped_item_priorities_of_both_compartments(const std::vector<std::string>& lines) -> int{
     int groupSum = 0, groupIndex = 1;
     std::vector<std::string> group;
     std::vector<char> registered;
@@ -49,25 +47,4 @@ int sum_grouped_item_priorities_of_both_compartments(const std::vector<std::stri
         return accumulator + groupSum;
     };
     return std::accumulate(lines.begin(), lines.end(), 0, accumulateOp);
-}
-
-void run_day_3(){
-    std::string const fileName = "day" + DAY_NR + ".txt";
-    std::cout << "--Day " << DAY_NR << " START--" << std::endl;
-    std::ifstream file(fileName);
-    if (!file.is_open()) {
-        std::cerr << "Failed to open " << std::quoted(fileName) << "\n";
-        return;
-    }
-
-    std::vector<std::string> lines;
-    std::string line;
-    while (getline(file, line)) {
-        lines.push_back(line);
-    }
-
-    std::cout << "sum_item_priorities_of_both_compartments:         " << sum_item_priorities_of_both_compartments(lines) << "\n";
-    std::cout << "sum_grouped_item_priorities_of_both_compartments: " << sum_grouped_item_priorities_of_both_compartments(lines) << "\n";
-
-    std::cout << "--Day " << DAY_NR << " END--\n" << std::endl;
 }
