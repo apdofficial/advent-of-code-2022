@@ -1,10 +1,7 @@
-#include <iomanip>
-#include <numeric>
-
 #include "day2.hpp"
 
 // O(n)
-auto aoc::day2::calculate_strategy_score(const std::vector<std::pair<char, char>> &rounds) -> int {
+auto aoc::day2::calculate_strategy_score(std::span<const std::pair<char, char>> rounds) -> int {
     return std::accumulate(rounds.begin(), rounds.end(), 0, [](const int accumulator, const auto &pair) -> int {
         // 1 == rock, 2 == paper, 3 == scissors
         const int opponent = pair.first - 'A' + 1;
@@ -25,7 +22,7 @@ auto aoc::day2::calculate_strategy_score(const std::vector<std::pair<char, char>
 }
 
 // O(n)
-auto aoc::day2::calculate_new_strategy_score(const std::vector<std::pair<char, char>> &rounds) -> int{
+auto aoc::day2::calculate_new_strategy_score(std::span<const std::pair<char, char>> rounds) -> int{
     return std::accumulate(rounds.begin(), rounds.end(), 0, [](int accumulator, auto &pair) -> int {
         // 1 == rock, 2 == paper, 3 == scissors
         int opponent = pair.first - 'A' + 1;

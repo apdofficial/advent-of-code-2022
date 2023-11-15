@@ -3,9 +3,9 @@
 #include <charconv>
 #include <cstdlib>
 #include <span>
-#include <optional>
 #include <string>
-#include <ranges>
+#include <optional>
+#include <numeric>
 
 namespace aoc::day1 {
 

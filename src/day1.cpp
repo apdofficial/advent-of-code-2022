@@ -1,9 +1,5 @@
 #include "day1.hpp"
 
-#include <optional>
-#include <span>
-#include <numeric>
-
 // n = number of elves
 // O(n)
 auto aoc::day1::top_1_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int> {
