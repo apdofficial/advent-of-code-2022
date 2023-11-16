@@ -26,7 +26,7 @@ auto aoc::stooi(std::span<std::string> lines) -> std::vector<std::optional<int>>
     return result;
 }
 
-auto aoc::measure_average_runtime(const std::function<void()>& fn, std::size_t n_runs) -> std::chrono::milliseconds {
+auto aoc::measure_runtime(const std::function<void()>& fn, std::size_t n_runs) -> std::chrono::milliseconds {
     using namespace std::chrono;
     milliseconds total_time(0);
     auto start_time = steady_clock::now();

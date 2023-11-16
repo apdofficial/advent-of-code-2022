@@ -1,23 +1,26 @@
-#include <queue>
 #include "day6.hpp"
 
-auto aoc::day6::start_of_packet_marker(std::istream& packet) -> std::size_t {
-    std::size_t marker = 0;
+auto start_of_n_marker(std::istream &packet, size_t n_distinct_characters) -> std::size_t {
     std::vector<char> buffer;
     char tmp;
-    for(;packet >> tmp; ++marker) {
+    for (std::size_t marker = 1; packet >> tmp; ++marker) {
         buffer.push_back(tmp);
-        if(buffer.size() == 4) {
-            auto a = buffer[0] != buffer[1] && buffer[0] != buffer[2] && buffer[0] != buffer[3];
-            auto b = buffer[1] != buffer[2] && buffer[1] != buffer[3];
-            auto c = buffer[2] != buffer[3];
-            if (a && b && c) break;
+        if (buffer.size() == n_distinct_characters) {
+            auto found_marker = std::all_of(buffer.begin(), buffer.end(), [&buffer](auto c) {
+                return std::count(buffer.begin(), buffer.end(), c) == 1;
+            });
+            if (found_marker) return marker;
             buffer.erase(buffer.begin());
         }
     }
-    return marker + 1;
-}
-
-auto aoc::day6::start_of_message_marker(std::istream& packet) -> std::size_t {
     return 0;
 }
+
+auto aoc::day6::start_of_packet_marker(std::istream &packet) -> std::size_t {
+    return start_of_n_marker(packet, 4);
+}
+
+auto aoc::day6::start_of_message_marker(std::istream &packet) -> std::size_t {
+    return start_of_n_marker(packet, 14);
+}
+

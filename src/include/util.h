@@ -15,5 +15,5 @@ namespace aoc
 
     auto stooi(std::span<std::string> lines) -> std::vector<std::optional<int>>;
 
-    auto measure_average_runtime(const std::function<void()>& fn, std::size_t n_runs) -> std::chrono::milliseconds;
+    auto measure_runtime(const std::function<void()>& fn, std::size_t n_runs) -> std::chrono::milliseconds;
 }

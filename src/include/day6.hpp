@@ -7,6 +7,8 @@
 #include <fstream>
 #include <span>
 #include <optional>
+#include <queue>
+#include <algorithm>
 
 namespace aoc::day6 {
 
