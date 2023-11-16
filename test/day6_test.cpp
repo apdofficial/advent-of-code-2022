@@ -1,5 +1,5 @@
 #include <catch2/catch_all.hpp>
-#include <array>
+#include <fmt/format.h>
 
 #include "day6.hpp"
 #include "util.h"
@@ -23,4 +23,16 @@ TEST_CASE("Day 6, part 1 test") {
         auto marker = day6::start_of_pocket_marker(packet_stream);
         REQUIRE(expected_marker == marker);
     }
+}
+
+TEST_CASE("Day 6, part 3 test") {
+    REQUIRE(false);
+}
+
+TEST_CASE("Day 6 file (correctness)") {
+    File file(DATA_PATH);
+    REQUIRE(file.is_valid());
+
+    auto marker = day6::start_of_pocket_marker(file.istream());
+    REQUIRE(marker == 1080);
 }
