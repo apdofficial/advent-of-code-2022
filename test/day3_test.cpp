@@ -4,7 +4,7 @@
 
 #include "day3.hpp"
 #include "util.h"
-#include "File.h"
+#include "file.hpp"
 
 using namespace aoc;
 
@@ -37,18 +37,18 @@ TEST_CASE("Day 3 file (correctness)") {
 }
 
 TEST_CASE("Day 3 file (performance)") {
-    constexpr std::size_t n_runs{10000u};
+    constexpr std::size_t n_runs{1000u};
 
     File file(DATA_PATH);
     auto list = file.read_lines();
 
-    auto top_1_elf_calories_runtime = measure_average_runtime([&list]{
-            day3::sum_item_priorities_of_both_compartments(list);
-        }, n_runs).count();
+    auto top_1_elf_calories_runtime = measure_runtime([&list] {
+        day3::sum_item_priorities_of_both_compartments(list);
+    }, n_runs).count();
     fmt::print("Average runtime performance sum_item_priorities_of_both_compartments: {} ms.\n", top_1_elf_calories_runtime);
 
-    auto top_3_elf_calories_runtime = measure_average_runtime([&list]{
-            day3::sum_grouped_item_priorities_of_both_compartments(list);
-        }, n_runs).count();
+    auto top_3_elf_calories_runtime = measure_runtime([&list] {
+        day3::sum_grouped_item_priorities_of_both_compartments(list);
+    }, n_runs).count();
     fmt::print("Average runtime performance sum_grouped_item_priorities_of_both_compartments: {} ms.\n", top_3_elf_calories_runtime);
 }

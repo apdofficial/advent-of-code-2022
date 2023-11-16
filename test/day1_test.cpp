@@ -4,7 +4,7 @@
 
 #include "day1.hpp"
 #include "util.h"
-#include "File.h"
+#include "file.hpp"
 
 using namespace aoc;
 
@@ -54,13 +54,13 @@ TEST_CASE("Day 1 file (performance)") {
     auto lines = file.read_lines();
     auto calories = stooi(lines);
 
-    auto top_1_elf_calories_runtime = measure_average_runtime([&calories]{
-            day1::top_1_elf_calories(calories);
-        }, n_runs).count();
+    auto top_1_elf_calories_runtime = measure_runtime([&calories] {
+        day1::top_1_elf_calories(calories);
+    }, n_runs).count();
     fmt::print("Average runtime performance top_1_elf_calories: {} ms.\n", top_1_elf_calories_runtime);
 
-    auto top_3_elf_calories_runtime = measure_average_runtime([&calories]{
-            day1::top_3_elf_calories(calories);
-        }, n_runs).count();
+    auto top_3_elf_calories_runtime = measure_runtime([&calories] {
+        day1::top_3_elf_calories(calories);
+    }, n_runs).count();
     fmt::print("Average runtime performance top_3_elf_calories: {} ms.\n", top_3_elf_calories_runtime);
 }

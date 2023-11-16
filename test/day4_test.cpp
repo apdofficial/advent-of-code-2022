@@ -4,7 +4,7 @@
 
 #include "day4.hpp"
 #include "util.h"
-#include "File.h"
+#include "file.hpp"
 
 using namespace aoc;
 
@@ -46,13 +46,13 @@ TEST_CASE("Day 4 file (performance)") {
     auto lines = file.read_lines();
     auto ranges = day4::map_to_ranges(lines);
 
-    auto a_runtime = measure_average_runtime([&ranges]{
-            day4::num_of_fully_contained_ranges(ranges);
-        }, n_runs).count();
+    auto a_runtime = measure_runtime([&ranges] {
+        day4::num_of_fully_contained_ranges(ranges);
+    }, n_runs).count();
     fmt::print("Average runtime performance num_of_fully_contained_ranges: {} ms.\n", a_runtime);
 
-    auto b_runtime = measure_average_runtime([&ranges]{
-            day4::num_of_overlapping_ranges(ranges);
-        }, n_runs).count();
+    auto b_runtime = measure_runtime([&ranges] {
+        day4::num_of_overlapping_ranges(ranges);
+    }, n_runs).count();
     fmt::print("Average runtime performance num_of_overlapping_ranges: {} ms.\n", b_runtime);
 }
