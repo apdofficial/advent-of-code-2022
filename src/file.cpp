@@ -2,7 +2,7 @@
 // Created by Andrej Pistek on 28/03/2023.
 //
 
-#include "File.h"
+#include "file.hpp"
 
 aoc::File::File(std::string_view file_path)
 {
