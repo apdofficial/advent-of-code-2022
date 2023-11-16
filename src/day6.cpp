@@ -1,7 +1,7 @@
 #include <queue>
 #include "day6.hpp"
 
-auto aoc::day6::start_of_pocket_marker(std::istream& packet) -> std::size_t {
+auto aoc::day6::start_of_packet_marker(std::istream& packet) -> std::size_t {
     std::size_t marker = 0;
     std::vector<char> buffer;
     char tmp;
@@ -16,4 +16,8 @@ auto aoc::day6::start_of_pocket_marker(std::istream& packet) -> std::size_t {
         }
     }
     return marker + 1;
+}
+
+auto aoc::day6::start_of_message_marker(std::istream& packet) -> std::size_t {
+    return 0;
 }
