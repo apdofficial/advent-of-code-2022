@@ -8,6 +8,8 @@
 #include <array>
 #include <charconv>
 #include <iostream>
+#include <functional>
+#include <chrono>
 
 namespace aoc
 {
