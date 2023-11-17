@@ -26,5 +26,12 @@ TEST_CASE("Day 8, part 2 test") {
 }
 
 TEST_CASE("Day 8 file (correctness)") {
-    REQUIRE(false);
+    aoc::File file(DATA_PATH);
+    REQUIRE(file.is_valid());
+
+    auto tree_forest = file.read_matrix();
+    auto visible_trees = count_visible_trees(tree_forest);
+    fmt::println("visible_trees: {}", visible_trees);
+    REQUIRE(visible_trees == 1717);
+
 }

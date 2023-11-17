@@ -4,6 +4,7 @@
 
 #include "string_view"
 #include "vector"
+#include "util.h"
 
 namespace aoc
 {
@@ -19,6 +20,8 @@ namespace aoc
         auto is_valid() -> bool;
 
         auto read_lines() -> std::vector<std::string>;
+
+        auto read_matrix() -> std::vector<std::vector<unsigned>>;
 
         auto read_pairs() -> std::vector<std::pair<char, char>>;
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <unordered_set>
+
 #include "util.h"
 
 namespace aoc::day8 {
