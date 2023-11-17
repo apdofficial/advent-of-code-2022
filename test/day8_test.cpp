@@ -17,8 +17,7 @@ constexpr std::string_view DATA_PATH = "../../data/day8.txt";
 
 
 TEST_CASE("Day 8, part 1 test") {
-    auto visible_trees = count_visible_trees(short_forest_d8);
-    REQUIRE(visible_trees == 21);
+    REQUIRE(count_visible_trees(short_forest_d8) == 21);
 }
 
 TEST_CASE("Day 8, part 2 test") {
