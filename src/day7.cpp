@@ -1,7 +1,4 @@
-#include <numeric>
-#include <utility>
 #include "day7.hpp"
-#include "util.h"
 
 auto aoc::day7::parse_command(std::string_view cmd) -> Command {
     if (cmd.starts_with("$ cd")) return Command::cd;

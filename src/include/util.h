@@ -13,7 +13,7 @@
 
 namespace aoc
 {
-    constexpr auto stooi(std::string_view line) -> std::optional<int>;
+    auto stooi(std::string_view line) -> std::optional<int>;
 
     auto stooi(std::span<std::string> lines) -> std::vector<std::optional<int>>;
 

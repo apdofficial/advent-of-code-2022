@@ -2,7 +2,7 @@
 #include <chrono>
 #include "util.h"
 
-constexpr auto aoc::stooi(std::string_view line) -> std::optional<int>
+auto aoc::stooi(std::string_view line) -> std::optional<int>
 {
     if (line.empty()) return std::nullopt;
     int result{};

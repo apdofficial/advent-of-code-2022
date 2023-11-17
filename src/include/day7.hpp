@@ -12,6 +12,10 @@
 #include <variant>
 #include <memory>
 #include <unordered_map>
+#include <numeric>
+#include <utility>
+
+#include "util.h"
 
 namespace aoc::day7 {
     enum Command {
