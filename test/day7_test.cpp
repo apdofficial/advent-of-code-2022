@@ -74,7 +74,6 @@ TEST_CASE("Day 7 file (correctness)") {
         process_command_line(cmd_line, tree);
     }
     auto sums = tree.root()->get_recursive_subdirectory_sizes();
-    std::sort(sums.begin(), sums.end());
 
     auto small_dirs_sum = sum_if(sums, 100000);
     REQUIRE(small_dirs_sum == 1390824);
