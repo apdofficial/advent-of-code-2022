@@ -12,7 +12,7 @@
     ```shell
     docker build --pull --rm -f "Dockerfile" -t aoc2022cpp:latest "." 
     ```
-2. Run your image as a interactive container using:
+2. Run your image as an interactive container using:
     ```shell
     docker run -i -t aoc2022cpp:latest
     ```
