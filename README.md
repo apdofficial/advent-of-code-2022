@@ -26,9 +26,9 @@
     ```
 5. Dynamic check with **Catch2** and **valgrind**:
     ```shell
-   cd build/test/ && valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./tests && cd ..
+   cd build/test/ && valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./tests && cd ../..
    ```
 6. Run the tests with **Catch2**:
     ```shell
-    cd build/test/ && ./tests && cd ..
+    cd build/test/ && ./tests && cd ../..
     ```
