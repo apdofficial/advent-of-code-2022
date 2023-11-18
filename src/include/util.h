@@ -12,7 +12,9 @@
 #include <chrono>
 
 namespace aoc {
-    auto stooi(std::string_view line) -> std::optional<int>;
+    auto map_to_int(std::string_view line) -> std::optional<int>;
 
-    auto stooi(std::span<std::string> lines) -> std::vector<std::optional<int>>;
+    auto map_to_int(char c) -> std::optional<int>;
+
+    auto map_to_ints(std::span<std::string> lines) -> std::vector<std::optional<int>>;
 }

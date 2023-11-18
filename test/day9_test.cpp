@@ -7,20 +7,20 @@
 
 using namespace aoc::day9;
 
-std::vector<std::string> short_forest_d8{"R 4",
-                                         "U 4",
-                                         "L 3",
-                                         "D 1",
-                                         "R 4",
-                                         "D 1",
-                                         "L 5",
-                                         "R 2"};
-
+std::vector<std::string> short_motions_d8{"R 4",
+                                          "U 4",
+                                          "L 3",
+                                          "D 1",
+                                          "R 4",
+                                          "D 1",
+                                          "L 5",
+                                          "R 2"};
 constexpr std::string_view DATA_PATH = "../../data/day9.txt";
 
 
 TEST_CASE("Day 9, part 1 test") {
-    REQUIRE(false);
+    auto motions = parse_input(short_motions_d8);
+    REQUIRE(count_tail_positions(motions) == 13);
 }
 
 TEST_CASE("Day 9, part 2 test") {

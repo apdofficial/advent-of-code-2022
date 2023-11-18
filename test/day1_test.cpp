@@ -13,7 +13,7 @@ std::vector<std::string> short_lines{"1000", "2000", "3000", "",
                                      "5000", "6000", "",
                                      "7000", "8000", "9000","",
                                      "10000"};
-auto short_calories{aoc::stooi(short_lines)};
+auto short_calories{aoc::map_to_ints(short_lines)};
 
 constexpr std::string_view DATA_PATH = "../../data/day1.txt";
 
@@ -36,7 +36,7 @@ TEST_CASE("Day 1 file (correctness)") {
     auto lines = file.read_lines();
     REQUIRE_FALSE(lines.empty());
 
-    auto calories = aoc::stooi(lines);
+    auto calories = aoc::map_to_ints(lines);
 
     auto result1 = top_1_elf_calories(calories);
     REQUIRE(result1.has_value());
