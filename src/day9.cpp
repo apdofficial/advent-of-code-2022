@@ -49,9 +49,4 @@ void aoc::day9::RopeSimulation::update_tail_position() {
     tail_visited_.insert(tail_);
 }
 
-aoc::day9::RopeSimulation::RopeSimulation():
-    head_(0, 0),
-    tail_(0,0),
-    tail_visited_(){}
-
 auto aoc::day9::RopeSimulation::tail_visited() const -> const Positions& {return tail_visited_;}

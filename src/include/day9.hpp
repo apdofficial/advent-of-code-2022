@@ -49,7 +49,6 @@ namespace aoc::day9 {
     using Positions = std::unordered_set<Position, PositionHash>;
 
     struct RopeSimulation {
-        explicit RopeSimulation();
 
         void move_head(const MotionDirection& direction);
 
@@ -61,9 +60,9 @@ namespace aoc::day9 {
         void update_tail_position();
 
     private:
-        Positions tail_visited_;
-        Position head_;
-        Position tail_;
+        Positions tail_visited_{};
+        Position head_{};
+        Position tail_{};
     };
 
     auto parse_input(const std::vector<std::string>& lines) -> Motions;
