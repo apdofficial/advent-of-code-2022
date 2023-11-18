@@ -25,6 +25,15 @@ auto aoc::day9::parse_input(const std::vector<std::pair<char, char>> &raw_motion
     return motions;
 }
 
-auto aoc::day9::count_tail_positions(const std::vector<Motion>& motions) -> unsigned {
+auto aoc::day9::simulate_rope(const std::vector<Motion>& motions) -> Simulation{
+    Simulation simulation{};
+    for(const auto& motion: motions){
+        //TODO: simulate the rope motion
+    }
+    return simulation;
+}
+
+
+auto aoc::day9::count_tail_positions(const Simulation& state) -> unsigned {
     return 0;
 }

@@ -20,7 +20,8 @@ constexpr std::string_view DATA_PATH = "../../data/dy9.txt";
 
 TEST_CASE("Day 9, part 1 test") {
     auto motions = parse_input(short_motions_d8);
-    REQUIRE(count_tail_positions(motions) == 13);
+    auto simulation = simulate_rope(motions);
+    REQUIRE(count_tail_positions(simulation) == 13);
 }
 
 TEST_CASE("Day 9, part 2 test") {
