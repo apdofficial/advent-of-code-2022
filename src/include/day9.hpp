@@ -24,9 +24,7 @@ namespace aoc::day9 {
             if (d == 'L') motion.direction = MotionDirection::LEFT;
             if (d == 'U') motion.direction = MotionDirection::UP;
             if (d == 'D') motion.direction = MotionDirection::DOWN;
-            auto magnitude_optional = map_to_int(m);
-            if (!magnitude_optional.has_value()) throw std::runtime_error("could not parse magnitude");
-            motion.magnitude = magnitude_optional.value();
+            motion.magnitude = map_to_int(m).value_or(0);
             return is;
         }
     };
