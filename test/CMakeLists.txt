@@ -15,3 +15,10 @@ target_link_libraries(tests
         PRIVATE fmt::fmt
         PRIVATE aoc
 )
+
+# Check if we have Boost
+find_package(Boost 1.74.0)
+if(Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+    target_link_libraries(tests ${Boost_LIBRARIES})
+endif()

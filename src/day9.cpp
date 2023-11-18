@@ -1,39 +1,57 @@
 #include "day9.hpp"
 
-auto aoc::day9::details::map_to_direction(char c) -> std::optional<Direction> {
-    if (c == 'R') return Direction::RIGHT;
-    if (c == 'L') return Direction::LEFT;
-    if (c == 'U') return Direction::UP;
-    if (c == 'D') return Direction::DOWN;
-    return std::nullopt;
-}
-
-auto aoc::day9::details::map_to_motion(const std::pair<char, char> &raw_motion) -> std::optional<Motion> {
-    auto direction = map_to_direction(raw_motion.first);
-    auto magnitude = map_to_int(raw_motion.second);
-    if(!direction.has_value() || !magnitude.has_value()) return std::nullopt;
-    return Motion{direction.value(), magnitude.value()};
-}
-
-auto aoc::day9::parse_input(const std::vector<std::pair<char, char>> &raw_motions) -> std::vector<Motion> {
-    std::vector<Motion> motions{};
-    std::ranges::copy(raw_motions |
-                std::views::transform(aoc::day9::details::map_to_motion) |
-                std::views::filter([](auto o){ return o.has_value(); }) |
-                std::views::transform([](auto o){ return o.value(); }),
-            std::back_inserter(motions));
+auto aoc::day9::parse_input(const std::vector<std::string>& lines) -> Motions {
+    Motions motions{};
+    std::ranges::transform(lines, std::back_inserter(motions), [](const auto& line){
+        std::istringstream stream{line};
+        Motion motion{};
+        stream >> motion;
+        return motion;
+    });
     return motions;
 }
 
-auto aoc::day9::simulate_rope(const std::vector<Motion>& motions) -> Simulation{
-    Simulation simulation{};
-    for(const auto& motion: motions){
-        //TODO: simulate the rope motion
+auto aoc::day9::simulate_rope(const Motions &motions) -> RopeSimulation {
+    RopeSimulation simulation{};
+    for (const auto& motion: motions) {
+        for (int _ : std::views::iota(0, motion.magnitude)) {
+            simulation.move_head(motion.direction);
+        }
     }
     return simulation;
 }
 
-
-auto aoc::day9::count_tail_positions(const Simulation& state) -> unsigned {
-    return 0;
+void aoc::day9::RopeSimulation::move_head(const MotionDirection& direction) {
+    update_head_position(direction);
+    update_tail_position();
 }
+
+void aoc::day9::RopeSimulation::update_head_position(const MotionDirection& direction) {
+    switch (direction) {
+        case MotionDirection::UP: --head_.y; break;
+        case MotionDirection::DOWN: ++head_.y; break;
+        case MotionDirection::LEFT: --head_.x; break;
+        case MotionDirection::RIGHT: ++head_.x; break;
+    }
+}
+
+void aoc::day9::RopeSimulation::update_tail_position() {
+    if (std::abs(head_.x - tail_.x) >= 2) {
+        tail_.x += (head_.x - tail_.x) / 2;
+        if (std::abs(head_.y - tail_.y) >= 2)
+            tail_.y += (head_.y - tail_.y) / 2;
+        else
+            tail_.y += head_.y - tail_.y;
+    } else if (std::abs(head_.y - tail_.y) >= 2) {
+        tail_.y += (head_.y - tail_.y) / 2;
+        tail_.x += head_.x - tail_.x;
+    }
+    tail_visited_.insert(tail_);
+}
+
+aoc::day9::RopeSimulation::RopeSimulation():
+    head_(0, 0),
+    tail_(0,0),
+    tail_visited_(){}
+
+auto aoc::day9::RopeSimulation::tail_visited() const -> const Positions& {return tail_visited_;}
