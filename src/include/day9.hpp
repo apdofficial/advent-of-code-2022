@@ -20,10 +20,10 @@ namespace aoc::day9 {
         auto map_to_direction(char c) -> std::optional<Direction>;
 
          // we consume the string so we want pass by value
-        auto map_to_motion(std::string line) -> std::optional<Motion>;
+        auto map_to_motion(const std::pair<char, char>& raw_motion) -> std::optional<Motion>;
     }
 
-    auto parse_input(const std::vector<std::string>& lines) -> std::vector<Motion>;
+    auto parse_input(const std::vector<std::pair<char, char>> &raw_motions) -> std::vector<Motion>;
 
     auto count_tail_positions(const std::vector<Motion>& motions) -> unsigned;
 

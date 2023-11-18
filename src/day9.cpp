@@ -8,20 +8,16 @@ auto aoc::day9::details::map_to_direction(char c) -> std::optional<Direction> {
     return std::nullopt;
 }
 
-auto aoc::day9::details::map_to_motion(std::string line) -> std::optional<Motion> {
-    if(line.size() < 2) return std::nullopt;
-    std::istringstream stream{line};
-    char d, m;
-    stream >> d >> m;
-    auto direction = map_to_direction(d);
-    auto magnitude = map_to_int(m);
+auto aoc::day9::details::map_to_motion(const std::pair<char, char> &raw_motion) -> std::optional<Motion> {
+    auto direction = map_to_direction(raw_motion.first);
+    auto magnitude = map_to_int(raw_motion.second);
     if(!direction.has_value() || !magnitude.has_value()) return std::nullopt;
     return Motion{direction.value(), magnitude.value()};
 }
 
-auto aoc::day9::parse_input(const std::vector<std::string> &lines) -> std::vector<Motion> {
+auto aoc::day9::parse_input(const std::vector<std::pair<char, char>> &raw_motions) -> std::vector<Motion> {
     std::vector<Motion> motions{};
-    std::ranges::copy(lines |
+    std::ranges::copy(raw_motions |
                 std::views::transform(aoc::day9::details::map_to_motion) |
                 std::views::filter([](auto o){ return o.has_value(); }) |
                 std::views::transform([](auto o){ return o.value(); }),
