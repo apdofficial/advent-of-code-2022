@@ -5,9 +5,8 @@
 #include "file.hpp"
 
 
-aoc::File::File(std::string_view file_path)
+aoc::File::File(std::string_view file_path): file_(std::ifstream(file_path.data()))
 {
-    file_ = std::ifstream(file_path.data());
     if (!is_valid())
         throw std::runtime_error("Failed to open file at path: " + std::string(file_path));
 }
@@ -17,7 +16,7 @@ aoc::File::~File()
     file_.close();
 }
 
-auto aoc::File::is_valid() -> bool
+auto aoc::File::is_valid() const -> bool
 {
     return file_.is_open();
 }

@@ -11,11 +11,8 @@
 #include <functional>
 #include <chrono>
 
-namespace aoc
-{
+namespace aoc {
     auto stooi(std::string_view line) -> std::optional<int>;
 
     auto stooi(std::span<std::string> lines) -> std::vector<std::optional<int>>;
-
-    auto measure_runtime(const std::function<void()>& fn, std::size_t n_runs) -> std::chrono::milliseconds;
 }

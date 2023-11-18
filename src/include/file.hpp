@@ -17,7 +17,7 @@ namespace aoc
 
         ~File();
 
-        auto is_valid() -> bool;
+        auto is_valid() const -> bool;
 
         auto read_lines() -> std::vector<std::string>;
 

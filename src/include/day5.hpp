@@ -26,7 +26,7 @@ namespace aoc::day5 {
 
     auto print_stacks(const std::vector<std::vector<char>> &stacks, std::ostream& output = std::cout) -> void;
 
-    auto parse_input(std::istream &s) -> std::pair<std::vector<Command>, std::vector<std::vector<char>>>;
+    auto parse_input(std::istream &is) -> std::pair<std::vector<Command>, std::vector<std::vector<char>>>;
 
     auto execute_crane_9000(std::vector<std::vector<char>> &stacks, const std::vector<Command> &commands) -> void;
 
