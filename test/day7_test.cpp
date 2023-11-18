@@ -7,7 +7,7 @@
 
 using namespace aoc::day7;
 
-std::vector<std::string> short_command_lines_d6{"$ cd /",
+std::vector<std::string> short_command_lines_d7{"$ cd /",
                                                 "$ ls",
                                                 "dir a",
                                                 "14848514 b.txt",
@@ -36,7 +36,7 @@ constexpr std::string_view DATA_PATH = "../../data/day7.txt";
 
 TEST_CASE("Day 7, part 1 test") {
     auto tree = DirectoryTree(Directory(nullptr, "/"));
-    for (const auto& cmd_line: short_command_lines_d6){
+    for (const auto& cmd_line: short_command_lines_d7){
         process_command_line(cmd_line, tree);
     }
     auto sums = tree.root()->get_recursive_subdirectory_sizes();
@@ -55,7 +55,7 @@ TEST_CASE("Day 7, part 1 test") {
 
 TEST_CASE("Day 7, part 2 test") {
     auto tree = DirectoryTree(Directory(nullptr, "/"));
-    for (const auto& cmd_line: short_command_lines_d6){
+    for (const auto& cmd_line: short_command_lines_d7){
         process_command_line(cmd_line, tree);
     }
     auto sums = tree.root()->get_recursive_subdirectory_sizes();
