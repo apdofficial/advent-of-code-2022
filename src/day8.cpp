@@ -39,3 +39,10 @@ auto aoc::day8::count_visible_trees(const Forest &forest) -> unsigned {
     return visible_inner_trees.size() + forest.size() * 4 - 4;
 }
 
+auto aoc::day8::calculate_scenic_score(const Forest &forest, const Tree &tree) -> unsigned{
+    return 0;
+}
+
+auto aoc::day8::find_highest_scenic_score(const Forest &forest) -> unsigned{
+    return 0;
+}

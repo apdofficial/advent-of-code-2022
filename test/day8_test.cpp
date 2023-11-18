@@ -21,7 +21,7 @@ TEST_CASE("Day 8, part 1 test") {
 }
 
 TEST_CASE("Day 8, part 2 test") {
-    REQUIRE(false);
+    REQUIRE(find_highest_scenic_score(short_forest_d8) == 8);
 }
 
 TEST_CASE("Day 8 file (correctness)") {
