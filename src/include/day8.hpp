@@ -1,7 +1,7 @@
 #pragma once
 
 #include <unordered_set>
-
+#include <fmt/format.h>
 #include "util.h"
 
 namespace aoc::day8 {
