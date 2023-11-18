@@ -13,4 +13,7 @@ target_sources(aoc PRIVATE
         file.cpp
 )
 
+target_link_libraries(aoc PRIVATE fmt::fmt
+)
+
 target_include_directories(aoc PUBLIC include)
