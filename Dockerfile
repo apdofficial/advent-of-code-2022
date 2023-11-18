@@ -15,6 +15,7 @@ RUN apt-get install -y cmake gdb clang lldb lld
 # Static and Dynamic anaylsis tools 
 RUN apt-get install -y cppcheck
 RUN apt-get install -y valgrind 
+RUN apt-get install -y libboost-all-dev
 
 # Address sanitizers:
 # https://www.usenix.org/system/files/conference/atc12/atc12-final39.pdf

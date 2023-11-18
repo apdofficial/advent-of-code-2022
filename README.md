@@ -5,6 +5,7 @@
 ### External dependencies
 - [fmt](https://github.com/fmtlib/fmt) 
 - [Catch2](https://github.com/catchorg/Catch2)
+- [boost](https://www.boost.org/) // due to the size of the library we require the lib using CMakeList.txt instead of a git submodule
 
 ###  Usage
 
