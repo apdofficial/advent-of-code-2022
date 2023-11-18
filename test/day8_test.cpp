@@ -21,16 +21,22 @@ TEST_CASE("Day 8, part 1 test") {
 }
 
 TEST_CASE("Day 8, part 2 test") {
-    REQUIRE(find_highest_scenic_score(short_forest_d8) == 8);
+    REQUIRE(calculate_scenic_score(short_forest_d8, {1, 2, 0}) == 4);
+    REQUIRE(calculate_scenic_score(short_forest_d8, {3, 2, 0}) == 8);
+    auto scenic_tree = find_tree_with_highest_scenic_score(short_forest_d8);
+    REQUIRE(scenic_tree.scenic_score == 8);
 }
 
 TEST_CASE("Day 8 file (correctness)") {
     aoc::File file(DATA_PATH);
     REQUIRE(file.is_valid());
 
-    auto tree_forest = file.read_matrix();
-    auto visible_trees = count_visible_trees(tree_forest);
-    fmt::println("visible_trees: {}", visible_trees);
-    REQUIRE(visible_trees == 1717);
+    auto forest = file.read_matrix();
+    auto visible_trees_num = count_visible_trees(forest);
+    fmt::println("visible_trees_num: {}", visible_trees_num);
+    REQUIRE(visible_trees_num == 1717);
 
+    auto scenic_tree = find_tree_with_highest_scenic_score(forest);
+    std::cout << "scenic_tree: " << scenic_tree;
+    REQUIRE(scenic_tree.scenic_score == 321975);
 }
