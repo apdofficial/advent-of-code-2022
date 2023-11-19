@@ -77,7 +77,7 @@ auto aoc::day7::Directory::add(std::shared_ptr<Directory> parent, std::istream &
     if (token == "dir" ) {
         add(std::move(Directory(parent, name)));
     } else {
-        auto size = stooi(token);
+        auto size = map_to_int(token);
         if (size.has_value()) add(std::move(File(size.value(), name)));
     }
 }
