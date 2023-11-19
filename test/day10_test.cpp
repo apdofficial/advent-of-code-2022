@@ -7,7 +7,8 @@
 
 using namespace aoc::day10;
 
-std::vector<std::string> short_instruction_d10{{"addx -11"},
+std::vector<std::string> short_instruction_d10{{"addx 15"},
+                                               {"addx -11"},
                                                {"addx 6"},
                                                {"addx -3"},
                                                {"addx 5"},
@@ -159,11 +160,17 @@ TEST_CASE("Day 10, part 1 test") {
     auto instructions = parse_input(short_instruction_d10);
     CPU cpu{};
     cpu.process_instructions(instructions);
-    auto computed = cpu.retrieve_register_x_values();
-    std::vector<int> expected{420, 1140, 1800, 2940, 2880, 3960};
-    REQUIRE(computed == expected);
-    auto computed_sum = std::accumulate(computed.begin(), computed.end(), 0);
-    auto expected_sum = std::accumulate(expected.begin(), expected.end(), 0);
+
+    auto computed_x_values = cpu.retrieve_register_x_values();
+    auto computed_signal_strengths = transform_to_signal_strengths(computed_x_values);
+
+    CapturedRegisterValues expected_x_values{{{20, 21}, {60, 19}, {100, 18}, {140, 21}, {180, 16}, {220, 18}}};
+    auto expected_signal_strengths{transform_to_signal_strengths(expected_x_values)};
+
+    REQUIRE(computed_x_values == expected_x_values);
+
+    auto computed_sum = aoc::accumulate(computed_signal_strengths, 0);
+    auto expected_sum = aoc::accumulate(expected_signal_strengths, 0);
     REQUIRE(computed_sum == expected_sum);
 }
 
@@ -174,6 +181,16 @@ TEST_CASE("Day 10, part 2 test") {
 TEST_CASE("Day 10 file (correctness)") {
     aoc::File file(DATA_PATH);
     REQUIRE(file.is_valid());
+
+    auto instructions = parse_input(file.read_lines());
+    CPU cpu{};
+    cpu.process_instructions(instructions);
+
+    auto computed_x_values = cpu.retrieve_register_x_values();
+    auto computed_signal_strengths = transform_to_signal_strengths(computed_x_values);
+    auto computed_sum = aoc::accumulate(computed_signal_strengths, 0);
+    fmt::println("the computed sum is: {}", computed_sum);
+    REQUIRE(computed_sum == 11720);
 
     REQUIRE(false);
 }

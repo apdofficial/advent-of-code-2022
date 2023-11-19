@@ -2,21 +2,38 @@
 
 #include "util.h"
 #include <fmt/format.h>
+#include <queue>
+#include <tuple>
 
 namespace aoc::day10 {
-    enum class Instruction{ addx, noop };
-
-    using Instructions = std::vector<std::pair<Instruction, std::optional<int>>>;
-
-    struct CPU{
-        void process_instructions(const Instructions& instructions);
-
-        [[nodiscard]] auto retrieve_register_x_values() const -> const std::vector<int>&;
-    private:
-        std::vector<int> register_x_values_{};
-        int register_x_ = 1;
-        unsigned long long cycle_ = 0;
+    enum class InstructionType {
+        addx, noop
     };
 
-    auto parse_input(std::span<std::string> lines) -> Instructions;
+    using Cycle = unsigned long long;
+    using RegisterValue = int;
+
+    using InstructionValue = std::optional<int>;
+    using Instruction = std::pair<InstructionType, InstructionValue>;
+    using Instructions = std::vector<Instruction>;
+
+    using CapturedRegisterValue = std::pair<Cycle, RegisterValue>;
+    using CapturedRegisterValues = std::vector<CapturedRegisterValue>;
+
+    struct CPU {
+        void process_instructions(const Instructions &instructions);
+
+        [[nodiscard]] auto retrieve_register_x_values() const -> const CapturedRegisterValues &;
+
+    private:
+        void advance_cycle();
+
+        CapturedRegisterValues register_x_values_{};
+        RegisterValue register_x_ = 1;
+        Cycle cycle_ = 0;
+    };
+
+    auto parse_input(const std::vector<std::string>& lines) -> Instructions;
+
+    auto transform_to_signal_strengths(const CapturedRegisterValues& values) -> std::vector<int>;
 }
