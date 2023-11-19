@@ -154,12 +154,27 @@ std::vector<std::string> short_instruction_d10{{"addx 15"},
                                                {"noop"},
                                                {"noop"}};
 
+std::string expected_crt_output{"##..##..##..##..##..##..##..##..##..##..\n"
+                                "###...###...###...###...###...###...###.\n"
+                                "####....####....####....####....####....\n"
+                                "#####.....#####.....#####.....#####.....\n"
+                                "######......######......######......####\n"
+                                "#######.......#######.......#######....."};
+
+std::string expected_crt_output_file{"####.###...##..###..####.###...##....##.\n"
+                                     ".....#..#.#..#.#..#.#....#..#.#..#....#.\n"
+                                     "###..#..#.#....#..#.###..#..#.#.......#.\n"
+                                     ".....###..#....###..#....###..#.......#.\n"
+                                     "#....#.#..#..#.#.#..#....#....#..#.#..#.\n"
+                                     "####.#..#..##..#..#.####.#.....##...##.."};
+
 constexpr std::string_view DATA_PATH = "../../data/day10.txt";
 
 TEST_CASE("Day 10, part 1 test") {
     auto instructions = parse_input(short_instruction_d10);
     CPU cpu{};
-    cpu.process_instructions(instructions);
+    CRT crt{};
+    cpu.process_instructions(instructions, crt);
 
     auto computed_x_values = cpu.retrieve_register_x_values();
     auto computed_signal_strengths = transform_to_signal_strengths(computed_x_values);
@@ -175,7 +190,13 @@ TEST_CASE("Day 10, part 1 test") {
 }
 
 TEST_CASE("Day 10, part 2 test") {
-    REQUIRE(false);
+    auto instructions = parse_input(short_instruction_d10);
+    CPU cpu{};
+    CRT crt{};
+    cpu.process_instructions(instructions, crt);
+    std::ostringstream crt_output;
+    crt.print(crt_output);
+    REQUIRE(expected_crt_output == crt_output.str());
 }
 
 TEST_CASE("Day 10 file (correctness)") {
@@ -184,7 +205,8 @@ TEST_CASE("Day 10 file (correctness)") {
 
     auto instructions = parse_input(file.read_lines());
     CPU cpu{};
-    cpu.process_instructions(instructions);
+    CRT crt{};
+    cpu.process_instructions(instructions, crt);
 
     auto computed_x_values = cpu.retrieve_register_x_values();
     auto computed_signal_strengths = transform_to_signal_strengths(computed_x_values);
@@ -192,5 +214,9 @@ TEST_CASE("Day 10 file (correctness)") {
     fmt::println("the computed sum is: {}", computed_sum);
     REQUIRE(computed_sum == 11720);
 
-    REQUIRE(false);
+    std::ostringstream crt_output;
+    crt.print(crt_output);
+    std::cout << crt_output.str();
+
+    REQUIRE(expected_crt_output_file == crt_output.str());
 }
