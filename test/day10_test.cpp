@@ -156,7 +156,15 @@ std::vector<std::string> short_instruction_d10{{"addx -11"},
 constexpr std::string_view DATA_PATH = "../../data/day10.txt";
 
 TEST_CASE("Day 10, part 1 test") {
-    REQUIRE(false);
+    auto instructions = parse_input(short_instruction_d10);
+    CPU cpu{};
+    cpu.process_instructions(instructions);
+    auto computed = cpu.retrieve_register_x_values();
+    std::vector<int> expected{420, 1140, 1800, 2940, 2880, 3960};
+    REQUIRE(computed == expected);
+    auto computed_sum = std::accumulate(computed.begin(), computed.end(), 0);
+    auto expected_sum = std::accumulate(expected.begin(), expected.end(), 0);
+    REQUIRE(computed_sum == expected_sum);
 }
 
 TEST_CASE("Day 10, part 2 test") {
