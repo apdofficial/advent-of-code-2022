@@ -6,6 +6,7 @@
 #include "util.h"
 #include <fmt/format.h>
 #include <unordered_set>
+#include <sstream>
 
 namespace aoc::day9 {
     enum class MotionDirection {

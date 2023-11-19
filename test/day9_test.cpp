@@ -27,14 +27,11 @@ std::vector<std::string> short_motions2_d8{{"R 5"},
 
 constexpr std::string_view DATA_PATH = "../../data/day9.txt";
 
-
 TEST_CASE("Day 9, part 1 test") {
     auto rope_motions = parse_input(short_motions1_d8);
     auto simulation = simulate_rope(rope_motions, 2).value();
     REQUIRE(simulation.tail_visited().size() == 13);
 }
-
-
 
 TEST_CASE("Day 9, part 2 test") {
     auto rope_motions = parse_input(short_motions2_d8);
