@@ -1,5 +1,3 @@
-#include <algorithm>
-#include <ranges>
 #include "day10.hpp"
 
 auto aoc::day10::parse_input(const std::vector<std::string> &lines) -> Instructions {

@@ -3,6 +3,9 @@
 #include "util.h"
 #include <queue>
 #include <tuple>
+#include <algorithm>
+#include <ranges>
+#include <sstream>
 
 namespace aoc::day10 {
     enum class InstructionType {
