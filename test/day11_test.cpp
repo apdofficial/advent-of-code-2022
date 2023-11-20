@@ -1,5 +1,6 @@
 #include <catch2/catch_all.hpp>
 #include <fmt/format.h>
+#include <ranges>
 
 #include "day11.hpp"
 #include "util.h"
@@ -33,12 +34,15 @@ std::string short_input_d11{"Monkey 0:\n"
                             "  Operation: new = old + 3\n"
                             "  Test: divisible by 17\n"
                             "    If true: throw to monkey 0\n"
-                            "    If false: throw to monkey 1"};
+                            "    If false: throw to monkey 1\n"
+                            "\n"};
 
 constexpr std::string_view DATA_PATH = "../../data/day11.txt";
 
 TEST_CASE("Day 11, part 1 test") {
-    REQUIRE(false);
+    auto monkeys = parse_input(short_input_d11);
+    auto top_two_monkey_business = monkey_business(monkeys, 20u);
+    REQUIRE(top_two_monkey_business == 10605);
 }
 
 TEST_CASE("Day 11, part 2 test") {
@@ -49,5 +53,10 @@ TEST_CASE("Day 11 file (correctness)") {
     aoc::File file(DATA_PATH);
     REQUIRE(file.is_valid());
 
-    REQUIRE(false);
+    auto input = file.read_string();
+    auto monkeys = parse_input(input);
+
+    auto top_two_monkey_business = monkey_business(monkeys, 20u);
+    fmt::println("top_two_monkey_business: {}", top_two_monkey_business);
+    REQUIRE(top_two_monkey_business == 90294);
 }

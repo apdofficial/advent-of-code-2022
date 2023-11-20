@@ -17,15 +17,17 @@ namespace aoc
 
         ~File();
 
-        auto is_valid() const -> bool;
+        [[nodiscard]] auto is_valid() const -> bool;
 
-        auto read_lines() -> std::vector<std::string>;
+        [[nodiscard]] auto read_string() -> std::string;
 
-        auto read_matrix() -> std::vector<std::vector<unsigned>>;
+        [[nodiscard]] auto read_lines() -> std::vector<std::string>;
 
-        auto read_pairs() -> std::vector<std::pair<char, char>>;
+        [[nodiscard]] auto read_matrix() -> std::vector<std::vector<unsigned>>;
 
-        auto istream() -> std::istream&;
+        [[nodiscard]] auto read_pairs() -> std::vector<std::pair<char, char>>;
+
+        [[nodiscard]] auto istream() -> std::istream&;
 
     private:
         std::ifstream file_;
