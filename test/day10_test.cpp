@@ -159,25 +159,24 @@ std::string expected_crt_output{"##..##..##..##..##..##..##..##..##..##..\n"
                                 "####....####....####....####....####....\n"
                                 "#####.....#####.....#####.....#####.....\n"
                                 "######......######......######......####\n"
-                                "#######.......#######.......#######....."};
+                                "#######.......#######.......#######.....\n"};
 
 std::string expected_crt_output_file{"####.###...##..###..####.###...##....##.\n"
-                                     ".....#..#.#..#.#..#.#....#..#.#..#....#.\n"
+                                     "#....#..#.#..#.#..#.#....#..#.#..#....#.\n"
                                      "###..#..#.#....#..#.###..#..#.#.......#.\n"
-                                     ".....###..#....###..#....###..#.......#.\n"
+                                     "#....###..#....###..#....###..#.......#.\n"
                                      "#....#.#..#..#.#.#..#....#....#..#.#..#.\n"
-                                     "####.#..#..##..#..#.####.#.....##...##.."};
+                                     "####.#..#..##..#..#.####.#.....##...##..\n"};
 
 constexpr std::string_view DATA_PATH = "../../data/day10.txt";
 
 TEST_CASE("Day 10, part 1 test") {
     auto instructions = parse_input(short_instruction_d10);
-    CPU cpu{};
-    CRT crt{};
-    cpu.process_instructions(instructions, crt);
 
-    auto computed_x_values = cpu.retrieve_register_x_values();
-    auto computed_signal_strengths = transform_to_signal_strengths(computed_x_values);
+    auto computed_x_values = capture_register_x_values_if(instructions, [](auto cycle) {
+        return cycle == 20 || (cycle >= 20 && (cycle - 20) % 40 == 0);
+    });
+    auto computed_signal_strengths{transform_to_signal_strengths(computed_x_values)};
 
     CapturedRegisterValues expected_x_values{{{20, 21}, {60, 19}, {100, 18}, {140, 21}, {180, 16}, {220, 18}}};
     auto expected_signal_strengths{transform_to_signal_strengths(expected_x_values)};
@@ -191,11 +190,7 @@ TEST_CASE("Day 10, part 1 test") {
 
 TEST_CASE("Day 10, part 2 test") {
     auto instructions = parse_input(short_instruction_d10);
-    CPU cpu{};
-    CRT crt{};
-    cpu.process_instructions(instructions, crt);
-    std::ostringstream crt_output;
-    crt.print(crt_output);
+    std::ostringstream crt_output = generate_crt_output(instructions);
     REQUIRE(expected_crt_output == crt_output.str());
 }
 
@@ -204,18 +199,16 @@ TEST_CASE("Day 10 file (correctness)") {
     REQUIRE(file.is_valid());
 
     auto instructions = parse_input(file.read_lines());
-    CPU cpu{};
-    CRT crt{};
-    cpu.process_instructions(instructions, crt);
 
-    auto computed_x_values = cpu.retrieve_register_x_values();
-    auto computed_signal_strengths = transform_to_signal_strengths(computed_x_values);
+    auto computed_x_values = capture_register_x_values_if(instructions, [](auto cycle) {
+        return cycle == 20 || (cycle >= 20 && (cycle - 20) % 40 == 0);
+    });
+    auto computed_signal_strengths{transform_to_signal_strengths(computed_x_values)};
     auto computed_sum = aoc::accumulate(computed_signal_strengths, 0);
     fmt::println("the computed sum is: {}", computed_sum);
     REQUIRE(computed_sum == 11720);
 
-    std::ostringstream crt_output;
-    crt.print(crt_output);
+    std::ostringstream crt_output = generate_crt_output(instructions);
     std::cout << crt_output.str();
 
     REQUIRE(expected_crt_output_file == crt_output.str());
