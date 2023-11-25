@@ -8,6 +8,7 @@
 
 using namespace aoc::day11;
 
+
 std::string short_input_d11{"Monkey 0:\n"
                             "  Starting items: 79, 98\n"
                             "  Operation: new = old * 19\n"
@@ -41,22 +42,28 @@ constexpr std::string_view DATA_PATH = "../../data/day11.txt";
 
 TEST_CASE("Day 11, part 1 test") {
     auto monkeys = parse_input(short_input_d11);
-    auto top_two_monkey_business = monkey_business(monkeys, 20u);
-    REQUIRE(top_two_monkey_business == 10605);
+    simulate_rounds(monkeys, 20u);
+    REQUIRE(top_two_monkey_business(monkeys) == 10605);
 }
 
 TEST_CASE("Day 11, part 2 test") {
-    REQUIRE(false);
+    auto monkeys = parse_input(short_input_d11);
+    set_normalised_worry(monkeys);
+    simulate_rounds(monkeys, 10000u);
+    REQUIRE(top_two_monkey_business(monkeys) == 2713310158);
 }
 
 TEST_CASE("Day 11 file (correctness)") {
     aoc::File file(DATA_PATH);
     REQUIRE(file.is_valid());
-
     auto input = file.read_string();
-    auto monkeys = parse_input(input);
 
-    auto top_two_monkey_business = monkey_business(monkeys, 20u);
-    fmt::println("top_two_monkey_business: {}", top_two_monkey_business);
-    REQUIRE(top_two_monkey_business == 90294);
+    auto monkeys = parse_input(input);
+    simulate_rounds(monkeys, 20u);
+    REQUIRE(top_two_monkey_business(monkeys) == 90294);
+
+    monkeys = parse_input(input);
+    set_normalised_worry(monkeys);
+    simulate_rounds(monkeys, 10000u);
+    REQUIRE(top_two_monkey_business(monkeys) == 18170818354);
 }
