@@ -8,16 +8,22 @@
 using namespace aoc::day12;
 
 
-std::string short_input_d12{"Sabqponm\n"
-                            "abcryxxl\n"
-                            "accszExk\n"
-                            "acctuvwj\n"
-                            "abdefghi\n"};
+std::vector<std::string> short_input_d12{"Sabqponm",
+                                         "abcryxxl",
+                                         "accszExk",
+                                         "acctuvwj",
+                                         "abdefghi"};
 
 constexpr std::string_view DATA_PATH = "../../data/day12.txt";
 
 TEST_CASE("Day 12, part 1 test") {
-    REQUIRE(false);
+    auto elevation_map = parse_input(short_input_d12);
+    auto start = find_start(elevation_map);
+    REQUIRE(start.has_value());
+    auto end = find_end(elevation_map);
+    REQUIRE(end.has_value());
+    auto shortest_path = find_shortest_path_dijkstra(elevation_map, start.value(), end.value());
+    REQUIRE(shortest_path.size() == 31);
 }
 
 TEST_CASE("Day 12, part 2 test") {
@@ -27,6 +33,13 @@ TEST_CASE("Day 12, part 2 test") {
 TEST_CASE("Day 12 file (correctness)") {
     aoc::File file(DATA_PATH);
     REQUIRE(file.is_valid());
-
-    REQUIRE(false);
+    auto input = file.read_lines();
+    auto elevation_map = parse_input(input);
+    auto start = find_start(elevation_map);
+    REQUIRE(start.has_value());
+    auto end = find_end(elevation_map);
+    REQUIRE(end.has_value());
+    auto shortest_path = find_shortest_path_dijkstra(elevation_map, start.value(), end.value());
+    fmt::println("Shortest path: {}", shortest_path.size());
+    REQUIRE(shortest_path.size() == 437);
 }
