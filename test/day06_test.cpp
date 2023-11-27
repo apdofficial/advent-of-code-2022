@@ -1,11 +1,11 @@
 #include <catch2/catch_all.hpp>
 #include <fmt/format.h>
 
-#include "day6.hpp"
+#include "day06.hpp"
 #include "util.h"
 #include "file.hpp"
 
-using namespace aoc::day6;
+using namespace aoc::day06;
 
 std::vector<std::string> short_packets_d6{"mjqjpqmgbljsphdztnvjfqwrcgsmlb",
                                           "bvwbjplbgvbhsrlpgdmjqwftvncz",
@@ -13,9 +13,9 @@ std::vector<std::string> short_packets_d6{"mjqjpqmgbljsphdztnvjfqwrcgsmlb",
                                           "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg",
                                           "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"};
 
-constexpr std::string_view DATA_PATH = "../../data/day6.txt";
+constexpr std::string_view DATA_PATH = "../../data/day06.txt";
 
-TEST_CASE("Day 6, part 1 test") {
+TEST_CASE("Day 06, part 1 test") {
     std::vector<std::size_t> expected_markers{7, 5, 6, 10, 11};
     for (std::size_t i = 0; i < expected_markers.size(); ++i) {
         std::istringstream packet_stream{short_packets_d6[i]};
@@ -24,7 +24,7 @@ TEST_CASE("Day 6, part 1 test") {
     }
 }
 
-TEST_CASE("Day 6, part 2 test") {
+TEST_CASE("Day 06, part 2 test") {
     std::vector<std::size_t> expected_markers{19, 23, 23, 29, 26};
     for (std::size_t i = 0; i < expected_markers.size(); ++i) {
         std::istringstream packet_stream{short_packets_d6[i]};
@@ -33,7 +33,7 @@ TEST_CASE("Day 6, part 2 test") {
     }
 }
 
-TEST_CASE("Day 6 file (correctness)") {
+TEST_CASE("Day 06 file (correctness)") {
     {
         aoc::File file(DATA_PATH);
         REQUIRE(file.is_valid());

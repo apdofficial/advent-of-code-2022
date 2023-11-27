@@ -1,12 +1,12 @@
 #include <catch2/catch_all.hpp>
 #include <array>
 
-#include "day5.hpp"
+#include "day05.hpp"
 #include "util.h"
 #include "file.hpp"
 #include "fmt/color.h"
 
-using namespace aoc::day5;
+using namespace aoc::day05;
 
 std::istringstream short_lines_d5_stream{"    [D]           \n"
                                          "[N] [C]           \n"
@@ -19,9 +19,9 @@ std::istringstream short_lines_d5_stream{"    [D]           \n"
                                          "move 1 from 1 to 2\n"};
 
 auto [short_commands, short_stacks] = parse_input(short_lines_d5_stream);
-constexpr std::string_view DATA_PATH = "../../data/day5.txt";
+constexpr std::string_view DATA_PATH = "../../data/day05.txt";
 
-TEST_CASE("Day 5, part 1 test") {
+TEST_CASE("Day 05, part 1 test") {
     std::vector<std::vector<char>> stacks(short_stacks);
     for (auto &stack: stacks) {
         std::reverse(stack.begin(), stack.end());
@@ -32,7 +32,7 @@ TEST_CASE("Day 5, part 1 test") {
     REQUIRE(stacks[2].back() == 'Z');
 }
 
-TEST_CASE("Day 5, part 2 test") {
+TEST_CASE("Day 05, part 2 test") {
     std::vector<std::vector<char>> stacks(short_stacks);
     for (auto &stack: stacks) {
         std::reverse(stack.begin(), stack.end());
@@ -43,7 +43,7 @@ TEST_CASE("Day 5, part 2 test") {
     REQUIRE(stacks[2].back() == 'D');
 }
 
-TEST_CASE("Day 5 file (correctness)") {
+TEST_CASE("Day 05 file (correctness)") {
     aoc::File file(DATA_PATH);
     REQUIRE(file.is_valid());
 

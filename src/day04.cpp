@@ -1,6 +1,6 @@
-#include "day4.hpp"
+#include "day04.hpp"
 
-auto aoc::day4::map_to_ranges(std::span<const std::string> lines) -> std::vector<std::pair<Range, Range>>{
+auto aoc::day04::map_to_ranges(std::span<const std::string> lines) -> std::vector<std::pair<Range, Range>>{
     std::vector<std::pair<Range,Range>> ranges;
     char delimiter;
     Range left{};
@@ -15,7 +15,7 @@ auto aoc::day4::map_to_ranges(std::span<const std::string> lines) -> std::vector
 
 
 // O(n)
-auto aoc::day4::num_of_fully_contained_ranges(std::span<const std::pair<Range, Range>> lines) -> int{
+auto aoc::day04::num_of_fully_contained_ranges(std::span<const std::pair<Range, Range>> lines) -> int{
     auto accumulateOp = [](auto accumulator, auto& line){ // n
         if (line.first.is_sub_range_to(line.second) || line.second.is_sub_range_to(line.first))
             return accumulator + 1;
@@ -25,7 +25,7 @@ auto aoc::day4::num_of_fully_contained_ranges(std::span<const std::pair<Range, R
 }
 
 // O(n)
-auto aoc::day4::num_of_overlapping_ranges(std::span<const std::pair<Range, Range>> lines) -> int{
+auto aoc::day04::num_of_overlapping_ranges(std::span<const std::pair<Range, Range>> lines) -> int{
     auto accumulateOp = [](auto accumulator, auto& line){ // n
         if (line.first.is_overlapping(line.second) || line.second.is_overlapping(line.first))
             return accumulator + 1;

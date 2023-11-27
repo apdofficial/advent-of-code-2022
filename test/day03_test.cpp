@@ -2,11 +2,11 @@
 #include <fmt/format.h>
 #include <array>
 
-#include "day3.hpp"
+#include "day03.hpp"
 #include "util.h"
 #include "file.hpp"
 
-using namespace aoc::day3;
+using namespace aoc::day03;
 
 std::vector<std::string> short_list{"vJrwpWtwJgWrhcsFMMfFFhFp",
                                     "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
@@ -15,17 +15,17 @@ std::vector<std::string> short_list{"vJrwpWtwJgWrhcsFMMfFFhFp",
                                     "ttgJtRGJQctTZtZT",
                                     "CrZsJsPPZsGzwwsLwLmpwMDw"};
 
-constexpr std::string_view DATA_PATH = "../../data/day3.txt";
+constexpr std::string_view DATA_PATH = "../../data/day03.txt";
 
-TEST_CASE("Day 3, part 1 test") {
+TEST_CASE("Day 03, part 1 test") {
     REQUIRE(157 == sum_item_priorities_of_both_compartments(short_list));
 }
 
-TEST_CASE("Day 3, part 2 test") {
+TEST_CASE("Day 03, part 2 test") {
     REQUIRE(70 == sum_grouped_item_priorities_of_both_compartments(short_list));
 }
 
-TEST_CASE("Day 3 file (correctness)") {
+TEST_CASE("Day 03 file (correctness)") {
     aoc::File file(DATA_PATH);
     REQUIRE(file.is_valid());
 

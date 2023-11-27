@@ -9,7 +9,7 @@
 #include <iomanip>
 #include <span>
 
-namespace aoc::day3 {
+namespace aoc::day03 {
 
     auto sum_item_priorities_of_both_compartments(std::span<const std::string> lines) -> int;
 

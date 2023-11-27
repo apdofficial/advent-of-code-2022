@@ -17,7 +17,7 @@
 
 #include "util.h"
 
-namespace aoc::day7 {
+namespace aoc::day07 {
     enum class Command {
         cd, ls, not_a_command
     };

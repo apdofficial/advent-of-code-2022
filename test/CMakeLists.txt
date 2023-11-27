@@ -1,14 +1,14 @@
 add_executable(tests)
 target_sources(tests PRIVATE
-        day1_test.cpp
-        day2_test.cpp
-        day3_test.cpp
-        day4_test.cpp
-        day5_test.cpp
-        day6_test.cpp
-        day7_test.cpp
-        day8_test.cpp
-        day9_test.cpp
+        day01_test.cpp
+        day02_test.cpp
+        day03_test.cpp
+        day04_test.cpp
+        day05_test.cpp
+        day06_test.cpp
+        day07_test.cpp
+        day08_test.cpp
+        day09_test.cpp
         day10_test.cpp
         day11_test.cpp
         day12_test.cpp

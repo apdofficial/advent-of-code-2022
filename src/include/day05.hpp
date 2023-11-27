@@ -8,7 +8,7 @@
 #include <span>
 #include <functional>
 
-namespace aoc::day5 {
+namespace aoc::day05 {
     struct Command {
         uint32_t crate_num;
         std::size_t from;

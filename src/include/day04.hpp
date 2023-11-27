@@ -10,7 +10,7 @@
 #include <iomanip>
 #include <span>
 
-namespace aoc::day4 {
+namespace aoc::day04 {
 
     // (ref)    --|---|---
     // (case 1) |--|------ left overlap

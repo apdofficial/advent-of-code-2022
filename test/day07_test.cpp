@@ -1,11 +1,11 @@
 #include <catch2/catch_all.hpp>
 #include <fmt/format.h>
 
-#include "day7.hpp"
+#include "day07.hpp"
 #include "util.h"
 #include "file.hpp"
 
-using namespace aoc::day7;
+using namespace aoc::day07;
 
 std::vector<std::string> short_command_lines_d7{"$ cd /",
                                                 "$ ls",
@@ -31,10 +31,10 @@ std::vector<std::string> short_command_lines_d7{"$ cd /",
                                                 "5626152 d.ext",
                                                 "7214296 k"};
 
-constexpr std::string_view DATA_PATH = "../../data/day7.txt";
+constexpr std::string_view DATA_PATH = "../../data/day07.txt";
 
 
-TEST_CASE("Day 7, part 1 test") {
+TEST_CASE("Day 07, part 1 test") {
     auto tree = DirectoryTree(Directory(nullptr, "/"));
     for (const auto& cmd_line: short_command_lines_d7){
         process_command_line(cmd_line, tree);
@@ -53,7 +53,7 @@ TEST_CASE("Day 7, part 1 test") {
     REQUIRE(sum_if(sums, 100000) == 95437);
 }
 
-TEST_CASE("Day 7, part 2 test") {
+TEST_CASE("Day 07, part 2 test") {
     auto tree = DirectoryTree(Directory(nullptr, "/"));
     for (const auto& cmd_line: short_command_lines_d7){
         process_command_line(cmd_line, tree);
@@ -62,7 +62,7 @@ TEST_CASE("Day 7, part 2 test") {
     REQUIRE(find_smallest_sufficient(sums, 30000000) == 24933642);
 }
 
-TEST_CASE("Day 7 file (correctness)") {
+TEST_CASE("Day 07 file (correctness)") {
     constexpr auto total_mem = 70000000;
     constexpr auto required_for_update_mem = 30000000;
 
