@@ -7,11 +7,13 @@
 #include <queue>
 #include <thread>
 #include <fmt/core.h>
+#include <cassert>
+#include <fmt/color.h>
+#include <execution>
 
 #include "util.h"
 
 namespace aoc::day12 {
-
     struct Point {
         explicit Point(int x, int y): x_(x), y_(y) {}
 
@@ -83,25 +85,26 @@ namespace aoc::day12 {
     using ElevationPath = std::vector<ElevationPoint>;
 
     template<typename T>
-    struct Matrix{
+    struct ElevationMatrix{
         using Container = std::vector<std::vector<T>>;
         using val_t = T;
+        using const_val_t = const T;
         using ref_t = T&;
         using const_ref_t = const T&;
 
-        explicit Matrix(std::size_t rows, std::size_t cols, T init): container_(rows, std::vector<T>(cols, init)) {}
+        explicit ElevationMatrix(std::size_t rows, std::size_t cols, T init): container_(rows, std::vector<T>(cols, init)) {}
 
-        auto operator[](const Point point) -> ref_t { return container_[point.x()][point.y()]; }
-        auto operator[](const Point point) const -> const_ref_t { return container_[point.x()][point.y()]; }
+        auto operator[](const Point &point) -> ref_t { return container_[point.x()][point.y()]; }
+        auto operator[](const Point &point) const -> const_ref_t { return container_[point.x()][point.y()]; }
 
-        auto operator[](const ElevationPoint point) -> ref_t{ return container_[point.x()][point.y()]; }
-        auto operator[](const ElevationPoint point) const -> const_ref_t { return container_[point.x()][point.y()]; }
+        auto operator[](const ElevationPoint &point) -> ref_t { return container_[point.x()][point.y()]; }
+        auto operator[](const ElevationPoint &point) const -> const_ref_t { return container_[point.x()][point.y()]; }
 
-        auto operator[](const std::optional<ElevationPoint> point) -> std::optional<val_t>& {
+        auto operator[](const std::optional<ElevationPoint> &point) -> std::optional<val_t>& {
             if(!point.has_value()) return std::nullopt;
             return container_[point.value().x()][point.value().y()];
         }
-        auto operator[](const std::optional<ElevationPoint> point) const -> const std::optional<val_t>& {
+        auto operator[](const std::optional<ElevationPoint> &point) const -> const std::optional<val_t>& {
             if(!point.has_value()) return std::nullopt;
             return container_[point.value().x()][point.value().y()];
         }
@@ -112,6 +115,9 @@ namespace aoc::day12 {
     private:
         Container container_;
     };
+
+    using Distance = long long int;
+    enum class Visited {TRUE, FALSE};
 
     [[nodiscard]] auto parse_input(const std::vector<std::string> &data) -> ElevationMap;
 
@@ -126,7 +132,7 @@ namespace aoc::day12 {
             const ElevationMap &map,
             const ElevationPoint &start,
             const ElevationPoint &end,
-            const Matrix<long long int> &dist,
+            const ElevationMatrix<Distance> &dist,
             const ElevationPoint &u,
             const ElevationPath &shortest_path);
 }

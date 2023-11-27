@@ -1,6 +1,5 @@
-#include <cassert>
 #include "day12.hpp"
-#include "fmt/color.h"
+
 
 auto aoc::day12::parse_input(const std::vector<std::string> &data) -> ElevationMap {
     ElevationMap map{};
@@ -29,17 +28,22 @@ auto aoc::day12::find_end(const ElevationMap &map) -> std::optional<ElevationPoi
     return std::nullopt;
 }
 
-auto aoc::day12::find_shortest_path_dijkstra(ElevationMap &map, const ElevationPoint &start,
-                                             const ElevationPoint &end, bool visualise) -> ElevationPath {
+auto aoc::day12::find_shortest_path_dijkstra(ElevationMap &map, const ElevationPoint &start, const ElevationPoint &end,
+                                             bool visualise) -> ElevationPath {
+    //The idea is to traverse all vertices of the graph using BFS and use a Min Heap
+    // to store the vertices not yet included in SPT(Shortest Path Tree).
 
     // current distance from the source to the vertex u
-    Matrix<long long int> dist(map.size(), map[0].size(), 0);
-    //  previous-hop nodes on the shortest path from source to the given vertex
-    Matrix<std::optional<ElevationPoint>> prev(map.size(), map[0].size(), std::nullopt);
-    // searches for the vertex u in the vertex set Q that has the least dist[u] value
-    ElevationPath q{};
+    ElevationMatrix<Distance> dist(map.size(), map[0].size(), 0);
+    // visited vertices
+    ElevationMatrix<Visited> visited(map.size(), map[0].size(), Visited::FALSE);
+    // previous-hop nodes on the shortest path from source to the given vertex
+    ElevationMatrix<std::optional<ElevationPoint>> prev(map.size(), map[0].size(), std::nullopt);
+    // SPT(Shortest Path Tree) (or the vertices for which the shortest distance is not finalized yet)
+    std::vector<ElevationPoint> spt{}; // ideally we would use a priority queue based on fibonacci min heap (not in STL)
     // the shortest path from source to sink
     ElevationPath shortest_path{};
+
     constexpr int inf = std::numeric_limits<int>::max();
 
     for (std::size_t i = 0; i < map.size(); ++i) {
@@ -48,21 +52,27 @@ auto aoc::day12::find_shortest_path_dijkstra(ElevationMap &map, const ElevationP
                 dist[i][j] = inf;
                 prev[i][j] = std::nullopt;
             }
-            q.push_back(map[i][j]);
+            spt.emplace_back(map[i][j]);
         }
     }
     dist[start] = 0;
 
-    ElevationPoint u = q.back();
-    while (!q.empty()) {
-        std::ranges::sort(q, [&dist](const auto &a, const auto &b) { return dist[a] > dist[b]; });
-        u = q.back();
-        q.pop_back();
+    auto u = spt.back();
+
+    auto predicate = [&dist](const auto &a, const auto &b) -> auto { return dist[a] < dist[b]; };
+
+    while (!spt.empty()) {
+        // finding a min is current bottleneck, O(n) we could use a priority queue
+        // implemented with a fibonacci min heap instead to amke it O(log n)
+        auto min = std::ranges::min_element(spt, predicate);
+        u = *min;
+        spt.erase(min);
+        visited[u] = Visited::TRUE;
         for (auto &v: u.neighbours(map)) {
-            if (!v.is_end() && std::ranges::find(q, v) == q.end()) continue; // already visited
+            if (!v.is_end() && visited[v] == Visited::TRUE) continue; // already visited
             if (!v.is_end() && std::abs(v.height() - u.height()) > 1 && v.height() > u.height()) continue; // too high
             const auto alt = dist[u] + 1;
-            if (alt < dist[v] || (v.is_end() && prev[end].value().height() < u.height()) ) {
+            if (alt < dist[v] || (v.is_end() && prev[end].value().height() < u.height())) {
                 dist[v] = alt;
                 prev[v] = u;
             }
@@ -74,16 +84,17 @@ auto aoc::day12::find_shortest_path_dijkstra(ElevationMap &map, const ElevationP
     std::optional<ElevationPoint> u_opt = prev[end];
     while (u_opt.has_value()) {
         shortest_path.emplace_back(u_opt.value());
-        if(!prev[u_opt.value()].has_value() && visualise){
+        if (!prev[u_opt.value()].has_value() && visualise) {
             print_map(map, start, end, dist, u_opt.value(), shortest_path);
         }
         u_opt = prev[u_opt.value()];
     }
+
     return shortest_path;
 }
 
 void aoc::day12::print_map(const ElevationMap &map, const ElevationPoint &start, const ElevationPoint &end,
-                           const Matrix<long long int> &dist, const ElevationPoint &u,
+                           const ElevationMatrix<Distance> &dist, const ElevationPoint &u,
                            const ElevationPath &shortest_path) {
     for (std::size_t i = 0; i < map.size(); ++i) {
         for (std::size_t j = 0; j < map[i].size(); ++j) {
