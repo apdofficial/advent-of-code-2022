@@ -1,8 +1,8 @@
-#include "day1.hpp"
+#include "day01.hpp"
 
 // n = number of elves
 // O(n)
-auto aoc::day1::top_1_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int> {
+auto aoc::day01::top_1_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int> {
     int max1 = 0;
     auto op = [&max1](int accumulator, const std::optional<int> &line) {
         if (!line.has_value()) {
@@ -21,7 +21,7 @@ auto aoc::day1::top_1_elf_calories(std::span<std::optional<int>> calories) -> st
 // n = number of elves
 // m = number of calories per elf
 // O(n*m)
-auto aoc::day1::top_3_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int> {
+auto aoc::day01::top_3_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int> {
     int max1 = 0, max2 = 0, max3 = 0;
     auto update_op = [&max1, &max2, &max3](int accumulator, const std::optional<int> &line) {
         if (!line.has_value()) {

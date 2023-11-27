@@ -1,4 +1,4 @@
-#include "day6.hpp"
+#include "day06.hpp"
 
 auto start_of_n_marker(std::istream &packet, size_t n_distinct_characters) -> std::size_t {
     std::vector<char> buffer;
@@ -16,11 +16,11 @@ auto start_of_n_marker(std::istream &packet, size_t n_distinct_characters) -> st
     return 0;
 }
 
-auto aoc::day6::start_of_packet_marker(std::istream &packet) -> std::size_t {
+auto aoc::day06::start_of_packet_marker(std::istream &packet) -> std::size_t {
     return start_of_n_marker(packet, 4);
 }
 
-auto aoc::day6::start_of_message_marker(std::istream &packet) -> std::size_t {
+auto aoc::day06::start_of_message_marker(std::istream &packet) -> std::size_t {
     return start_of_n_marker(packet, 14);
 }
 

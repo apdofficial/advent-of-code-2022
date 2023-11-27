@@ -9,7 +9,7 @@
 #include <numeric>
 #include <span>
 
-namespace aoc::day2 {
+namespace aoc::day02 {
 
     auto calculate_strategy_score(std::span<const std::pair<char, char>> rounds) -> int;
 

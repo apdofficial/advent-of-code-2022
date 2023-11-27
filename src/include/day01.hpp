@@ -6,7 +6,7 @@
 #include <optional>
 #include <numeric>
 
-namespace aoc::day1 {
+namespace aoc::day01 {
 
     auto top_1_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int>;
 

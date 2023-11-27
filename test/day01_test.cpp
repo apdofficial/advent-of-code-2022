@@ -2,11 +2,11 @@
 #include <fmt/format.h>
 #include <array>
 
-#include "day1.hpp"
+#include "day01.hpp"
 #include "util.h"
 #include "file.hpp"
 
-using namespace aoc::day1;
+using namespace aoc::day01;
 
 std::vector<std::string> short_lines{"1000", "2000", "3000", "",
                                      "4000", "",
@@ -15,21 +15,21 @@ std::vector<std::string> short_lines{"1000", "2000", "3000", "",
                                      "10000"};
 auto short_calories{aoc::map_to_ints(short_lines)};
 
-constexpr std::string_view DATA_PATH = "../../data/day1.txt";
+constexpr std::string_view DATA_PATH = "../../data/day01.txt";
 
-TEST_CASE("Day 1, part 1 test") {
+TEST_CASE("Day 01, part 1 test") {
     auto result = top_1_elf_calories(short_calories);
     REQUIRE(result.has_value());
     REQUIRE(result.value() == 24000);
 }
 
-TEST_CASE("Day 1, part 2 test") {
+TEST_CASE("Day 01, part 2 test") {
     auto result = top_3_elf_calories(short_calories);
     REQUIRE(result.has_value());
     REQUIRE(result.value() == 45000);
 }
 
-TEST_CASE("Day 1 file (correctness)") {
+TEST_CASE("Day 01 file (correctness)") {
     aoc::File file(DATA_PATH);
     REQUIRE(file.is_valid());
 

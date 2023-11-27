@@ -8,7 +8,7 @@
 #include <unordered_set>
 #include <sstream>
 
-namespace aoc::day9 {
+namespace aoc::day09 {
     enum class MotionDirection {
         UP, DOWN, LEFT, RIGHT
     };
