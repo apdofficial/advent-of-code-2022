@@ -35,7 +35,8 @@ std::vector<std::string> short_input_d13{"[1,1,3,1,1]",
 constexpr std::string_view DATA_PATH = "../../data/day13.txt";
 
 TEST_CASE("Day 13, part 1 test") {
-    REQUIRE(false);
+    auto packets = parse_input(short_input_d13);
+    REQUIRE(part1(packets) == 13);
 }
 
 TEST_CASE("Day 13, part 2 test") {
