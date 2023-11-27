@@ -22,12 +22,16 @@ TEST_CASE("Day 12, part 1 test") {
     REQUIRE(start.has_value());
     auto end = find_end(elevation_map);
     REQUIRE(end.has_value());
-    auto shortest_path = find_shortest_path_dijkstra(elevation_map, start.value(), end.value());
+    auto shortest_path = find_shortest_path(elevation_map, start.value(), end.value());
     REQUIRE(shortest_path.size() == 31);
 }
 
 TEST_CASE("Day 12, part 2 test") {
-    REQUIRE(false);
+    auto elevation_map = parse_input(short_input_d12);
+    auto end = find_end(elevation_map);
+    REQUIRE(end.has_value());
+    auto shortest_path = find_shortest_path_from_first_lowest(elevation_map, end.value());
+    REQUIRE(shortest_path.size() == 29);
 }
 
 TEST_CASE("Day 12 file (correctness)") {
@@ -39,7 +43,11 @@ TEST_CASE("Day 12 file (correctness)") {
     REQUIRE(start.has_value());
     auto end = find_end(elevation_map);
     REQUIRE(end.has_value());
-    auto shortest_path = find_shortest_path_dijkstra(elevation_map, start.value(), end.value());
+    auto shortest_path = find_shortest_path(elevation_map, start.value(), end.value());
     fmt::println("Shortest path: {}", shortest_path.size());
     REQUIRE(shortest_path.size() == 437);
+
+    auto shortest_path_from_first_lowest = find_shortest_path_from_first_lowest(elevation_map, end.value());
+    fmt::println("Shortest path from first lowest: {}", shortest_path_from_first_lowest.size());
+    REQUIRE(shortest_path_from_first_lowest.size() == 430);
 }

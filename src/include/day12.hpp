@@ -66,7 +66,7 @@ namespace aoc::day12 {
             return neighbours;
         }
 
-        friend auto operator<<(std::ostream &os, const ElevationPoint &point) -> std::ostream& {
+        friend auto operator<<(std::ostream &os, const ElevationPoint &point) -> std::ostream & {
             if (point.is_start()) {
                 os << "S";
             } else if (point.is_end()) {
@@ -85,54 +85,75 @@ namespace aoc::day12 {
     using ElevationPath = std::vector<ElevationPoint>;
 
     template<typename T>
-    struct ElevationMatrix{
+    struct ElevationMatrix {
         using Container = std::vector<std::vector<T>>;
         using val_t = T;
         using const_val_t = const T;
-        using ref_t = T&;
-        using const_ref_t = const T&;
+        using ref_t = T &;
+        using const_ref_t = const T &;
 
-        explicit ElevationMatrix(std::size_t rows, std::size_t cols, T init): container_(rows, std::vector<T>(cols, init)) {}
+        explicit ElevationMatrix(std::size_t rows, std::size_t cols, T init): container_(rows,
+                                                                                         std::vector<T>(cols, init)) {}
 
         auto operator[](const Point &point) -> ref_t { return container_[point.x()][point.y()]; }
+
         auto operator[](const Point &point) const -> const_ref_t { return container_[point.x()][point.y()]; }
 
         auto operator[](const ElevationPoint &point) -> ref_t { return container_[point.x()][point.y()]; }
+
         auto operator[](const ElevationPoint &point) const -> const_ref_t { return container_[point.x()][point.y()]; }
 
-        auto operator[](const std::optional<ElevationPoint> &point) -> std::optional<val_t>& {
-            if(!point.has_value()) return std::nullopt;
-            return container_[point.value().x()][point.value().y()];
-        }
-        auto operator[](const std::optional<ElevationPoint> &point) const -> const std::optional<val_t>& {
-            if(!point.has_value()) return std::nullopt;
+        auto operator[](const std::optional<ElevationPoint> &point) -> std::optional<val_t> & {
+            if (!point.has_value()) return std::nullopt;
             return container_[point.value().x()][point.value().y()];
         }
 
-        auto operator[](std::size_t row) -> std::vector<T>&{ return container_[row]; }
-        auto operator[](std::size_t row) const -> const std::vector<T>& { return container_[row]; }
+        auto operator[](const std::optional<ElevationPoint> &point) const -> const std::optional<val_t> & {
+            if (!point.has_value()) return std::nullopt;
+            return container_[point.value().x()][point.value().y()];
+        }
+
+        auto operator[](std::size_t row) -> std::vector<T> & { return container_[row]; }
+
+        auto operator[](std::size_t row) const -> const std::vector<T> & { return container_[row]; }
 
     private:
         Container container_;
     };
 
     using Distance = long long int;
-    enum class Visited {TRUE, FALSE};
+    enum class Visited {
+        TRUE, FALSE
+    };
 
     [[nodiscard]] auto parse_input(const std::vector<std::string> &data) -> ElevationMap;
 
+    /**
+     * Find the shortest path from start to end using Dijkstra's algorithm
+     * @param map
+     * @param start
+     * @param end
+     * @param visualise
+     * @return
+     */
     [[nodiscard]] auto
-    find_shortest_path_dijkstra(ElevationMap &map, const ElevationPoint &start, const ElevationPoint &end, bool visualise = false) -> ElevationPath;
+    find_shortest_path(ElevationMap &map, const ElevationPoint &start, const ElevationPoint &end,
+                       bool visualise = false) -> ElevationPath;
+
+    /**
+     * Find the shortest path from the lowest height to end using Dijkstra's algorithm
+     * @param map
+     * @param end
+     * @param visualise
+     * @return
+     */
+    [[nodiscard]] auto find_shortest_path_from_first_lowest(ElevationMap &map, const ElevationPoint &end,
+                                                            bool visualise = false) -> ElevationPath;
 
     [[nodiscard]] auto find_start(const ElevationMap &map) -> std::optional<ElevationPoint>;
 
     [[nodiscard]] auto find_end(const ElevationMap &map) -> std::optional<ElevationPoint>;
 
-    void print_map(
-            const ElevationMap &map,
-            const ElevationPoint &start,
-            const ElevationPoint &end,
-            const ElevationMatrix<Distance> &dist,
-            const ElevationPoint &u,
-            const ElevationPath &shortest_path);
+    void print_map(const ElevationMap &map, const ElevationPoint &start, const ElevationPoint &end,
+                   const ElevationMatrix<Distance> &dist, const ElevationPoint &u, const ElevationPath &shortest_path);
 }
