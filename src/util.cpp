@@ -1,6 +1,7 @@
-#include <functional>
 #include <chrono>
 #include "util.h"
+
+#include <iostream>
 
 auto aoc::map_to_int(std::string_view line) -> std::optional<int> {
     if (line.empty()) return std::nullopt;

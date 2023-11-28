@@ -31,26 +31,32 @@ constexpr std::string_view test_input_d13 = R"([1,1,3,1,1]
 [1,[2,[3,[4,[5,6,7]]]],8,9]
 [1,[2,[3,[4,[5,6,0]]]],8,9])";
 
-TEST_CASE("Day 13, part 1 test") {
-    std::istringstream stream{test_input_d13.data()};
-    auto packets = parse_input(stream);
-    REQUIRE(part1(packets) == 13);
-}
-
-TEST_CASE("Day 13, part 2 test") {
-    std::istringstream stream{test_input_d13.data()};
-    auto packets = parse_input(stream);
-    REQUIRE(part2(packets) == 0);
-}
-
-TEST_CASE("Day 13") {
-    aoc::File file(file_path);
-    REQUIRE(file.is_valid());
-
-    auto packets = parse_input(file.istream());
-
-    auto answer1 = part1(packets);
-    fmt::println("Answer 1: {}", answer1);
-    auto answer2 = part2(packets);
-    fmt::println("Answer 2: {}", answer2);
+SCENARIO("Day 13") {
+    GIVEN("test input") {
+        std::istringstream stream{test_input_d13.data()};
+        const auto packets = parse_input(stream);
+        THEN("puzzle 1 is solved") {
+            REQUIRE(part1(packets) == 13);
+        }
+        THEN("puzzle 2 is solved") {
+            REQUIRE(part2(packets) == -1);
+        }
+    }
+    GIVEN("file input") {
+        aoc::File file(file_path);
+        THEN("file is valid") {
+            REQUIRE(file.is_valid());
+        }
+        const auto packets = parse_input(file.istream());
+        THEN("puzzle 1 is solved") {
+            auto puzzle1 = part1(packets);
+            fmt::print("puzzle 1: {}\n", puzzle1);
+            REQUIRE(puzzle1 == 5684);
+        }
+        THEN("puzzle 2 is solved") {
+            auto puzzle2 = part2(packets);
+            fmt::print("puzzle 2: {}\n", puzzle2);
+            REQUIRE(puzzle2== -1);
+        }
+    }
 }
