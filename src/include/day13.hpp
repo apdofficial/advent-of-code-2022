@@ -3,6 +3,7 @@
 #include <utility>
 #include <fmt/format.h>
 #include <iostream>
+#include <algorithm>
 
 #include "util.h"
 #include "cassert"
@@ -104,6 +105,11 @@ namespace aoc::day13 {
     };
 
     struct Packet {
+
+        explicit Packet() = default;
+
+        explicit Packet(PacketEntry entry) : entry_{std::move(entry)} {}
+
         static void init_entries(std::istringstream& is, PacketEntry& entry) {
             char c;
             while (is) {

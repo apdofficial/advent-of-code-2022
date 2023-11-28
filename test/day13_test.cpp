@@ -39,7 +39,7 @@ SCENARIO("Day 13") {
             REQUIRE(part1(packets) == 13);
         }
         THEN("puzzle 2 is solved") {
-            REQUIRE(part2(packets) == -1);
+            REQUIRE(part2(packets) == 140);
         }
     }
     GIVEN("file input") {
@@ -50,13 +50,13 @@ SCENARIO("Day 13") {
         const auto packets = parse_input(file.istream());
         THEN("puzzle 1 is solved") {
             auto puzzle1 = part1(packets);
-            fmt::print("puzzle 1: {}\n", puzzle1);
+            fmt::print("Day 13 puzzle 1: {}\n", puzzle1);
             REQUIRE(puzzle1 == 5684);
         }
         THEN("puzzle 2 is solved") {
             auto puzzle2 = part2(packets);
-            fmt::print("puzzle 2: {}\n", puzzle2);
-            REQUIRE(puzzle2== -1);
+            fmt::print("Day 13 puzzle 2: {}\n", puzzle2);
+            REQUIRE(puzzle2== 22932);
         }
     }
 }
