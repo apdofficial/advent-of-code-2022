@@ -2,13 +2,10 @@
 
 #include <string>
 #include <iostream>
-#include <fstream>
 #include <vector>
-#include <algorithm>
+#include <span>
 #include <numeric>
 #include <sstream>
-#include <iomanip>
-#include <span>
 
 namespace aoc::day04 {
 
@@ -20,8 +17,8 @@ namespace aoc::day04 {
     // (case 5) ---|--|--- sub range
     // (case 6) ---|-|---- sub range
     struct Range {
-        uint32_t min;
-        uint32_t max;
+        int min;
+        int max;
 
         [[nodiscard]] bool is_sub_range_to(const Range &other) const {
             return (other.min <= min && min <= other.max) && (other.min <= max && max <= other.max);
