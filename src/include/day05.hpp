@@ -10,7 +10,7 @@
 
 namespace aoc::day05 {
     struct Command {
-        uint32_t crate_num;
+        int crate_num;
         std::size_t from;
         std::size_t to;
 

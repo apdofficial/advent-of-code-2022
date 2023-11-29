@@ -41,7 +41,6 @@ namespace aoc::day07 {
     auto sum_if(std::vector<unsigned int> &sums, unsigned threshold) -> unsigned;
 
     struct TreeObject{
-    public:
         [[nodiscard]] virtual auto size() const -> unsigned = 0;
         [[nodiscard]] auto name() const -> auto { return name_; }
     protected:
@@ -50,13 +49,13 @@ namespace aoc::day07 {
         unsigned size_;
     };
 
-    struct File: public TreeObject {
+    struct File: TreeObject {
         File(std::size_t size, const std::string& name): TreeObject(size, name) {};
 
         [[nodiscard]] auto size() const -> unsigned override { return size_; }
     };
 
-    struct Directory: public TreeObject {
+    struct Directory: TreeObject {
         explicit Directory(std::shared_ptr<Directory> parent, const std::string& name);
 
         auto size() const -> unsigned override;

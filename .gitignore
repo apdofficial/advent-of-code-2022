@@ -111,3 +111,8 @@ fabric.properties
 /cmake-build-*
 .idea/
 /Testing/
+
+.vscode/
+
+/build-*
+/build*
