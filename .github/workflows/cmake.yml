@@ -27,6 +27,13 @@ jobs:
           sudo apt install cmake cmake-data build-essential
           sudo apt install libgmp-dev
 
+    - name: Use to gcc-13
+      if: matrix.configurations.os == "ubuntu-latest"
+      run: |
+        sudo apt install gcc-13 g++-13
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100 --slave /usr/bin/g++ g++ /usr/bin/g++-13 --slave /usr/bin/gcov gcov /usr/bin/gcov-13
+        sudo update-alternatives --set gcc /usr/bin/gcc-13
+
     - name: Checkout submodules
       run: git submodule update --init --recursive
 
