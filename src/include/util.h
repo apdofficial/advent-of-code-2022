@@ -7,6 +7,7 @@
 #include <array>
 #include <chrono>
 #include <numeric>
+#include <format>
 
 namespace aoc {
     auto map_to_int(std::string_view line) -> std::optional<int>;
