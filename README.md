@@ -1,4 +1,5 @@
 # Advent of Code 2022 in C++20
+[![CI Testing](https://github.com/apdofficial/advent-of-code-2022/actions/workflows/cmake.yml/badge.svg)](https://github.com/apdofficial/advent-of-code-2022/actions/workflows/cmake.yml)
 
 [https://adventofcode.com/2022](https://adventofcode.com/2022)
  
