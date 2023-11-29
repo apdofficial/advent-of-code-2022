@@ -13,7 +13,7 @@ auto aoc::day05::parse_input(std::istream &is) -> std::pair<std::vector<Command>
         } else { // stack case
             for (size_t i = 0; i < line.size(); i++) {
                 if (isupper(line[i])) { // valid A-Z crate
-                    size_t stack_nr = (i < 4 ? 0 : i / 4);
+                    const std::size_t stack_nr = (i < 4 ? 0 : i / 4);
                     while (stacks.size() <= stack_nr) {
                         stacks.emplace_back();
                     }
@@ -26,19 +26,19 @@ auto aoc::day05::parse_input(std::istream &is) -> std::pair<std::vector<Command>
 }
 
 auto aoc::day05::execute_crane_9000(std::vector<std::vector<char>> &stacks, const std::vector<Command> &commands) -> void {
-    for (const auto &command: commands) {
-        for (size_t i = 0; i < command.crate_num + 1; i++) {
-            stacks[command.to].push_back(stacks[command.from].back());
-            stacks[command.from].pop_back();
+    for (const auto &[crate, from, to]: commands) {
+        for (size_t i = 0; i < crate + 1; i++) {
+            stacks[to].push_back(stacks[from].back());
+            stacks[from].pop_back();
         }
     }
 }
 
 auto aoc::day05::execute_crane_9001(std::vector<std::vector<char>> &stacks, const  std::vector<Command> &commands) -> void {
-    for (const auto &command: commands) {
-        auto iter = std::prev(stacks[command.from].end(), command.crate_num + 1);
-        std::move(iter, stacks[command.from].end(), std::back_inserter(stacks[command.to]));
-        for (size_t i = 0; i < command.crate_num + 1; i++)
-            stacks[command.from].pop_back();
+    for (const auto &[crate, from, to]: commands) {
+        const auto iter = std::prev(stacks[from].end(), crate + 1);
+        std::move(iter, stacks[from].end(), std::back_inserter(stacks[to]));
+        for (size_t i = 0; i < crate + 1; i++)
+            stacks[from].pop_back();
     }
 }
