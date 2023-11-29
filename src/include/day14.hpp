@@ -18,10 +18,13 @@ namespace aoc::day14 {
         Trace() = default;
 
         friend auto operator>>(std::istream& is, Trace& trace) -> std::istream& {
-            std::string x_str, delimiter, y_str, line;
+            std::string coord_str, delimiter, line;
             getline(is, line, '\n');
             std::istringstream iss(line);
-            while(iss >> x_str >> delimiter >> y_str) {
+            while(iss >> coord_str) {
+                const auto split = coord_str.find(',');
+                const auto x_str  = coord_str.substr(0, split);
+                const auto y_str  = coord_str.substr(split+1, coord_str.size()-1);
                 const auto x = map_to_int(x_str);
                 const auto y = map_to_int(y_str);
                 if(x && y) {

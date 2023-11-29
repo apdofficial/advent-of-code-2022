@@ -17,7 +17,7 @@ SCENARIO("Day 14") {
         std::istringstream stream{test_input_d14.data()};
         const auto scan = parse_input(stream);
         THEN("puzzle 1 is solved") {
-            REQUIRE(part1(scan) == -1);
+            REQUIRE(part1(scan) == 24);
         }
         THEN("puzzle 2 is solved") {
             REQUIRE(part2(scan) == -1);
