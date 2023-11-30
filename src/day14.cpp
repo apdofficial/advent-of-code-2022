@@ -8,12 +8,7 @@ auto aoc::day14::parse_input(std::istream& stream, bool print) -> Scan {
     while (stream >> trace) {
         scan.append(std::move(trace));
     }
-    if(print) {
-        // for(auto& trc: scan.rock_traces()) {
-        //     std::cout << trc << '\n';
-        // }
-        std::cout << scan << '\n';
-    }
+    if(print) std::cout << scan << '\n';
     scan.set_start(Scan::default_start);
     return scan;
 }
@@ -60,7 +55,7 @@ auto aoc::day14::part2(const Scan& scan_, bool print) -> int {
         return coord.col == Scan::default_start.col && coord.row == Scan::default_start.row;
     };
     Coordinates current = Scan::default_start;
-     while(!reached_top(current)) {
+     while(true) {
         if(scan[current.row + 1][current.col] == Scan::air_char) { // down
             scan[current] = Scan::air_char;
             ++current.row;
@@ -77,6 +72,10 @@ auto aoc::day14::part2(const Scan& scan_, bool print) -> int {
             scan[current] = Scan::sand_char;
         } else {
             ++sand_num;
+            if(reached_top(current)) {
+                scan[Scan::default_start] = Scan::sand_char;
+                break;
+            }
             current = Scan::default_start;
         }
     }
