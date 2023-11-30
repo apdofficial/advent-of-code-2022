@@ -60,8 +60,8 @@ namespace aoc::day14 {
     };
 
     using Traces = std::vector<Trace>;
-    using ScanMapRow = std::vector<char>;
-    using SandMap = std::vector<ScanMapRow>;
+    using Scanmap_Row = std::vector<char>;
+    using SandMap = std::vector<Scanmap_Row>;
 
     struct BoundingBox {
         int min_row = 0;
@@ -73,8 +73,21 @@ namespace aoc::day14 {
     struct Scan {
         Scan() {
             set_start(default_start);
-            update_bounding_box(default_start);
         }
+
+        void append(Trace&& trace) {
+            for (auto& coord: trace.path()) {
+                map_[coord.row][coord.col] = rock_char;
+                update_bounding_box(coord);
+            }
+            rock_traces_.emplace_back(std::move(trace));
+        }
+
+        [[nodiscard]] auto rock_traces() const { return rock_traces_; }
+
+        [[nodiscard]] auto operator[](const unsigned row) -> Scanmap_Row& { return map_[row]; }
+
+        [[nodiscard]] auto operator[](const Coordinates& coord) -> auto& { return map_[coord.row][coord.col]; }
 
         void update_bounding_box(const Coordinates& coord) {
             bounding_.min_row = std::min(bounding_.min_row, coord.row);
@@ -83,26 +96,25 @@ namespace aoc::day14 {
             bounding_.max_col = std::max(bounding_.max_col, coord.col);
         }
 
-        void append(Trace&& trace) {
-            for (auto& coord: trace.path()) {
-                map[coord.row][coord.col] = rock_char;
-                update_bounding_box(coord);
+        void update_bounding_box_automatically() {
+            sand_bounding_ = bounding_;
+            for (auto & row : map_) {
+                for (int col = 0; col < row.size(); ++col) {
+                    if (row[col] == sand_char) {
+                        if (col < sand_bounding_.min_col) sand_bounding_.min_col = col;
+                        if (col > sand_bounding_.max_col) sand_bounding_.max_col = col;
+                    }
+                }
             }
-            rock_traces_.emplace_back(std::move(trace));
         }
 
-        [[nodiscard]] auto rock_traces() const { return rock_traces_; }
-
-        [[nodiscard]] auto operator[](const unsigned row) -> ScanMapRow& { return map[row]; }
-
-        [[nodiscard]] auto operator[](const Coordinates& coord) -> auto& { return map[coord.row][coord.col]; }
-
         friend auto operator<<(std::ostream& os, Scan& scan) -> std::ostream& {
-            const auto rows = std::views::iota(scan.bounding_.min_row, scan.bounding_.max_row + 1);
-            const auto cols = std::views::iota(scan.bounding_.min_col, scan.bounding_.max_col + 1);
+            scan.update_bounding_box_automatically();
+            const auto rows = std::views::iota(scan.sand_bounding_.min_row, scan.sand_bounding_.max_row + 1);
+            const auto cols = std::views::iota(scan.sand_bounding_.min_col, scan.sand_bounding_.max_col + 1);
             for (const auto& row: rows) {
                 for (const auto& col: cols) {
-                    os << scan.map[row][col];
+                    os << scan.map_[row][col];
                 }
                 os << '\n';
             }
@@ -110,7 +122,15 @@ namespace aoc::day14 {
         }
 
         void set_start(const Coordinates& start) {
-            map[start.row][start.col] = start_char;
+            update_bounding_box(default_start);
+            map_[start.row][start.col] = start_char;
+        }
+
+        void set_floor(int row) {
+            for (int col: std::views::iota(0, 1'000)) {
+                map_[row][col] = rock_char;
+            }
+            bounding_.max_row = std::max(bounding_.max_row, row);
         }
 
         static constexpr Coordinates default_start{500, 0};
@@ -123,9 +143,10 @@ namespace aoc::day14 {
 
     private:
         static constexpr char start_char = '+';
-        SandMap map = std::vector(1'000, std::vector(1'000, air_char));
+        SandMap map_ = std::vector(1'000, std::vector(1'000, air_char));
         Traces rock_traces_{};
         BoundingBox bounding_{1'000, -1, 1'000, -1};
+        BoundingBox sand_bounding_{1'000, -1, 1'000, -1};
     };
 
     [[nodiscard]] auto parse_input(std::istream& stream, bool print = false) -> Scan;

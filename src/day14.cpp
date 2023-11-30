@@ -50,9 +50,36 @@ auto aoc::day14::part1(const Scan& scan_, bool print) -> int {
     }
     if(print) std::cout << scan << '\n';
     return sand_num;
-
 }
 
-auto aoc::day14::part2(const Scan& scan, bool print) -> int {
-    return 0;
+auto aoc::day14::part2(const Scan& scan_, bool print) -> int {
+    auto scan = scan_;
+    scan.set_floor(scan.bounding().max_row + 2);
+    int sand_num = 0;
+    auto reached_top = [](const Coordinates& coord) {
+        return coord.col == Scan::default_start.col && coord.row == Scan::default_start.row;
+    };
+    Coordinates current = Scan::default_start;
+     while(!reached_top(current)) {
+        if(scan[current.row + 1][current.col] == Scan::air_char) { // down
+            scan[current] = Scan::air_char;
+            ++current.row;
+            scan[current] = Scan::sand_char;
+        } else if(scan[current.row + 1][current.col - 1] == Scan::air_char) { // down-lef
+            scan[current] = Scan::air_char;
+            ++current.row;
+            --current.col;
+            scan[current] = Scan::sand_char;
+        } else if(scan[current.row + 1][current.col + 1] == Scan::air_char) { // down-rigt
+            scan[current] = Scan::air_char;
+            ++current.row;
+            ++current.col;
+            scan[current] = Scan::sand_char;
+        } else {
+            ++sand_num;
+            current = Scan::default_start;
+        }
+    }
+    if(print) std::cout << scan << '\n';
+    return sand_num;
 }
