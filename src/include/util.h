@@ -5,6 +5,7 @@
 #include <chrono>
 #include <numeric>
 #include <format>
+#include <span>
 
 namespace aoc {
     auto map_to_int(std::string_view line) -> std::optional<int>;

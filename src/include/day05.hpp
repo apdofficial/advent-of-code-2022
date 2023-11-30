@@ -7,6 +7,7 @@
 #include <fstream>
 #include <span>
 #include <functional>
+#include <sstream>
 
 namespace aoc::day05 {
     struct Command {
