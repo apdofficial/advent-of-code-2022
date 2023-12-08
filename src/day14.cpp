@@ -24,20 +24,20 @@ auto aoc::day14::part1(const Scan& scan_, bool print) -> int {
     };
     Coordinates current = Scan::default_start;
     while(!is_in_void(current)) {
-        if(scan[current.row + 1][current.col] == Scan::air_char) { // down
-            if (current != Scan::default_start) scan[current] = Scan::air_char;
+        if(scan.map().at(current.row + 1, current.col) == Scan::CHAR_AIR) { // down
+            if (current != Scan::default_start) scan.map()[current] = Scan::CHAR_AIR;
             ++current.row;
-            scan[current] = Scan::sand_char;
-        } else if(scan[current.row + 1][current.col - 1] == Scan::air_char) { // down-lef
-            scan[current] = Scan::air_char;
+            scan.map()[current] = Scan::CHAR_SAND;
+        } else if(scan.map().at(current.row + 1,current.col - 1) == Scan::CHAR_AIR) { // down-lef
+            scan.map()[current] = Scan::CHAR_AIR;
             ++current.row;
             --current.col;
-            scan[current] = Scan::sand_char;
-        } else if(scan[current.row + 1][current.col + 1] == Scan::air_char) { // down-rigt
-            scan[current] = Scan::air_char;
+            scan.map()[current] = Scan::CHAR_SAND;
+        } else if(scan.map().at(current.row + 1,current.col + 1) == Scan::CHAR_AIR) { // down-rigt
+            scan.map()[current] = Scan::CHAR_AIR;
             ++current.row;
             ++current.col;
-            scan[current] = Scan::sand_char;
+            scan.map()[current] = Scan::CHAR_SAND;
         } else {
             ++sand_num;
             current = Scan::default_start;
@@ -56,24 +56,24 @@ auto aoc::day14::part2(const Scan& scan_, bool print) -> int {
     };
     Coordinates current = Scan::default_start;
      while(true) {
-        if(scan[current.row + 1][current.col] == Scan::air_char) { // down
-            scan[current] = Scan::air_char;
+        if(scan.map().at(current.row + 1,current.col) == Scan::CHAR_AIR) { // down
+            scan.map()[current] = Scan::CHAR_AIR;
             ++current.row;
-            scan[current] = Scan::sand_char;
-        } else if(scan[current.row + 1][current.col - 1] == Scan::air_char) { // down-lef
-            scan[current] = Scan::air_char;
+            scan.map()[current] = Scan::CHAR_SAND;
+        } else if(scan.map().at(current.row + 1,current.col - 1) == Scan::CHAR_AIR) { // down-lef
+            scan.map()[current] = Scan::CHAR_AIR;
             ++current.row;
             --current.col;
-            scan[current] = Scan::sand_char;
-        } else if(scan[current.row + 1][current.col + 1] == Scan::air_char) { // down-rigt
-            scan[current] = Scan::air_char;
+            scan.map()[current] = Scan::CHAR_SAND;
+        } else if(scan.map().at(current.row + 1,current.col + 1) == Scan::CHAR_AIR) { // down-rigt
+            scan.map()[current] = Scan::CHAR_AIR;
             ++current.row;
             ++current.col;
-            scan[current] = Scan::sand_char;
+            scan.map()[current] = Scan::CHAR_SAND;
         } else {
             ++sand_num;
             if(reached_top(current)) {
-                scan[Scan::default_start] = Scan::sand_char;
+                scan.map()[Scan::default_start] = Scan::CHAR_SAND;
                 break;
             }
             current = Scan::default_start;

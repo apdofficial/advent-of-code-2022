@@ -25,23 +25,25 @@ Sensor at x=20, y=1: closest beacon is at x=15, y=3
 
 TEST_CASE("Day 15 test part 1") {
     std::istringstream stream{test_input_d15.data()};
-    const auto scan = parse_input(stream);
-    REQUIRE(part1(scan) == 26);
+    const auto scan = load_input(stream);
+    const auto puzzle1 = part1(scan, 10);
+    fmt::print("Day 15 puzzle 1: {}\n", puzzle1);
+    REQUIRE(puzzle1 == 26);
 }
 
 TEST_CASE("Day 15 test part 2") {
     std::istringstream stream{test_input_d15.data()};
-    const auto scan = parse_input(stream);
-    REQUIRE(part2(scan) == -1);
+    const auto scan = load_input(stream);
+    REQUIRE(part2(scan) == 56000011);
 }
 
 TEST_CASE("Day 15 file (correctness)") {
     aoc::File file(file_path);
     REQUIRE(file.is_valid());
-    const auto scan = parse_input(file.istream(), false);
-    const auto puzzle1 = part1(scan);
+    const auto scan = load_input(file.istream());
+    const auto puzzle1 = part1(scan, 2000000);
     fmt::print("Day 15 puzzle 1: {}\n", puzzle1);
-    REQUIRE(puzzle1 == -1);
+    REQUIRE(puzzle1 == 6275922);
     const auto puzzle2 = part2(scan);
     fmt::print("Day 15 puzzle 2: {}\n", puzzle2);
     REQUIRE(puzzle2 == -1);
