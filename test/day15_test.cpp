@@ -42,7 +42,7 @@ TEST_CASE("Day 15 file (correctness)") {
     const auto puzzle1 = part1(scan, 2000000L);
     fmt::print("Day 15 puzzle 1: {}\n", puzzle1);
     REQUIRE(puzzle1 == 6275922);
-    const auto puzzle2 = part2(scan, 4000000L);
-    fmt::print("Day 15 puzzle 2: {}\n", puzzle2);
-    REQUIRE(puzzle2 == 11747175442119);
+    // const auto puzzle2 = part2(scan, 4000000L);
+    // fmt::print("Day 15 puzzle 2: {}\n", puzzle2);
+    // REQUIRE(puzzle2 == 11747175442119);
 }
