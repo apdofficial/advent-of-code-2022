@@ -3,23 +3,117 @@
 #include <vector>
 #include <string>
 #include <ranges>
+#include <set>
+#include <numeric>
+#include <fmt/core.h>
+#include <algorithm>
 
 namespace aoc {
     using InputLines = std::vector<std::string>;
 
+    /**
+     * @brief Half open interval [start, end)
+     */
     struct Range {
         long start;
         long end;
+
+        auto friend operator==(const Range& lhs, const Range& rhs) -> bool {
+            return rhs.start == lhs.start && rhs.end == lhs.end;
+        }
+
+        auto friend operator!=(const Range& lhs, const Range& rhs) -> bool {
+            return !(rhs == lhs);
+        }
+
+        auto friend operator<=>(const Range& lhs, const Range& rhs)  {
+            if (lhs.start < rhs.start) return std::strong_ordering::less;
+            if (lhs.start > rhs.start) return std::strong_ordering::greater;
+            if (lhs.end < rhs.end) return std::strong_ordering::less;
+            if (lhs.end > rhs.end) return std::strong_ordering::greater;
+            return std::strong_ordering::equal;
+        }
+
+        [[nodiscard]] auto size() const -> long { return end - start; }
+
+        [[nodiscard]] auto contains(const long value) const -> bool {
+            return start <= value && value < end;
+        }
+
+        [[nodiscard]] auto is_sub_range(const Range& rhs) const -> bool {
+            return start >= rhs.start && end <= rhs.end;
+        }
+
+        [[nodiscard]] auto intersects(const Range& rhs) const -> bool {
+            return start < rhs.end && end > rhs.start;
+        }
+
+        [[nodiscard]] auto is_adjacent(const Range& rhs) const -> bool {
+            return start == rhs.end || end == rhs.start;
+        }
+
+        [[nodiscard]] auto merge_if_adjacent_or_overlapping(const Range& rhs) const -> std::optional<Range> {
+            if ((intersects(rhs) || is_adjacent(rhs)) && *this != rhs) {
+                return Range{.start = std::min(start, rhs.start), .end = std::max(end, rhs.end)};
+            }
+            return std::nullopt;
+        }
+    };
+
+    struct RangeSet {
+
+        void insert(const Range &new_range) {
+            if (!merge(new_range)) {
+                ranges_.insert(new_range);
+            }
+        }
+
+        void erase(const Range& range) { ranges_.erase(range); }
+
+        [[nodiscard]] auto ranges() const -> std::set<Range> { return ranges_; }
+
+        [[nodiscard]] auto count_values() const -> size_t {
+            return std::accumulate(ranges_.begin(), ranges_.end(), 0, [](const auto& acc, const auto& range) {
+                return acc + std::abs(range.end - range.start);
+            });
+        }
+
+        [[nodiscard]] auto contains(const long col) const -> bool {
+            return std::ranges::any_of(ranges_, [col](const auto& range) {
+                return range.contains(col);
+            });
+        }
+
+    private:
+
+        auto merge(const Range& new_range) -> bool {
+            for (auto range: ranges_) {
+                if (const auto merged_range = range.merge_if_adjacent_or_overlapping(new_range)) {
+                    ranges_.erase(range);
+                    ranges_.insert(*merged_range);
+                    merge(*merged_range);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        std::set<Range> ranges_{};
     };
 
     struct Coordinates {
         int row = 0;
         int col = 0;
+
         bool operator!=(const Coordinates& rhs) const { return col != rhs.col || row != rhs.row; }
         bool operator==(const Coordinates& rhs) const { return col == rhs.col && row == rhs.row; }
 
         friend auto operator+(const Coordinates& lhs, const Coordinates& rhs) -> Coordinates {
-            return {.row = lhs.row + rhs.row, .col = lhs.col + rhs.col,};
+            return {.row = lhs.row + rhs.row, .col = lhs.col + rhs.col};
+        }
+
+        friend auto operator-(const Coordinates& lhs, const Coordinates& rhs) -> Coordinates {
+            return {.row = lhs.row - rhs.row, .col = lhs.col - rhs.col};
         }
     };
 
@@ -45,7 +139,6 @@ namespace aoc {
             height_(height * (include_negative ? 2 : 1)),
             center_(include_negative ? height : 0, include_negative ? width : 0),
             map(height_, std::vector(width_, init)) {
-
         }
 
         [[nodiscard]] auto at(long long row, long long col) const -> auto& {
