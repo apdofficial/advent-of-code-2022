@@ -28,9 +28,9 @@ TEST_CASE("Day 14 file (correctness)") {
     REQUIRE(file.is_valid());
     const auto scan = parse_input(file.istream(), false);
     const auto puzzle1 = part1(scan);
-    fmt::print("Day 13 puzzle 1: {}\n", puzzle1);
+    fmt::print("Day 14 puzzle 1: {}\n", puzzle1);
     REQUIRE(puzzle1 == 592);
     const auto puzzle2 = part2(scan);
-    fmt::print("Day 13 puzzle 2: {}\n", puzzle2);
+    fmt::print("Day 14 puzzle 2: {}\n", puzzle2);
     REQUIRE(puzzle2 == 30367);
 }

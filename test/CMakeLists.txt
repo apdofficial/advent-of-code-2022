@@ -14,6 +14,7 @@ target_sources(tests PRIVATE
         day12_test.cpp
         day13_test.cpp
         day14_test.cpp
+        day15_test.cpp
 )
 target_link_libraries(tests
         PRIVATE Catch2WithMain

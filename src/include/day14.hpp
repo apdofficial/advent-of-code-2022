@@ -1,19 +1,14 @@
 #pragma once
 
 
+#include <common.hpp>
+
 #include "util.h"
 #include <iostream>
 #include <ranges>
 
 namespace aoc::day14 {
     static auto file_path = get_day_file_path(14);
-
-    struct Coordinates {
-        int col = 0;
-        int row = 0;
-
-        bool operator!=(const Coordinates& rhs) const { return col != rhs.col || row != rhs.row; }
-    };
 
     using Path = std::vector<Coordinates>;
 
@@ -31,12 +26,12 @@ namespace aoc::day14 {
             while (iss >> col >> delimiter >> row) {
                 if (row == row_prev) {
                     for (int col_: std::views::iota(std::min(col_prev, col), std::max(col_prev, col) + 1)) {
-                        trace.path_.emplace_back(col_, row);
+                        trace.path_.emplace_back(row, col_);
                     }
                 }
                 if (col == col_prev) {
                     for (int row_: std::views::iota(std::min(row_prev, row), std::max(row_prev, row) + 1)) {
-                        trace.path_.emplace_back(col, row_);
+                        trace.path_.emplace_back(row_, col);
                     }
                 }
                 row_prev = row;
@@ -63,13 +58,6 @@ namespace aoc::day14 {
     using Scanmap_Row = std::vector<char>;
     using SandMap = std::vector<Scanmap_Row>;
 
-    struct BoundingBox {
-        int min_row = 0;
-        int max_row = 0;
-        int min_col = 0;
-        int max_col = 0;
-    };
-
     struct Scan {
         Scan() {
             set_start(default_start);
@@ -77,44 +65,20 @@ namespace aoc::day14 {
 
         void append(Trace&& trace) {
             for (auto& coord: trace.path()) {
-                map_[coord.row][coord.col] = rock_char;
-                update_bounding_box(coord);
+                map_[coord] = CHAR_ROCK;
+                rocks_bounding_.update(coord);
             }
             rock_traces_.emplace_back(std::move(trace));
         }
 
         [[nodiscard]] auto rock_traces() const { return rock_traces_; }
 
-        [[nodiscard]] auto operator[](const unsigned row) -> Scanmap_Row& { return map_[row]; }
-
-        [[nodiscard]] auto operator[](const Coordinates& coord) -> auto& { return map_[coord.row][coord.col]; }
-
-        void update_bounding_box(const Coordinates& coord) {
-            bounding_.min_row = std::min(bounding_.min_row, coord.row);
-            bounding_.max_row = std::max(bounding_.max_row, coord.row);
-            bounding_.min_col = std::min(bounding_.min_col, coord.col);
-            bounding_.max_col = std::max(bounding_.max_col, coord.col);
-        }
-
-        void update_bounding_box_automatically() {
-            sand_bounding_ = bounding_;
-            for (auto & row : map_) {
-                for (int col = 0; col < row.size(); ++col) {
-                    if (row[col] == sand_char) {
-                        if (col < sand_bounding_.min_col) sand_bounding_.min_col = col;
-                        if (col > sand_bounding_.max_col) sand_bounding_.max_col = col;
-                    }
-                }
-            }
-        }
-
         friend auto operator<<(std::ostream& os, Scan& scan) -> std::ostream& {
-            scan.update_bounding_box_automatically();
             const auto rows = std::views::iota(scan.sand_bounding_.min_row, scan.sand_bounding_.max_row + 1);
             const auto cols = std::views::iota(scan.sand_bounding_.min_col, scan.sand_bounding_.max_col + 1);
             for (const auto& row: rows) {
                 for (const auto& col: cols) {
-                    os << scan.map_[row][col];
+                    os << scan.map_.at(row,col);
                 }
                 os << '\n';
             }
@@ -122,30 +86,30 @@ namespace aoc::day14 {
         }
 
         void set_start(const Coordinates& start) {
-            update_bounding_box(default_start);
-            map_[start.row][start.col] = start_char;
+            rocks_bounding_.update(default_start);
+            map_[start] = CHAR_START;
         }
 
         void set_floor(int row) {
-            for (int col: std::views::iota(0, 1'000)) {
-                map_[row][col] = rock_char;
+            for (unsigned col: map_.iota_cols()) {
+                map_.at(row,col) = CHAR_ROCK;
             }
-            bounding_.max_row = std::max(bounding_.max_row, row);
+            rocks_bounding_.max_row = std::max(rocks_bounding_.max_row, row);
         }
 
-        static constexpr Coordinates default_start{500, 0};
+        static constexpr Coordinates default_start{.row = 0, .col = 500};
 
-        [[nodiscard]] auto bounding() const { return bounding_; }
+        [[nodiscard]] auto bounding() const { return rocks_bounding_; }
+        [[nodiscard]] auto map() -> auto& { return map_; }
 
-        static constexpr char sand_char = 'o';
-        static constexpr char rock_char = '#';
-        static constexpr char air_char = '.';
-
+        static constexpr char CHAR_SAND = 'o';
+        static constexpr char CHAR_ROCK = '#';
+        static constexpr char CHAR_AIR = '.';
     private:
-        static constexpr char start_char = '+';
-        SandMap map_ = std::vector(1'000, std::vector(1'000, air_char));
+        static constexpr char CHAR_START = '+';
+        Map<char> map_{1'000, 1'000, CHAR_AIR};
         Traces rock_traces_{};
-        BoundingBox bounding_{1'000, -1, 1'000, -1};
+        BoundingBox rocks_bounding_{1'000, -1, 1'000, -1};
         BoundingBox sand_bounding_{1'000, -1, 1'000, -1};
     };
 

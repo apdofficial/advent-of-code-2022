@@ -24,6 +24,7 @@ target_sources(aoc PRIVATE
         day12.cpp
         day13.cpp
         day14.cpp
+        day15.cpp
         util.cpp
         file.cpp
 )
