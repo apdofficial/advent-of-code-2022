@@ -26,12 +26,12 @@ namespace aoc::day14 {
             while (iss >> col >> delimiter >> row) {
                 if (row == row_prev) {
                     for (int col_: std::views::iota(std::min(col_prev, col), std::max(col_prev, col) + 1)) {
-                        trace.path_.emplace_back(col_, row);
+                        trace.path_.emplace_back(row, col_);
                     }
                 }
                 if (col == col_prev) {
                     for (int row_: std::views::iota(std::min(row_prev, row), std::max(row_prev, row) + 1)) {
-                        trace.path_.emplace_back(col, row_);
+                        trace.path_.emplace_back(row_, col);
                     }
                 }
                 row_prev = row;
@@ -97,7 +97,7 @@ namespace aoc::day14 {
             rocks_bounding_.max_row = std::max(rocks_bounding_.max_row, row);
         }
 
-        static constexpr Coordinates default_start{500, 0};
+        static constexpr Coordinates default_start{.row = 0, .col = 500};
 
         [[nodiscard]] auto bounding() const { return rocks_bounding_; }
         [[nodiscard]] auto map() -> auto& { return map_; }
