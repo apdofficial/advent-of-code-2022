@@ -1,15 +1,8 @@
 #pragma once
 
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <algorithm>
-#include <numeric>
-#include <numeric>
 #include <span>
 
-namespace aoc::day02 {
+namespace aoc2022::day02 {
 
     auto calculate_strategy_score(std::span<const std::pair<char, char>> rounds) -> int;
 

@@ -1,15 +1,16 @@
-add_library(aoc STATIC)
+add_library(libaoc2022 STATIC)
 
-# Check if we have Boost
-find_package(Boost 1.74.0)
+find_package(Boost 1.85.0)
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
-    target_link_libraries(aoc ${Boost_LIBRARIES})
+    target_link_libraries(libaoc2022 PRIVATE ${Boost_LIBRARIES})
 endif()
 
-target_link_libraries(aoc PRIVATE fmt::fmt)
+target_link_libraries(libaoc2022 PRIVATE fmt::fmt)
 
-target_sources(aoc PRIVATE
+target_include_directories(libaoc2022 PUBLIC include)
+
+target_sources(libaoc2022 PRIVATE
         day01.cpp
         day02.cpp
         day03.cpp
@@ -25,8 +26,7 @@ target_sources(aoc PRIVATE
         day13.cpp
         day14.cpp
         day15.cpp
+        file_puzzle_reader.cpp
         util.cpp
-        file.cpp
 )
 
-target_include_directories(aoc PUBLIC include)

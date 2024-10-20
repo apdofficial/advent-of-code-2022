@@ -1,12 +1,11 @@
 #include <catch2/catch_all.hpp>
-#include <fmt/format.h>
 #include <array>
 
 #include "day04.hpp"
 #include "util.h"
 #include "file.hpp"
 
-using namespace aoc::day04;
+using namespace aoc2022::day04;
 
 std::vector<std::string> short_lines_d4{"2-4,6-8",
                                       "2-3,4-5",
@@ -28,7 +27,7 @@ TEST_CASE("Day 04, part 2 test") {
 }
 
 TEST_CASE("Day 04 file (correctness)") {
-    aoc::File file(DATA_PATH);
+    aoc2022::File file(DATA_PATH);
     REQUIRE(file.is_valid());
 
     auto lines = file.read_lines();

@@ -1,11 +1,11 @@
 #include <catch2/catch_all.hpp>
-#include <fmt/format.h>
+#include <fmt/core.h>
 
 #include "day07.hpp"
 #include "util.h"
 #include "file.hpp"
 
-using namespace aoc::day07;
+using namespace aoc2022::day07;
 
 std::vector<std::string> short_command_lines_d7{"$ cd /",
                                                 "$ ls",
@@ -66,7 +66,7 @@ TEST_CASE("Day 07 file (correctness)") {
     constexpr auto total_mem = 70000000;
     constexpr auto required_for_update_mem = 30000000;
 
-    aoc::File file(DATA_PATH);
+    aoc2022::File file(DATA_PATH);
     REQUIRE(file.is_valid());
 
     auto tree = DirectoryTree(Directory(nullptr, "/"));

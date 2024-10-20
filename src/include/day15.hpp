@@ -1,20 +1,19 @@
 #pragma once
 
-#include "util.h"
+#include <util.h>
 #include "common.hpp"
 #include <iostream>
 #include <fmt/core.h>
-#include <ranges>
 #include <regex>
 #include <set>
 #include <string>
+#include <sstream>
 
-namespace aoc::day15 {
-    static auto file_path = get_day_file_path(15);
+namespace aoc2022::day15 {
 
     struct Sensor: Coordinates {
         Coordinates beacon;
-        long distance;
+        long distance{};
 
         friend auto operator>>(std::istream& is, Sensor& sensor) -> std::istream& {
             std::string line;

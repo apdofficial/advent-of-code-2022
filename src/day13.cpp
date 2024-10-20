@@ -1,6 +1,8 @@
 #include "day13.hpp"
 
-auto aoc::day13::parse_input(std::istream& stream, bool print) -> Packets {
+
+
+auto aoc2022::day13::parse_input(std::istream& stream, bool print) -> Packets {
     Packets packets{};
     Packet packet{};
     while (stream >> packet) {
@@ -17,7 +19,7 @@ auto aoc::day13::parse_input(std::istream& stream, bool print) -> Packets {
     return packets;
 }
 
-auto aoc::day13::part1(const Packets& packets) -> std::size_t {
+auto aoc2022::day13::part1(const Packets& packets) -> std::size_t {
     if(packets.size() < 3) return 0;
     std::size_t index = 1;
     std::size_t sum = 0;
@@ -30,7 +32,7 @@ auto aoc::day13::part1(const Packets& packets) -> std::size_t {
     return sum;
 }
 
-auto aoc::day13::part2(const Packets& packets) -> std::size_t {
+auto aoc2022::day13::part2(const Packets& packets) -> std::size_t {
     auto packets_cpy = packets;
 
     std::sort(packets_cpy.begin(), packets_cpy.end());

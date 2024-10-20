@@ -1,12 +1,17 @@
-#include "day07.hpp"
+#include <day07.hpp>
 
-auto aoc::day07::parse_command(std::string_view cmd) -> Command {
+#include <numeric>
+#include <util.h>
+
+#include <sstream>
+
+auto aoc2022::day07::parse_command(std::string_view cmd) -> Command {
     if (cmd.starts_with("$ cd")) return Command::cd;
     if (cmd.starts_with("$ ls")) return Command::ls;
     return Command::not_a_command;
 }
 
-auto aoc::day07::find_smallest_sufficient(std::vector<unsigned int> &sums, unsigned threshold) -> unsigned {
+auto aoc2022::day07::find_smallest_sufficient(std::vector<unsigned int> &sums, unsigned threshold) -> unsigned {
     std::sort(sums.begin(), sums.end());
     auto sum_iter = std::find_if(sums.begin(), sums.end(), [&threshold](auto sum){
         return sum >= threshold;
@@ -15,26 +20,26 @@ auto aoc::day07::find_smallest_sufficient(std::vector<unsigned int> &sums, unsig
     return *sum_iter;
 }
 
-auto aoc::day07::sum_if(std::vector<unsigned int> &sums, unsigned threshold) -> unsigned {
+auto aoc2022::day07::sum_if(std::vector<unsigned int> &sums, unsigned threshold) -> unsigned {
     return std::accumulate(sums.begin(), sums.end(), 0u, [&threshold](auto acc, auto sum){
         if (sum <= threshold) return acc + sum;
         else return acc;
     });
 }
 
-auto aoc::day07::Directory::add(Directory &&dir) -> std::shared_ptr<Directory> {
+auto aoc2022::day07::Directory::add(Directory &&dir) -> std::shared_ptr<Directory> {
     auto name = dir.name();
     auto [iter, added] = entries_.emplace(name, std::make_shared<Directory>(std::move(dir)));
     return std::get<std::shared_ptr<Directory>>(iter->second);
 }
 
-auto aoc::day07::Directory::add(File &&file) -> std::shared_ptr<File> {
+auto aoc2022::day07::Directory::add(File &&file) -> std::shared_ptr<File> {
     auto name = file.name();
     auto [iter, added] = entries_.emplace(name, std::make_shared<File>(std::move(file)));
     return std::get<std::shared_ptr<File>>(iter->second);
 }
 
-auto aoc::day07::Directory::size() const -> unsigned {
+auto aoc2022::day07::Directory::size() const -> unsigned {
     return std::accumulate(entries_.begin(), entries_.end(), std::size_t{0}, [](std::size_t acc, auto &entry) {
         if (std::holds_alternative<std::shared_ptr<File>>(entry.second)) {
             return acc + std::get<std::shared_ptr<File>>(entry.second)->size();
@@ -44,11 +49,11 @@ auto aoc::day07::Directory::size() const -> unsigned {
     });
 }
 
-auto aoc::day07::Directory::parent() -> std::shared_ptr<Directory> {
+auto aoc2022::day07::Directory::parent() -> std::shared_ptr<Directory> {
     return parent_;
 }
 
-auto aoc::day07::Directory::get_subdirectory(const std::string &title) -> std::optional<std::shared_ptr<Directory>> {
+auto aoc2022::day07::Directory::get_subdirectory(const std::string &title) -> std::optional<std::shared_ptr<Directory>> {
     if (!entries_.contains(title)) return std::nullopt;
     auto item = entries_.at(title);
     if (std::holds_alternative<std::shared_ptr<Directory>>(item)) {
@@ -58,7 +63,7 @@ auto aoc::day07::Directory::get_subdirectory(const std::string &title) -> std::o
     }
 }
 
-auto aoc::day07::Directory::get_file(const std::string &title) -> std::optional<std::shared_ptr<File>> {
+auto aoc2022::day07::Directory::get_file(const std::string &title) -> std::optional<std::shared_ptr<File>> {
     if (!entries_.contains(title)) return std::nullopt;
     auto item = entries_.at(title);
     if (std::holds_alternative<std::shared_ptr<File>>(item)) {
@@ -68,10 +73,10 @@ auto aoc::day07::Directory::get_file(const std::string &title) -> std::optional<
     }
 }
 
-aoc::day07::Directory::Directory(std::shared_ptr<Directory> parent, const std::string &name):
+aoc2022::day07::Directory::Directory(std::shared_ptr<Directory> parent, const std::string &name):
     TreeObject(0, name), parent_(parent), entries_{} {}
 
-auto aoc::day07::Directory::add(std::shared_ptr<Directory> parent, std::istream &is) -> void{
+auto aoc2022::day07::Directory::add(std::shared_ptr<Directory> parent, std::istream &is) -> void{
     std::string token, name;
     is >> token >> name;
     if (token == "dir" ) {
@@ -82,7 +87,7 @@ auto aoc::day07::Directory::add(std::shared_ptr<Directory> parent, std::istream 
     }
 }
 
-auto aoc::day07::Directory::get_subdirectories() const -> std::vector<std::shared_ptr<Directory>> {
+auto aoc2022::day07::Directory::get_subdirectories() const -> std::vector<std::shared_ptr<Directory>> {
     std::vector<std::shared_ptr<Directory>> subdirs{};
     for(auto& entry: entries_){
         if(std::holds_alternative<std::shared_ptr<Directory>>(entry.second)) {
@@ -98,14 +103,14 @@ auto aoc::day07::Directory::get_subdirectories() const -> std::vector<std::share
  * @param dir The directory to calculate the sizes for.
  * @param sums The vector to store the sizes in.
  */
-static void calculate_sums(const std::shared_ptr<aoc::day07::Directory>& dir, std::vector<unsigned>& sums){
+static void calculate_sums(const std::shared_ptr<aoc2022::day07::Directory>& dir, std::vector<unsigned>& sums){
     for (auto& subdir: dir->get_subdirectories()){
         sums.emplace_back(subdir->size());
         calculate_sums(subdir, sums);
     }
 }
 
-auto aoc::day07::Directory::get_recursive_subdirectory_sizes() const -> std::vector<unsigned> {
+auto aoc2022::day07::Directory::get_recursive_subdirectory_sizes() const -> std::vector<unsigned> {
     std::vector<unsigned> sums;
     for (auto& subdir: get_subdirectories()){
         sums.emplace_back(subdir->size());
@@ -114,7 +119,7 @@ auto aoc::day07::Directory::get_recursive_subdirectory_sizes() const -> std::vec
     return sums;
 }
 
-auto aoc::day07::process_command_line(const std::string &line, DirectoryTree &tree) -> void {
+auto aoc2022::day07::process_command_line(const std::string &line, DirectoryTree &tree) -> void {
     std::istringstream line_is{line};
     auto cmd = parse_command(line);
     if (cmd == Command::cd) {
@@ -129,7 +134,7 @@ auto aoc::day07::process_command_line(const std::string &line, DirectoryTree &tr
     tree.current()->add(tree.current(), line_is);
 }
 
-auto aoc::day07::DirectoryTree::cd(const std::string &dir) -> void {
+auto aoc2022::day07::DirectoryTree::cd(const std::string &dir) -> void {
     if (dir == "/") {
         current_ = root_;
         return;
@@ -144,14 +149,14 @@ auto aoc::day07::DirectoryTree::cd(const std::string &dir) -> void {
     if (subdir.has_value()) current_ = subdir.value();
 }
 
-auto aoc::day07::DirectoryTree::current() -> std::shared_ptr<Directory> {
+auto aoc2022::day07::DirectoryTree::current() -> std::shared_ptr<Directory> {
     return current_;
 }
 
-auto aoc::day07::DirectoryTree::root() -> std::shared_ptr<Directory> {
+auto aoc2022::day07::DirectoryTree::root() -> std::shared_ptr<Directory> {
     return root_;
 }
 
-aoc::day07::DirectoryTree::DirectoryTree(const Directory &root): root_(std::make_shared<Directory>(root)) {
+aoc2022::day07::DirectoryTree::DirectoryTree(const Directory &root): root_(std::make_shared<Directory>(root)) {
     current_ = root_;
 }

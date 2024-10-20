@@ -8,7 +8,7 @@
 #include <iostream>
 #include <functional>
 
-namespace aoc::day10 {
+namespace aoc2022::day10 {
     enum class InstructionType { addx, noop };
 
     using Cycle = unsigned long long;

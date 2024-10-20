@@ -6,7 +6,7 @@
 #include "file.hpp"
 #include "fmt/color.h"
 
-using namespace aoc::day05;
+using namespace aoc2022::day05;
 
 std::istringstream short_lines_d5_stream{"    [D]           \n"
                                          "[N] [C]           \n"
@@ -44,7 +44,7 @@ TEST_CASE("Day 05, part 2 test") {
 }
 
 TEST_CASE("Day 05 file (correctness)") {
-    aoc::File file(DATA_PATH);
+    aoc2022::File file(DATA_PATH);
     REQUIRE(file.is_valid());
 
     auto [commands, stacks_] = parse_input(file.istream());

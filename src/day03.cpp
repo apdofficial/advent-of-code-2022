@@ -3,7 +3,7 @@
 // n = number of elves
 // m = number of items for each elf
 // T(n, m) = n * (m/2 * (m/2 + m/2)) => O(n * (m^2)/2)
-auto aoc::day03::sum_item_priorities_of_both_compartments(std::span<const std::string> lines) -> int{
+auto aoc2022::day03::sum_item_priorities_of_both_compartments(std::span<const std::string> lines) -> int{
     auto accumulateOp = [](auto accumulator, auto& line){ // n
         int lineSum = 0;
         std::vector<char> registered;
@@ -24,7 +24,7 @@ auto aoc::day03::sum_item_priorities_of_both_compartments(std::span<const std::s
 // n = number of elves
 // m = number of items for each elf
 // T(n, m) = n * (m * (m + m + m)) => O(n * m^2)
-auto aoc::day03::sum_grouped_item_priorities_of_both_compartments(std::span<const std::string> lines) -> int{
+auto aoc2022::day03::sum_grouped_item_priorities_of_both_compartments(std::span<const std::string> lines) -> int{
     int groupSum = 0, groupIndex = 1;
     std::vector<std::string> group;
     std::vector<char> registered;

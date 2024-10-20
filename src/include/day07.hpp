@@ -1,23 +1,15 @@
 #pragma once
 
 #include <istream>
-#include <iomanip>
 #include <vector>
 #include <iostream>
-#include <fstream>
-#include <span>
 #include <optional>
-#include <queue>
-#include <algorithm>
 #include <variant>
 #include <memory>
 #include <unordered_map>
-#include <numeric>
 #include <utility>
 
-#include "util.h"
-
-namespace aoc::day07 {
+namespace aoc2022::day07 {
     enum class Command {
         cd, ls, not_a_command
     };

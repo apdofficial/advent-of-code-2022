@@ -3,14 +3,12 @@
 #include <utility>
 #include <fmt/format.h>
 #include <iostream>
-#include <algorithm>
 
 #include "util.h"
 #include "cassert"
+#include <sstream>
 
-namespace aoc::day13 {
-    static auto file_path = get_day_file_path(13);
-
+namespace aoc2022::day13 {
     struct PacketEntry {
         using Multi = std::vector<PacketEntry>;
         using Single = int;

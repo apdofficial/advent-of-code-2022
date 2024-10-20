@@ -4,7 +4,7 @@
 #include "day14.hpp"
 #include "file.hpp"
 
-using namespace aoc::day14;
+using namespace aoc2022::day14;
 
 constexpr std::string_view test_input_d14 = R"(
 498,4 -> 498,6 -> 496,6
@@ -24,7 +24,7 @@ TEST_CASE("Day 14 test part 2") {
 }
 
 TEST_CASE("Day 14 file (correctness)") {
-    aoc::File file(file_path);
+    aoc2022::File file(file_path);
     REQUIRE(file.is_valid());
     const auto scan = parse_input(file.istream(), false);
     const auto puzzle1 = part1(scan);

@@ -10,7 +10,7 @@
 #include <queue>
 #include <algorithm>
 
-namespace aoc::day06 {
+namespace aoc2022::day06 {
 
     auto start_of_packet_marker(std::istream& packet) -> std::size_t;
 

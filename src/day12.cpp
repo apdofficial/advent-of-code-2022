@@ -1,7 +1,7 @@
 #include "day12.hpp"
 
 
-auto aoc::day12::parse_input(const std::vector<std::string> &data) -> ElevationMap {
+auto aoc2022::day12::parse_input(const std::vector<std::string> &data) -> ElevationMap {
     ElevationMap map{};
     for (int x = 0; x < data.size(); ++x) {
         map.emplace_back();
@@ -12,7 +12,7 @@ auto aoc::day12::parse_input(const std::vector<std::string> &data) -> ElevationM
     return map;
 }
 
-auto aoc::day12::find_start(const ElevationMap &map) -> std::optional<ElevationPoint> {
+auto aoc2022::day12::find_start(const ElevationMap &map) -> std::optional<ElevationPoint> {
     for (auto &row: map) {
         auto res = std::ranges::find_if(row, &ElevationPoint::is_start);
         if (res != row.end()) return *res;
@@ -20,7 +20,7 @@ auto aoc::day12::find_start(const ElevationMap &map) -> std::optional<ElevationP
     return std::nullopt;
 }
 
-auto aoc::day12::find_end(const ElevationMap &map) -> std::optional<ElevationPoint> {
+auto aoc2022::day12::find_end(const ElevationMap &map) -> std::optional<ElevationPoint> {
     for (auto &row: map) {
         auto res = std::ranges::find_if(row, &ElevationPoint::is_end);
         if (res != row.end()) return *res;
@@ -28,7 +28,7 @@ auto aoc::day12::find_end(const ElevationMap &map) -> std::optional<ElevationPoi
     return std::nullopt;
 }
 
-auto aoc::day12::find_shortest_path(ElevationMap &map, const ElevationPoint &start, const ElevationPoint &end,
+auto aoc2022::day12::find_shortest_path(ElevationMap &map, const ElevationPoint &start, const ElevationPoint &end,
                                     bool visualise) -> ElevationPath {
     // current distance from the source to the vertex u
     ElevationMatrix<Distance> dist(map.size(), map[0].size(), 0);
@@ -90,7 +90,7 @@ auto aoc::day12::find_shortest_path(ElevationMap &map, const ElevationPoint &sta
     return shortest_path;
 }
 
-auto aoc::day12::find_shortest_path_from_first_lowest(ElevationMap &map, const ElevationPoint &end,
+auto aoc2022::day12::find_shortest_path_from_first_lowest(ElevationMap &map, const ElevationPoint &end,
                                                       bool visualise) -> ElevationPath {
     // current distance from the source to the vertex u
     ElevationMatrix<Distance> dist(map.size(), map[0].size(), 0);
@@ -165,7 +165,7 @@ auto aoc::day12::find_shortest_path_from_first_lowest(ElevationMap &map, const E
     return shortest_path;
 }
 
-void aoc::day12::print_map(const ElevationMap &map, const ElevationPoint &start, const ElevationPoint &end,
+void aoc2022::day12::print_map(const ElevationMap &map, const ElevationPoint &start, const ElevationPoint &end,
                            const ElevationMatrix<Distance> &dist, const ElevationPoint &u,
                            const ElevationPath &shortest_path) {
     for (std::size_t i = 0; i < map.size(); ++i) {

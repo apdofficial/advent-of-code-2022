@@ -5,7 +5,7 @@
 #include "util.h"
 #include "file.hpp"
 
-using namespace aoc::day10;
+using namespace aoc2022::day10;
 
 std::vector<std::string> short_instruction_d10{{"addx 15"},
                                                {"addx -11"},
@@ -183,8 +183,8 @@ TEST_CASE("Day 10, part 1 test") {
 
     REQUIRE(computed_x_values == expected_x_values);
 
-    auto computed_sum = aoc::accumulate(computed_signal_strengths, 0);
-    auto expected_sum = aoc::accumulate(expected_signal_strengths, 0);
+    auto computed_sum = aoc2022::accumulate(computed_signal_strengths, 0);
+    auto expected_sum = aoc2022::accumulate(expected_signal_strengths, 0);
     REQUIRE(computed_sum == expected_sum);
 }
 
@@ -195,7 +195,7 @@ TEST_CASE("Day 10, part 2 test") {
 }
 
 TEST_CASE("Day 10 file (correctness)") {
-    aoc::File file(DATA_PATH);
+    aoc2022::File file(DATA_PATH);
     REQUIRE(file.is_valid());
 
     auto instructions = parse_input(file.read_lines());
@@ -204,7 +204,7 @@ TEST_CASE("Day 10 file (correctness)") {
         return cycle == 20 || (cycle >= 20 && (cycle - 20) % 40 == 0);
     });
     auto computed_signal_strengths{transform_to_signal_strengths(computed_x_values)};
-    auto computed_sum = aoc::accumulate(computed_signal_strengths, 0);
+    auto computed_sum = aoc2022::accumulate(computed_signal_strengths, 0);
     fmt::println("the computed sum is: {}", computed_sum);
     REQUIRE(computed_sum == 11720);
 

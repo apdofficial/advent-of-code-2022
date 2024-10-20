@@ -5,7 +5,7 @@
 #include "util.h"
 #include "file.hpp"
 
-using namespace aoc::day08;
+using namespace aoc2022::day08;
 
 Forest short_forest_d8{{{3, 0, 3, 7, 3},
                         {2, 5, 5, 1, 2},
@@ -28,7 +28,7 @@ TEST_CASE("Day 08, part 2 test") {
 }
 
 TEST_CASE("Day 08 file (correctness)") {
-    aoc::File file(DATA_PATH);
+    aoc2022::File file(DATA_PATH);
     REQUIRE(file.is_valid());
 
     auto forest = file.read_matrix();

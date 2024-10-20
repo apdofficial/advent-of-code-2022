@@ -1,6 +1,6 @@
 #include "day10.hpp"
 
-auto aoc::day10::parse_input(const std::vector<std::string> &lines) -> Instructions {
+auto aoc2022::day10::parse_input(const std::vector<std::string> &lines) -> Instructions {
     Instructions instructions{};
     for (const auto &line: lines) {
         std::istringstream stream{line};
@@ -17,7 +17,7 @@ auto aoc::day10::parse_input(const std::vector<std::string> &lines) -> Instructi
     return instructions;
 }
 
-auto aoc::day10::transform_to_signal_strengths(const CapturedRegisterValues &values) -> std::vector<int> {
+auto aoc2022::day10::transform_to_signal_strengths(const CapturedRegisterValues &values) -> std::vector<int> {
     std::vector<int> signals{};
     std::ranges::transform(values, std::back_inserter(signals), [](const auto &value) {
         return value.first * value.second;
@@ -25,7 +25,7 @@ auto aoc::day10::transform_to_signal_strengths(const CapturedRegisterValues &val
     return signals;
 }
 
-auto aoc::day10::capture_register_x_values_if(const Instructions &instructions,
+auto aoc2022::day10::capture_register_x_values_if(const Instructions &instructions,
                                               std::function<bool(Cycle)> &&predicate) -> CapturedRegisterValues {
     Clock clock{};
     CPU cpu{};
@@ -45,7 +45,7 @@ auto aoc::day10::capture_register_x_values_if(const Instructions &instructions,
     return register_x_values;
 }
 
-auto aoc::day10::generate_crt_output(const Instructions &instructions) -> std::ostringstream {
+auto aoc2022::day10::generate_crt_output(const Instructions &instructions) -> std::ostringstream {
     Clock clock{};
     CPU cpu{};
     CRT crt{};
@@ -65,17 +65,17 @@ auto aoc::day10::generate_crt_output(const Instructions &instructions) -> std::o
     return crt_output;
 }
 
-void aoc::day10::CPU::load_instructions(const Instructions &instructions) {
+void aoc2022::day10::CPU::load_instructions(const Instructions &instructions) {
     for(const auto& instruction : instructions) {
         cache_.emplace(instruction);
     };
 }
 
-auto aoc::day10::CPU::register_x() const -> RegisterValue {
+auto aoc2022::day10::CPU::register_x() const -> RegisterValue {
     return register_x_;
 }
 
-void aoc::day10::CPU::advance() {
+void aoc2022::day10::CPU::advance() {
     if (is_finished()) return;
     auto [type, value] = cache_.front();
     if (available_in_ > 1) {
@@ -95,27 +95,27 @@ void aoc::day10::CPU::advance() {
     }
 }
 
-bool aoc::day10::CPU::is_finished() const { return cache_.empty(); }
+bool aoc2022::day10::CPU::is_finished() const { return cache_.empty(); }
 
-void aoc::day10::CRT::print(std::ostream &output) {
+void aoc2022::day10::CRT::print(std::ostream &output) {
     for (int pixel: std::views::iota(0, n_pixels_)) {
         output << pixels_[pixel];
         if (pixel > 0 && ((pixel + 1) % width_  == 0)) output << '\n';
     }
 }
 
-void aoc::day10::CRT::update(Cycle cycle, int sprite_middle) {
+void aoc2022::day10::CRT::update(Cycle cycle, int sprite_middle) {
     auto pixel = ((int) cycle % (n_pixels_ + 1)) - 1;
     auto pixel_x = (pixel % width_);
     auto should_turn_on = (sprite_middle - 1 <= pixel_x && pixel_x <= sprite_middle + 1);
     pixels_[pixel] = should_turn_on ? pixel_on_ : pixel_off_;
 }
 
-void aoc::day10::Clock::advance() {
+void aoc2022::day10::Clock::advance() {
     ++cycle_;
     tick_callback_(cycle_);
 }
 
-void aoc::day10::Clock::set_tick_callback(ClockTickCallback &&tick_callback) {
+void aoc2022::day10::Clock::set_tick_callback(ClockTickCallback &&tick_callback) {
     tick_callback_ = std::move(tick_callback);
 }

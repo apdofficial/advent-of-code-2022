@@ -6,7 +6,7 @@
 #include "util.h"
 #include "file.hpp"
 
-using namespace aoc::day11;
+using namespace aoc2022::day11;
 
 
 std::string short_input_d11{"Monkey 0:\n"
@@ -54,7 +54,7 @@ TEST_CASE("Day 11, part 2 test") {
 }
 
 TEST_CASE("Day 11 file (correctness)") {
-    aoc::File file(DATA_PATH);
+    aoc2022::File file(DATA_PATH);
     REQUIRE(file.is_valid());
     auto input = file.read_string();
 

@@ -7,7 +7,7 @@
 #include <numeric>
 #include <sstream>
 
-namespace aoc::day04 {
+namespace aoc2022::day04 {
 
     // (ref)    --|---|---
     // (case 1) |--|------ left overlap

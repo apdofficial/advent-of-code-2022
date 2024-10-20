@@ -1,18 +1,21 @@
 #pragma once
 
-#include <cstdlib>
-#include <span>
+#include <day.h>
+#include <puzzle_reader.hpp>
 #include <string>
-#include <optional>
-#include <numeric>
+#include <vector>
 
-namespace aoc::day01 {
+namespace aoc2022 {
 
-    auto top_1_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int>;
+struct Day1 : public IDay {
+  Day1(PuzzleReader&);
+  Day1(std::vector<std::string> const&);
 
-    auto top_3_elf_calories(std::span<std::optional<int>> calories) -> std::optional<int>;
-}
+  [[nodiscard]] auto SolvePart1() -> int override;
+  [[nodiscard]] auto SolvePart2() -> int override;
 
+ private:
+  PuzzleReader::Lines lines_;
+};
 
-
-
+}  // namespace aoc2022

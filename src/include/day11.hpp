@@ -8,7 +8,7 @@
 
 #include "util.h"
 
-namespace aoc::day11 {
+namespace aoc2022::day11 {
 
     using MonkeyId = int;
     using Item = long long int;

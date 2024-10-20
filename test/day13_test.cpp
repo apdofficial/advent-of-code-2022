@@ -5,7 +5,7 @@
 #include "util.h"
 #include "file.hpp"
 
-using namespace aoc::day13;
+using namespace aoc2022::day13;
 
 constexpr std::string_view test_input_d13 = R"([1,1,3,1,1]
 [1,1,5,1,1]
@@ -43,7 +43,7 @@ SCENARIO("Day 13") {
         }
     }
     GIVEN("file input") {
-        aoc::File file(file_path);
+        aoc2022::File file(file_path);
         THEN("file is valid") {
             REQUIRE(file.is_valid());
         }

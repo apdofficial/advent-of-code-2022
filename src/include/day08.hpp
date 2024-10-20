@@ -4,7 +4,7 @@
 #include <fmt/format.h>
 #include "util.h"
 
-namespace aoc::day08 {
+namespace aoc2022::day08 {
     using Forest = std::vector<std::vector<unsigned>>;
 
     struct Tree{

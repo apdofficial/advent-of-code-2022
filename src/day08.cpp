@@ -6,7 +6,7 @@
 // 3  3  [5]  4   9
 // 3  5   3   9   0
 
-auto aoc::day08::count_visible_trees(const Forest &forest) -> unsigned {
+auto aoc2022::day08::count_visible_trees(const Forest &forest) -> unsigned {
     // we assume forest is a square matrix
     std::unordered_set<unsigned> visible_inner_trees{};
     auto update_visible_inner_trees = [&forest, &visible_inner_trees](const auto &i, const auto &j, auto &tallest) {
@@ -39,7 +39,7 @@ auto aoc::day08::count_visible_trees(const Forest &forest) -> unsigned {
     return visible_inner_trees.size() + forest.size() * 4 - 4;
 }
 
-auto aoc::day08::calculate_scenic_score(const Forest &forest, const Tree& tree) -> unsigned {
+auto aoc2022::day08::calculate_scenic_score(const Forest &forest, const Tree& tree) -> unsigned {
     if(tree.i == 0 || tree.i == forest.size()-1) return 0;
     if(tree.j == 0 || tree.j == forest.size()-1) return 0;
     auto tree_height = forest[tree.i][tree.j];
@@ -70,7 +70,7 @@ auto aoc::day08::calculate_scenic_score(const Forest &forest, const Tree& tree) 
     return score_r * score_l * score_d * score_t;
 }
 
-auto aoc::day08::find_tree_with_highest_scenic_score(const Forest &forest) -> Tree {
+auto aoc2022::day08::find_tree_with_highest_scenic_score(const Forest &forest) -> Tree {
     Tree scenic_tree {0, 0, 0};
     for (unsigned  i = 0; i < forest.size(); ++i){
         for (unsigned  j = 0; j < forest.size(); ++j){

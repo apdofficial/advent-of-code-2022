@@ -2,7 +2,7 @@
 
 #include <thread>
 
-auto aoc::day14::parse_input(std::istream& stream, bool print) -> Scan {
+auto aoc2022::day14::parse_input(std::istream& stream, bool print) -> Scan {
     Scan scan{};
     Trace trace{};
     while (stream >> trace) {
@@ -13,7 +13,7 @@ auto aoc::day14::parse_input(std::istream& stream, bool print) -> Scan {
     return scan;
 }
 
-auto aoc::day14::part1(const Scan& scan_, bool print) -> int {
+auto aoc2022::day14::part1(const Scan& scan_, bool print) -> int {
     auto scan = scan_;
     int sand_num = 0;
     auto is_in_void = [&scan](const Coordinates& coord) {
@@ -47,7 +47,7 @@ auto aoc::day14::part1(const Scan& scan_, bool print) -> int {
     return sand_num;
 }
 
-auto aoc::day14::part2(const Scan& scan_, bool print) -> int {
+auto aoc2022::day14::part2(const Scan& scan_, bool print) -> int {
     auto scan = scan_;
     scan.set_floor(scan.bounding().max_row + 2);
     int sand_num = 0;

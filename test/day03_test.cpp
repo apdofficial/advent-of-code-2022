@@ -1,12 +1,11 @@
 #include <catch2/catch_all.hpp>
-#include <fmt/format.h>
 #include <array>
 
 #include "day03.hpp"
 #include "util.h"
 #include "file.hpp"
 
-using namespace aoc::day03;
+using namespace aoc2022::day03;
 
 std::vector<std::string> short_list{"vJrwpWtwJgWrhcsFMMfFFhFp",
                                     "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
@@ -26,7 +25,7 @@ TEST_CASE("Day 03, part 2 test") {
 }
 
 TEST_CASE("Day 03 file (correctness)") {
-    aoc::File file(DATA_PATH);
+    aoc2022::File file(DATA_PATH);
     REQUIRE(file.is_valid());
 
     auto list = file.read_lines();

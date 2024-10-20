@@ -4,7 +4,7 @@
 #include "day15.hpp"
 #include "file.hpp"
 
-using namespace aoc::day15;
+using namespace aoc2022::day15;
 
 constexpr std::string_view test_input_d15 = R"(
 Sensor at x=2, y=18: closest beacon is at x=-2, y=15
@@ -36,7 +36,7 @@ TEST_CASE("Day 15 test part 2") {
 }
 
 TEST_CASE("Day 15 file (correctness)") {
-    aoc::File file(file_path);
+    aoc2022::File file(file_path);
     REQUIRE(file.is_valid());
     const auto scan = load_input(file.istream());
     const auto puzzle1 = part1(scan, 2000000L);

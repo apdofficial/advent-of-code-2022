@@ -1,8 +1,6 @@
 #include "day15.hpp"
 
-#include <pstl/glue_execution_defs.h>
-
-auto aoc::day15::load_input(std::istream& stream) -> Scan {
+auto aoc2022::day15::load_input(std::istream& stream) -> Scan {
     Scan scan {};
     Sensor sensor{};
     while (stream >> sensor) {
@@ -11,7 +9,7 @@ auto aoc::day15::load_input(std::istream& stream) -> Scan {
     return scan;
 }
 
-auto aoc::day15::part1(const Scan& scan, long row) -> long {
+auto aoc2022::day15::part1(const Scan& scan, long row) -> long {
     auto beacons = scan.get_beacons_at(row);
     auto coverage = scan.get_line_coverage_at(row);
     const auto n_beacons = std::ranges::count_if(beacons, [&coverage](const auto& beacon) {
@@ -20,7 +18,7 @@ auto aoc::day15::part1(const Scan& scan, long row) -> long {
     return coverage.count_values() - n_beacons;
 }
 
-auto aoc::day15::part2(const Scan& scan, int limit) -> long {
+auto aoc2022::day15::part2(const Scan& scan, int limit) -> long {
 
     for(int row = limit; row > 0; --row) {
         auto coverage = scan.get_line_coverage_at(row);

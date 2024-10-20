@@ -1,12 +1,11 @@
 #include <catch2/catch_all.hpp>
-#include <fmt/format.h>
 #include <array>
 
 #include "day02.hpp"
 #include "util.h"
 #include "file.hpp"
 
-using namespace aoc::day02;
+using namespace aoc2022::day02;
 
 std::vector<std::pair<char, char>> short_rounds{{'A', 'Y'},
                                                 {'B', 'X'},
@@ -23,7 +22,7 @@ TEST_CASE("Day 02, part 2 test") {
 }
 
 TEST_CASE("Day 02 file (correctness)") {
-    aoc::File file(DATA_PATH);
+    aoc2022::File file(DATA_PATH);
     REQUIRE(file.is_valid());
 
     auto rounds = file.read_pairs();

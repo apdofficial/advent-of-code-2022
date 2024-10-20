@@ -5,7 +5,7 @@
 #include "util.h"
 #include "file.hpp"
 
-using namespace aoc::day12;
+using namespace aoc2022::day12;
 
 
 std::vector<std::string> short_input_d12{"Sabqponm",
@@ -35,7 +35,7 @@ TEST_CASE("Day 12, part 2 test") {
 }
 
 TEST_CASE("Day 12 file (correctness)") {
-    aoc::File file(DATA_PATH);
+    aoc2022::File file(DATA_PATH);
     REQUIRE(file.is_valid());
     auto input = file.read_lines();
     auto elevation_map = parse_input(input);

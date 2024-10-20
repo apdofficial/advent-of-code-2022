@@ -9,7 +9,7 @@
 #include <functional>
 #include <sstream>
 
-namespace aoc::day05 {
+namespace aoc2022::day05 {
     struct Command {
         int crate_num;
         std::size_t from;

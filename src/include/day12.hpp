@@ -13,7 +13,7 @@
 
 #include "util.h"
 
-namespace aoc::day12 {
+namespace aoc2022::day12 {
     struct Point {
         explicit Point(int x, int y): x_(x), y_(y) {}
 

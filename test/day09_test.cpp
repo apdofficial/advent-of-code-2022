@@ -5,7 +5,7 @@
 #include "util.h"
 #include "file.hpp"
 
-using namespace aoc::day09;
+using namespace aoc2022::day09;
 
 std::vector<std::string> short_motions1_d8{{"R 4"},
                                            {"U 4"},
@@ -40,7 +40,7 @@ TEST_CASE("Day 09, part 2 test") {
 }
 
 TEST_CASE("Day 09 file (correctness)") {
-    aoc::File file(DATA_PATH);
+    aoc2022::File file(DATA_PATH);
     REQUIRE(file.is_valid());
 
     auto rope_motions = parse_input(file.read_lines());
